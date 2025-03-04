@@ -1,0 +1,55 @@
+# WordPress core files
+wp-admin/
+wp-includes/
+wp-content/uploads/
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/cache/
+wp-content/backups/
+
+# Configuration files
+wp-config.php
+wp-config-sample.php
+
+# Log files
+*.log
+error_log
+access_log
+
+# Hidden system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Node modules and build files
+node_modules/
+build/
+dist/
+
+# Environment files
+.env
+.env.*
+
+# Database dumps
+*.sql
+*.sql.gz
+
+# WordPress specific temp files
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wp-content/backup-db/
+wp-content/backups/
+wp-content/blogs.dir/
+wp-content/upgrade/
+wp-content/cache/
+wp-content/uploads/
+
+# Plugin specific ignores
+wp-content/plugins/hello.php
+
+# Theme specific ignores
+wp-content/themes/twenty*/ 
