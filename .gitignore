@@ -67,5 +67,9 @@ wp-settings.php
 wp-login.php 
 wp-signup.php
 
+#Wordfence 
+
+wflogs/
+
 
 
