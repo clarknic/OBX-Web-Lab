@@ -52,4 +52,20 @@ wp-content/uploads/
 wp-content/plugins/hello.php
 
 # Theme specific ignores
-wp-content/themes/twenty*/ 
+wp-content/themes/twenty*/
+
+wp-activate.php
+wp-blog-header.php
+wp-cron.php
+wp-links-opml.php
+wp-load.php
+wp-mail.php
+wp-comments-post.php
+xmlrpc.php
+wp-trackback.php
+wp-settings.php
+wp-login.php 
+wp-signup.php
+
+
+
