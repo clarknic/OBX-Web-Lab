@@ -1,0 +1,56 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.container {
+  width: 100%;
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+  
+  @include respond-to(sm) {
+    padding: 0 $spacing-md;
+  }
+}
+
+.row {
+  @include flex(row, flex-start, stretch, wrap);
+  margin: 0 -#{$container-padding};
+}
+
+.col {
+  padding: 0 $container-padding;
+  flex: 1;
+  
+  &-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+  &-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+  &-3 { flex: 0 0 25%; max-width: 25%; }
+  &-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+  &-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+  &-6 { flex: 0 0 50%; max-width: 50%; }
+  &-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+  &-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+  &-9 { flex: 0 0 75%; max-width: 75%; }
+  &-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+  &-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+  &-12 { flex: 0 0 100%; max-width: 100%; }
+  
+  @include respond-to(sm) {
+    &-sm-1 { flex: 0 0 8.333333%; max-width: 8.333333%; }
+    &-sm-2 { flex: 0 0 16.666667%; max-width: 16.666667%; }
+    &-sm-3 { flex: 0 0 25%; max-width: 25%; }
+    &-sm-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+    &-sm-5 { flex: 0 0 41.666667%; max-width: 41.666667%; }
+    &-sm-6 { flex: 0 0 50%; max-width: 50%; }
+    &-sm-7 { flex: 0 0 58.333333%; max-width: 58.333333%; }
+    &-sm-8 { flex: 0 0 66.666667%; max-width: 66.666667%; }
+    &-sm-9 { flex: 0 0 75%; max-width: 75%; }
+    &-sm-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+    &-sm-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+    &-sm-12 { flex: 0 0 100%; max-width: 100%; }
+  }
+  
+  @include respond-to(xs) {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+} 

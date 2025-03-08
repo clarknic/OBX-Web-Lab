@@ -1,0 +1,55 @@
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.site-footer {
+  background-color: $color-dark;
+  color: $color-light;
+  padding: $spacing-lg 0;
+  margin-top: $spacing-xl;
+  
+  a {
+    color: $color-light;
+    
+    &:hover {
+      color: $color-accent;
+    }
+  }
+  
+  .container {
+    @include flex(column, center, center);
+    text-align: center;
+    
+    @include respond-to(md) {
+      @include flex(row, space-between, center);
+      text-align: left;
+    }
+  }
+}
+
+.footer-widgets {
+  @include flex(row, space-between, flex-start, wrap);
+  margin-bottom: $spacing-lg;
+  width: 100%;
+  
+  .footer-widget {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: $spacing-md;
+    padding: 0 $spacing-sm;
+    
+    h4 {
+      margin-bottom: $spacing-md;
+      color: $color-light;
+      font-size: 1.25rem;
+    }
+  }
+}
+
+.site-info {
+  border-top: 1px solid rgba($color-light, 0.1);
+  padding-top: $spacing-md;
+  font-size: 0.875rem;
+  width: 100%;
+  text-align: center;
+} 

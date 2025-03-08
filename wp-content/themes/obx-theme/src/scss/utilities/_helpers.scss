@@ -1,0 +1,90 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+/* Alignment */
+.alignleft {
+  float: left;
+  margin-right: $spacing-md;
+  margin-bottom: $spacing-sm;
+}
+
+.alignright {
+  float: right;
+  margin-left: $spacing-md;
+  margin-bottom: $spacing-sm;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Text utilities */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* Spacing utilities */
+.mt-0 { margin-top: 0; }
+.mb-0 { margin-bottom: 0; }
+.ml-0 { margin-left: 0; }
+.mr-0 { margin-right: 0; }
+
+.mt-1 { margin-top: $spacing-xs; }
+.mb-1 { margin-bottom: $spacing-xs; }
+.ml-1 { margin-left: $spacing-xs; }
+.mr-1 { margin-right: $spacing-xs; }
+
+.mt-2 { margin-top: $spacing-sm; }
+.mb-2 { margin-bottom: $spacing-sm; }
+.ml-2 { margin-left: $spacing-sm; }
+.mr-2 { margin-right: $spacing-sm; }
+
+.mt-3 { margin-top: $spacing-md; }
+.mb-3 { margin-bottom: $spacing-md; }
+.ml-3 { margin-left: $spacing-md; }
+.mr-3 { margin-right: $spacing-md; }
+
+.mt-4 { margin-top: $spacing-lg; }
+.mb-4 { margin-bottom: $spacing-lg; }
+.ml-4 { margin-left: $spacing-lg; }
+.mr-4 { margin-right: $spacing-lg; }
+
+.mt-5 { margin-top: $spacing-xl; }
+.mb-5 { margin-bottom: $spacing-xl; }
+.ml-5 { margin-left: $spacing-xl; }
+.mr-5 { margin-right: $spacing-xl; }
+
+/* Display utilities */
+.d-none { display: none; }
+.d-block { display: block; }
+.d-inline { display: inline; }
+.d-inline-block { display: inline-block; }
+.d-flex { display: flex; }
+
+/* Responsive utilities */
+@include respond-to(sm) {
+  .d-sm-none { display: none; }
+  .d-sm-block { display: block; }
+  .d-sm-inline { display: inline; }
+  .d-sm-inline-block { display: inline-block; }
+  .d-sm-flex { display: flex; }
+}
+
+@include respond-to(xs) {
+  .d-xs-none { display: none; }
+  .d-xs-block { display: block; }
+  .d-xs-inline { display: inline; }
+  .d-xs-inline-block { display: inline-block; }
+  .d-xs-flex { display: flex; }
+} 

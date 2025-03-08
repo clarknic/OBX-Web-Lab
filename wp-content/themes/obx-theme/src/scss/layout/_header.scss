@@ -1,0 +1,40 @@
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.site-header {
+  background-color: $color-light;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid $color-border;
+  
+  .container {
+    @include flex(row, space-between, center);
+  }
+}
+
+.site-branding {
+  @include flex(column, center, flex-start);
+}
+
+.site-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: $spacing-xs;
+  
+  a {
+    color: $color-dark;
+    
+    &:hover {
+      color: $color-primary;
+    }
+  }
+  
+  @include respond-to(sm) {
+    font-size: 1.25rem;
+  }
+}
+
+.site-description {
+  font-size: 0.875rem;
+  color: color.adjust($color-text, $lightness: 20%);
+} 

@@ -1,0 +1,26 @@
+/**
+ * Admin Stylesheet
+ */
+
+// Import variables and mixins
+@use 'sass:color';
+@use 'sass:math';
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+
+// Admin-specific styles
+.obx-admin-wrapper {
+  padding: 20px;
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .obx-admin-section {
+    background: #fff;
+    border: 1px solid #e2e4e7;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+} 

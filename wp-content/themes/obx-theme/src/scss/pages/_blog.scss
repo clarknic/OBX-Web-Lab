@@ -1,0 +1,85 @@
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.blog-header {
+  padding: $spacing-lg 0;
+  background-color: $color-light;
+  margin-bottom: $spacing-lg;
+  
+  h1 {
+    margin-bottom: 0;
+  }
+}
+
+.post {
+  margin-bottom: $spacing-lg;
+  
+  .entry-header {
+    margin-bottom: $spacing-md;
+  }
+  
+  .entry-title {
+    margin-bottom: $spacing-xs;
+    
+    a {
+      color: $color-dark;
+      
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+  
+  .entry-meta {
+    color: color.adjust($color-text, $lightness: 20%);
+    font-size: 0.875rem;
+    margin-bottom: $spacing-sm;
+    
+    span {
+      margin-right: $spacing-sm;
+    }
+  }
+  
+  .entry-content {
+    margin-bottom: $spacing-md;
+  }
+  
+  .entry-footer {
+    font-size: 0.875rem;
+  }
+}
+
+.post-thumbnail {
+  margin-bottom: $spacing-md;
+  
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+}
+
+.posts-navigation,
+.post-navigation {
+  margin: $spacing-lg 0;
+  padding-top: $spacing-md;
+  border-top: 1px solid $color-border;
+  
+  .nav-links {
+    @include flex(row, space-between, center);
+    
+    .nav-previous,
+    .nav-next {
+      max-width: 48%;
+    }
+    
+    a {
+      color: $color-text;
+      
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+} 

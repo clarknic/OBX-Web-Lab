@@ -1,0 +1,76 @@
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea,
+select {
+  display: block;
+  width: 100%;
+  padding: $spacing-xs $spacing-sm;
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  background-color: white;
+  color: $color-text;
+  @include transition;
+  
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
+  }
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+label {
+  display: block;
+  margin-bottom: $spacing-xs;
+  font-weight: 500;
+}
+
+.form-group {
+  margin-bottom: $spacing-md;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  
+  input[type="checkbox"],
+  input[type="radio"] {
+    margin-right: $spacing-xs;
+  }
+  
+  label {
+    margin-bottom: 0;
+  }
+}
+
+.form-row {
+  @include flex(row, space-between, flex-start, wrap);
+  margin: 0 -#{$spacing-sm};
+  
+  .form-group {
+    flex: 1;
+    min-width: 200px;
+    padding: 0 $spacing-sm;
+  }
+} 

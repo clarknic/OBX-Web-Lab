@@ -1,0 +1,76 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.main-navigation {
+  @include respond-to(md) {
+    width: 100%;
+    margin-top: $spacing-sm;
+  }
+  
+  ul {
+    @include flex(row, flex-end, center);
+    
+    @include respond-to(md) {
+      @include flex(column, flex-start, flex-start);
+    }
+    
+    li {
+      position: relative;
+      margin-left: $spacing-md;
+      
+      @include respond-to(md) {
+        margin-left: 0;
+        margin-bottom: $spacing-sm;
+        width: 100%;
+      }
+      
+      a {
+        color: $color-text;
+        font-weight: 500;
+        padding: $spacing-xs 0;
+        
+        &:hover {
+          color: $color-primary;
+        }
+        
+        @include respond-to(md) {
+          display: block;
+          padding: $spacing-xs $spacing-sm;
+        }
+      }
+      
+      &.current-menu-item > a {
+        color: $color-primary;
+      }
+    }
+  }
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: $color-text;
+  
+  @include respond-to(md) {
+    display: block;
+  }
+  
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.mobile-menu-active {
+  .main-navigation ul {
+    display: flex;
+  }
+}
+
+@include respond-to(md) {
+  .main-navigation ul {
+    display: none;
+  }
+} 

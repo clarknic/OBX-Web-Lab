@@ -1,0 +1,67 @@
+@use 'sass:color';
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.btn,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  display: inline-block;
+  background-color: $color-primary;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+  padding: $spacing-xs $spacing-md;
+  border: 1px solid $color-primary;
+  border-radius: 4px;
+  cursor: pointer;
+  @include transition;
+  
+  &:hover {
+    background-color: color.adjust($color-primary, $lightness: -10%);
+    border-color: color.adjust($color-primary, $lightness: -10%);
+    color: white;
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.3);
+  }
+}
+
+.btn {
+  &-secondary {
+    background-color: $color-secondary;
+    border-color: $color-secondary;
+    
+    &:hover {
+      background-color: color.adjust($color-secondary, $lightness: -10%);
+      border-color: color.adjust($color-secondary, $lightness: -10%);
+    }
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($color-secondary, 0.3);
+    }
+  }
+  
+  &-outline {
+    background-color: transparent;
+    color: $color-primary;
+    
+    &:hover {
+      background-color: $color-primary;
+      color: white;
+    }
+  }
+  
+  &-sm {
+    padding: calc($spacing-xs / 2) $spacing-sm;
+    font-size: 0.875rem;
+  }
+  
+  &-lg {
+    padding: $spacing-sm $spacing-lg;
+    font-size: 1.125rem;
+  }
+} 

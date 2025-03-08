@@ -1,0 +1,32 @@
+/**
+ * Main Stylesheet
+ */
+
+// Import variables and mixins
+@use 'sass:color';
+@use 'sass:math';
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
+
+// Import base styles
+@use 'base/reset';
+@use 'base/typography';
+
+// Import layout components
+@use 'layout/header';
+@use 'layout/footer';
+@use 'layout/grid';
+@use 'layout/navigation';
+@use 'layout/content';
+
+// Import components
+@use 'components/buttons';
+@use 'components/forms';
+
+// Import page-specific styles
+@use 'pages/home';
+@use 'pages/blog';
+
+// Import utilities
+@use 'utilities/helpers';
+@use 'utilities/accessibility'; 

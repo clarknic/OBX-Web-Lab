@@ -1,0 +1,15 @@
+{
+  "name": "obx-theme",
+  "version": "1.0.0",
+  "description": "OBX Web Lab Theme for Staged",
+  "main": "index.js",
+  "scripts": {
+    "start": "sass --watch src/scss:dist/css --style=compressed --source-map",
+    "build": "sass src/scss:dist/css --style=compressed --no-source-map"
+  },
+  "author": "OBX Web Lab",
+  "license": "GPL-2.0-or-later",
+  "devDependencies": {
+    "sass": "1.32.13"
+  }
+}
