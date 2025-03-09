@@ -19,8 +19,8 @@ get_header();
 
 		<?php
 		if ( have_posts() ) :
-
-			if ( is_home() && ! is_front_page() ) :
+			// if post / page contains hero block, don't display h1
+			if ( !has_block( 'obx-blocks/hero' ) ) :
 				?>
 				<header>
 					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>

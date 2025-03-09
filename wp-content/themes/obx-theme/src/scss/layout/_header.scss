@@ -11,6 +11,7 @@
 }
 .site-header {
   padding: $spacing-sm 0;
+  max-height: 75px;
   
   .container {
     @include flex(row, space-between, center);
