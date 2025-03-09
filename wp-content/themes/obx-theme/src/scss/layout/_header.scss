@@ -4,10 +4,13 @@
 
 .site {
   background: $gradient-primary;
+  background-color: $color-light;
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-size: 100% 100vh;
 }
 .site-header {
   padding: $spacing-sm 0;
-  border-bottom: 1px solid $color-border;
   
   .container {
     @include flex(row, space-between, center);
@@ -24,7 +27,27 @@
 }
 
 .site-branding {
-  @include flex(column, center, flex-start);
+  display: flex;
+  align-items: center;
+  
+  .custom-logo-link {
+    display: block;
+    
+    img.custom-logo {
+      max-width: 300px;
+      height: auto;
+      width: auto;
+    }
+  }
+  
+  .site-logo {
+    display: block;
+    
+    img {
+      max-width: 150px;
+      height: auto;
+    }
+  }
 }
 
 .site-title {

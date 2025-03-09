@@ -95,6 +95,15 @@ function obx_theme_setup() {
     // Enable support for Post Thumbnails on posts and pages
     add_theme_support('post-thumbnails');
 
+    // Add support for custom logo
+    add_theme_support('custom-logo', array(
+        'height'      => 50,
+        'width'       => 150,
+        'flex-height' => true,
+        'flex-width'  => false,
+        'header-text' => array('site-title', 'site-description'),
+    ));
+
     // Switch default core markup to output valid HTML5
     add_theme_support('html5', array(
         'search-form',
@@ -167,3 +176,15 @@ function obx_theme_widgets_init() {
     );
 }
 add_action('widgets_init', 'obx_theme_widgets_init');
+
+/**
+ * Filter the custom logo to set width attribute to 150px
+ */
+function obx_custom_logo_output($html) {
+    // Replace the width and height attributes with our custom values
+    $html = preg_replace('/(width|height)="\d+"/', '', $html);
+    $html = str_replace('<img', '<img width="150" height="auto"', $html);
+    
+    return $html;
+}
+add_filter('get_custom_logo', 'obx_custom_logo_output');

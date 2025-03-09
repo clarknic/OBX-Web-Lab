@@ -25,9 +25,12 @@
       }
       
       a {
-        color: $color-text;
+        color: $color-secondary;
         font-weight: 500;
         padding: $spacing-xs 0;
+        font-size: 14px;
+        text-transform: uppercase;
+        border: solid 1px transparent;
         
         &:hover {
           color: $color-primary;
@@ -72,5 +75,132 @@
 @include respond-to(md) {
   .main-navigation ul {
     display: none;
+  }
+}
+
+.main-navigation {
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu-item {
+    position: relative;
+    margin-left: $spacing-md;
+    transition: all 0.3s ease;
+
+    a {
+      display: block;
+      padding: $spacing-xs $spacing-sm;
+      color: $color-dark;
+      text-decoration: none;
+      font-family: $font-ui;
+      font-weight: 500;
+      position: relative;
+      transition: all 0.3s ease;
+      border-radius: 4px;
+      
+      &:hover, &:focus {
+        // Glass effect on hover
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+        transform: translateY(-2px);
+        color: $color-primary;
+      }
+    }
+    
+    &.current-menu-item > a {
+      color: $color-primary;
+      font-weight: 600;
+    }
+  }
+
+  // Contact button styling
+  .menu-item-contact-button {
+    .contact-button {
+      background-color: $color-secondary;
+      color: white;
+      padding: $spacing-xs $spacing-md;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      
+      &:hover, &:focus {
+        background: rgba($color-primary, 0.85);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        box-shadow: 0 8px 32px 0 rgba($color-primary, 0.2);
+        transform: translateY(-2px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: white;
+      }
+    }
+  }
+  
+  // Mobile menu toggle
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: $spacing-xs;
+    cursor: pointer;
+    
+    @include respond-to(sm) {
+      display: block;
+    }
+    
+    .menu-burger {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: $color-dark;
+      position: relative;
+      
+      &:before, &:after {
+        content: '';
+        display: block;
+        width: 24px;
+        height: 2px;
+        background-color: $color-dark;
+        position: absolute;
+        left: 0;
+      }
+      
+      &:before {
+        top: -6px;
+      }
+      
+      &:after {
+        bottom: -6px;
+      }
+    }
+  }
+  
+  // Mobile menu
+  @include respond-to(sm) {
+    ul {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      
+      &.active {
+        display: flex;
+      }
+    }
+    
+    .menu-item {
+      margin-left: 0;
+      margin-bottom: $spacing-xs;
+    }
+    
+    .menu-item-contact-button {
+      margin-left: 0;
+      margin-top: $spacing-sm;
+    }
   }
 } 

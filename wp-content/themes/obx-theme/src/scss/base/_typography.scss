@@ -4,32 +4,55 @@
 
 /* Typography */
 body {
-  font-family: $font-primary;
+  font-family: $font-body;
   font-size: $font-size-base;
   line-height: $line-height-base;
   color: $color-text;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin-bottom: $spacing-md;
+h1, h2, h3, h4, h5, h6,
+.site-title,
+.entry-title,
+.widget-title {
+  font-family: $font-heading;
   font-weight: 700;
   line-height: 1.2;
+  margin-bottom: $spacing-md;
+  color: $color-dark;
 }
 
 h1 {
   font-size: 2.5rem;
+  
+  @include respond-to(sm) {
+    font-size: 2rem;
+  }
 }
 
 h2 {
   font-size: 2rem;
+  
+  @include respond-to(sm) {
+    font-size: 1.75rem;
+  }
 }
 
 h3 {
   font-size: 1.75rem;
+  
+  @include respond-to(sm) {
+    font-size: 1.5rem;
+  }
 }
 
 h4 {
   font-size: 1.5rem;
+  
+  @include respond-to(sm) {
+    font-size: 1.25rem;
+  }
 }
 
 h5 {
@@ -47,9 +70,10 @@ p {
 a {
   color: $color-primary;
   text-decoration: none;
+  transition: color 0.3s ease;
   
-  &:hover {
-    color: color.adjust($color-primary, $lightness: -10%);
+  &:hover, &:focus {
+    color: darken($color-primary, 10%);
   }
 }
 
@@ -82,4 +106,42 @@ code {
   background-color: $color-light;
   padding: 2px 4px;
   border-radius: 3px;
+}
+
+// Lists
+ul, ol {
+  margin-bottom: $spacing-md;
+  padding-left: $spacing-lg;
+}
+
+// Buttons and UI elements
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+.button,
+.wp-block-button__link,
+.menu-item,
+.main-navigation,
+.nav-links,
+.nav-menu,
+.site-navigation {
+  font-family: $font-ui;
+  font-weight: 500;
+}
+
+// Font Display Optimization
+@font-face {
+  font-family: 'Figtree';
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  font-display: swap;
 } 
