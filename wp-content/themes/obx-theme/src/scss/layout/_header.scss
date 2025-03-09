@@ -2,13 +2,24 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
+.site {
+  background: $gradient-primary;
+}
 .site-header {
-  background-color: $color-light;
-  padding: $spacing-md 0;
+  padding: $spacing-sm 0;
   border-bottom: 1px solid $color-border;
   
   .container {
     @include flex(row, space-between, center);
+  }
+
+  &.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: $color-light;
   }
 }
 

@@ -1,0 +1,39 @@
+/* Google Fonts Implementation */
+:root {
+    --font-body: 'Figtree', sans-serif;
+    --font-heading: 'Merriweather', serif;
+    --font-ui: 'Outfit', sans-serif;
+}
+
+/* Base Typography */
+body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6,
+.site-title,
+.entry-title,
+.widget-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* Buttons and Navigation */
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+.button,
+.wp-block-button__link,
+.menu-item,
+.main-navigation,
+.nav-links,
+.nav-menu,
+.site-navigation {
+    font-family: var(--font-ui);
+    font-weight: 500;
+} 

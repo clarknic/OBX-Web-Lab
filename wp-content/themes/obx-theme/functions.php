@@ -11,15 +11,13 @@ if (!defined('ABSPATH')) {
  * Enqueue styles and scripts
  */
 function obx_theme_scripts() {
-    // Enqueue theme stylesheet
-    if (file_exists(get_template_directory() . '/dist/js/main.js')) {
-        // If we have a compiled main.js file, use it
-        wp_enqueue_script(
-            'obx-theme-script',
-            get_template_directory_uri() . '/dist/js/main.js',
+    // Enqueue compiled CSS if it exists
+    if (file_exists(get_template_directory() . '/dist/css/main.css')) {
+        wp_enqueue_style(
+            'obx-theme-main-style',
+            get_template_directory_uri() . '/dist/css/main.css',
             array(),
-            wp_get_theme()->get('Version'),
-            true
+            wp_get_theme()->get('Version')
         );
     } else {
         // Fallback to the original stylesheet
@@ -28,6 +26,17 @@ function obx_theme_scripts() {
             get_stylesheet_uri(),
             array(),
             wp_get_theme()->get('Version')
+        );
+    }
+    
+    // Enqueue compiled JS if it exists
+    if (file_exists(get_template_directory() . '/dist/js/main.js')) {
+        wp_enqueue_script(
+            'obx-theme-script',
+            get_template_directory_uri() . '/dist/js/main.js',
+            array(),
+            wp_get_theme()->get('Version'),
+            true
         );
     }
 }
@@ -48,6 +57,30 @@ function obx_theme_admin_scripts() {
     }
 }
 add_action('admin_enqueue_scripts', 'obx_theme_admin_scripts');
+
+/**
+ * Enqueue Google Fonts
+ */
+function obx_enqueue_google_fonts() {
+    // Add preconnect for Google Fonts
+    wp_enqueue_style(
+        'obx-google-fonts-preconnect',
+        'https://fonts.gstatic.com',
+        array(),
+        null
+    );
+    wp_style_add_data('obx-google-fonts-preconnect', 'rel', 'preconnect');
+    wp_style_add_data('obx-google-fonts-preconnect', 'crossorigin', 'anonymous');
+    
+    // Enqueue Google Fonts with display=swap for better performance
+    wp_enqueue_style(
+        'obx-google-fonts',
+        'https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700;900&family=Outfit:wght@300;400;500;600;700&display=swap&display=swap',
+        array(),
+        null
+    );
+}
+add_action('wp_enqueue_scripts', 'obx_enqueue_google_fonts');
 
 /**
  * Add theme support
