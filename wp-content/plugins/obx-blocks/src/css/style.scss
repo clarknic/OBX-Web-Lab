@@ -2,8 +2,11 @@
  * Main frontend styles for OBX Blocks
  */
  
+// Import Sass modules
+@use "sass:color";
+
 // Import variables
-@import "../scss/variables";
+@use "../scss/variables" as *;
 
 // Common block styles
 .wp-block-obx-blocks-hero,

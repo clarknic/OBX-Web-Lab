@@ -1,56 +1,62 @@
 // Main entry point for shared SCSS files
 // Import this file in block SCSS files to get access to all variables and mixins
 
-// Import variables and mixins
-@import "variables";
+// Import Sass modules
+@use "sass:color";
+
+// Import and forward variables and mixins
+@forward "variables";
+@forward "mixins";
+@use "variables" as vars;
+@use "mixins" as mix;
 
 // Common block styles
 @mixin obx-block-base {
-  @include section-padding;
-  @include alignment-classes;
+  @include mix.section-padding;
+  @include mix.alignment-classes;
   
   &__container {
-    @include responsive-container;
-    max-width: $container-max-width;
+    @include mix.responsive-container;
+    max-width: vars.$container-max-width;
   }
   
   &__header {
     text-align: center;
-    margin-bottom: $spacing-3xl;
+    margin-bottom: vars.$spacing-3xl;
   }
   
   &__tagline {
-    font-size: $font-size-base;
-    font-weight: $font-weight-bold;
+    font-size: vars.$font-size-base;
+    font-weight: vars.$font-weight-bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: $spacing-md;
-    color: $color-text-secondary;
+    margin-bottom: vars.$spacing-md;
+    color: vars.$color-text-secondary;
   }
   
   &__heading {
-    @include responsive-font-size($font-size-3xl, $font-size-2xl);
-    font-weight: $font-weight-bold;
-    line-height: $line-height-tight;
+    @include mix.responsive-font-size(vars.$font-size-3xl, vars.$font-size-2xl);
+    font-weight: vars.$font-weight-bold;
+    line-height: vars.$line-height-tight;
     margin: 0 auto;
     max-width: 800px;
-    @include heading-highlight;
+    @include mix.heading-highlight;
   }
   
   &__intro-text {
     max-width: 800px;
-    margin: $spacing-xl auto 0;
-    font-size: $font-size-md;
-    line-height: $line-height-relaxed;
-    color: $color-text-tertiary;
+    margin: vars.$spacing-xl auto 0;
+    font-size: vars.$font-size-md;
+    line-height: vars.$line-height-relaxed;
+    color: vars.$color-text-tertiary;
     
-    @media (max-width: $breakpoint-md) {
-      font-size: $font-size-base;
-      padding: 0 $spacing-md;
+    @media (max-width: vars.$breakpoint-md) {
+      font-size: vars.$font-size-base;
+      padding: 0 vars.$spacing-md;
     }
     
     p {
-      margin-bottom: $spacing-md;
+      margin-bottom: vars.$spacing-md;
       
       &:last-child {
         margin-bottom: 0;
@@ -65,27 +71,27 @@
   &__actions {
     opacity: 0;
     visibility: hidden;
-    transition: opacity $transition-fast;
+    transition: opacity vars.$transition-fast;
   }
   
   // Common add button style
   &__add-button {
-    margin-top: $spacing-xl;
+    margin-top: vars.$spacing-xl;
     width: 100%;
     justify-content: center;
-    padding: $spacing-lg;
-    border: 2px dashed $color-border;
-    border-radius: $border-radius-md;
+    padding: vars.$spacing-lg;
+    border: 2px dashed vars.$color-border;
+    border-radius: vars.$border-radius-md;
     
     &:hover {
-      background-color: $color-background-secondary;
+      background-color: vars.$color-background-secondary;
     }
   }
   
   // Common image placeholder
   &__image-placeholder {
-    @include flex-center;
-    background-color: $color-background-secondary;
-    border-radius: $border-radius-md;
+    @include mix.flex-center;
+    background-color: vars.$color-background-secondary;
+    border-radius: vars.$border-radius-md;
   }
 } 

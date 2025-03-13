@@ -2,46 +2,60 @@
  * Technologies block styles for both editor and frontend
  */
 
-@import "../../scss/variables";
+@use "sass:color";
+@use "../../scss/index" as *;
 
 .obx-technologies {
-  @include section-padding;
-  @include alignment-classes;
-  @include text-alignment-classes('obx-technologies');
+  & {
+    padding: 3rem 1.5rem;
+    @include section-padding;
+    @include alignment-classes;
+    @include text-alignment-classes('obx-technologies');
+  }
   
   &__container {
-    @include responsive-container;
-    max-width: $container-max-width;
+    & {
+      max-width: $container-max-width;
+      @include responsive-container;
+    }
   }
   
   &__header {
-    text-align: center;
-    margin-bottom: $spacing-3xl;
+    & {
+      text-align: center;
+      margin-bottom: $spacing-3xl;
+    }
   }
   
   &__heading {
-    @include responsive-font-size($font-size-3xl, $font-size-2xl);
-    font-weight: $font-weight-bold;
-    line-height: $line-height-tight;
-    margin: 0 auto;
-    max-width: 800px;
-    @include heading-highlight;
+    & {
+      margin: 0 auto;
+      max-width: 800px;
+      font-weight: $font-weight-bold;
+      line-height: $line-height-tight;
+      @include responsive-font-size($font-size-3xl, $font-size-2xl);
+      @include heading-highlight;
+    }
   }
   
   &__subheading {
-    font-size: $font-size-xl;
-    font-weight: $font-weight-semibold;
-    margin: $spacing-lg auto 0;
-    max-width: 800px;
-    color: $color-text-secondary;
+    & {
+      margin: $spacing-lg auto 0;
+      max-width: 800px;
+      font-size: $font-size-xl;
+      font-weight: $font-weight-semibold;
+      color: $color-text-secondary;
+    }
   }
   
   &__intro-text {
-    max-width: 800px;
-    margin: $spacing-xl auto 0;
-    font-size: $font-size-md;
-    line-height: $line-height-relaxed;
-    color: $color-text-tertiary;
+    & {
+      max-width: 800px;
+      margin: $spacing-xl auto 0;
+      font-size: $font-size-md;
+      line-height: $line-height-relaxed;
+      color: $color-text-tertiary;
+    }
     
     @media (max-width: $breakpoint-md) {
       font-size: $font-size-base;
@@ -49,7 +63,9 @@
     }
     
     p {
-      margin-bottom: $spacing-md;
+      & {
+        margin-bottom: $spacing-md;
+      }
       
       &:last-child {
         margin-bottom: 0;
@@ -58,10 +74,12 @@
   }
   
   &__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: $spacing-xl;
-    margin-top: $spacing-3xl;
+    & {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: $spacing-xl;
+      margin-top: $spacing-3xl;
+    }
     
     @media (max-width: $breakpoint-md) {
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -71,29 +89,39 @@
     @media (max-width: $breakpoint-sm) {
       grid-template-columns: repeat(2, 1fr);
     }
+    
+    @media (max-width: $breakpoint-xs) {
+      grid-template-columns: 1fr;
+    }
   }
   
   &__tech {
-    @include flex-column;
-    align-items: center;
-    text-align: center;
-    padding: $spacing-md;
-    border-radius: $border-radius-md;
-    background-color: $color-background-primary;
-    box-shadow: $box-shadow-sm;
-    transition: transform $transition-normal;
+    & {
+      padding: $spacing-lg;
+      background-color: $color-background-primary;
+      border-radius: $border-radius-md;
+      box-shadow: $box-shadow-sm;
+      transition: transform $transition-normal;
+      @include flex-column;
+      align-items: center;
+      text-align: center;
+    }
     
     &:hover {
-      transform: translateY(-5px);
-      box-shadow: $box-shadow-md;
+      & {
+        transform: translateY(-5px);
+        box-shadow: $box-shadow-md;
+      }
     }
   }
   
   &__tech-logo {
-    width: 80px;
-    height: 80px;
-    margin-bottom: $spacing-md;
-    object-fit: contain;
+    & {
+      width: 80px;
+      height: 80px;
+      margin-bottom: $spacing-md;
+      object-fit: contain;
+    }
     
     @media (max-width: $breakpoint-md) {
       width: 60px;
@@ -101,36 +129,32 @@
     }
     
     svg {
-      width: 100%;
-      height: 100%;
+      & {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
   
   &__tech-name {
-    font-size: $font-size-base;
-    font-weight: $font-weight-semibold;
-    color: $color-text-primary;
+    & {
+      font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      color: $color-text-primary;
+    }
   }
   
   // Editor-specific styles
   &__add-button {
-    margin-top: 2rem;
+    & {
+      margin-top: 2rem;
+    }
   }
   
   // Responsive adjustments
   @media (max-width: $breakpoint-md) {
-    padding: 3rem 1.5rem;
-  }
-  
-  @media (max-width: $breakpoint-sm) {
-    &__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-  
-  @media (max-width: $breakpoint-xs) {
-    &__grid {
-      grid-template-columns: 1fr;
+    & {
+      padding: 3rem 1.5rem;
     }
   }
 } 

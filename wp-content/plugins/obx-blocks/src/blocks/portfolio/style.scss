@@ -2,49 +2,124 @@
  * Portfolio block styles for both editor and frontend
  */
 
-@import "../../scss/variables";
+@use "sass:color";
+@use "../../scss/index" as *;
 
 .obx-portfolio {
+  & {
+    padding: $spacing-xl $spacing-lg;
+  }
+  
   @include section-padding;
   @include alignment-classes;
   @include text-alignment-classes('obx-portfolio');
   
   &__container {
+    & {
+      max-width: $container-max-width;
+    }
     @include responsive-container;
-    max-width: $container-max-width;
   }
   
   &__header {
-    text-align: center;
-    margin-bottom: $spacing-3xl;
+    & {
+      text-align: center;
+      margin-bottom: $spacing-3xl;
+    }
   }
   
   &__tagline {
-    font-size: $font-size-base;
-    font-weight: $font-weight-bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: $spacing-md;
-    color: $color-text-secondary;
+    & {
+      font-size: $font-size-base;
+      font-weight: $font-weight-bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: $spacing-md;
+      color: $color-text-secondary;
+    }
   }
   
   &__heading {
+    & {
+      font-weight: $font-weight-bold;
+      line-height: $line-height-tight;
+      margin: 0 auto;
+      max-width: 800px;
+    }
     @include responsive-font-size($font-size-3xl, $font-size-2xl);
-    font-weight: $font-weight-bold;
-    line-height: $line-height-tight;
-    margin: 0 auto;
-    max-width: 800px;
     @include heading-highlight;
   }
   
-  &__items {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: $spacing-xl;
+  &__intro-text {
+    & {
+      max-width: 800px;
+      margin: $spacing-xl auto 0;
+      font-size: $font-size-md;
+      line-height: $line-height-relaxed;
+      color: $color-text-tertiary;
+    }
     
     @media (max-width: $breakpoint-md) {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: $spacing-lg;
+      font-size: $font-size-base;
+      padding: 0 $spacing-md;
+    }
+    
+    p {
+      & {
+        margin-bottom: $spacing-md;
+      }
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  &__filters {
+    & {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: $spacing-sm;
+      margin-bottom: $spacing-3xl;
+    }
+  }
+  
+  &__filter {
+    & {
+      padding: $spacing-sm $spacing-lg;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-semibold;
+      color: $color-text-secondary;
+      background-color: transparent;
+      border: 1px solid $color-border;
+      border-radius: $border-radius-lg;
+      cursor: pointer;
+      transition: all $transition-fast;
+    }
+    
+    &:hover {
+      color: $color-text-primary;
+      border-color: $color-text-primary;
+    }
+    
+    &.active {
+      color: $color-text-inverse;
+      background-color: $color-primary;
+      border-color: $color-primary;
+    }
+  }
+  
+  &__grid {
+    & {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: $spacing-2xl;
+    }
+    
+    @media (max-width: $breakpoint-md) {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: $spacing-xl;
     }
     
     @media (max-width: $breakpoint-sm) {
@@ -53,52 +128,93 @@
   }
   
   &__item {
-    @include flex-column;
-    background-color: $color-background-primary;
-    border-radius: $border-radius-md;
-    overflow: hidden;
-    box-shadow: $box-shadow-md;
+    & {
+      position: relative;
+      border-radius: $border-radius-lg;
+      overflow: hidden;
+      box-shadow: $box-shadow-md;
+    }
     @include hover-lift;
   }
   
-  &__item-image-container {
-    position: relative;
-    width: 100%;
-    padding-top: 66%; // 3:2 aspect ratio
-    overflow: hidden;
+  &__image-container {
+    & {
+      position: relative;
+      width: 100%;
+      padding-top: 75%; // 4:3 aspect ratio
+      overflow: hidden;
+    }
   }
   
-  &__item-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform $transition-slow;
+  &__image {
+    & {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-slow;
+    }
     
     &:hover {
       transform: scale(1.05);
     }
   }
   
-  &__item-content {
-    padding: $spacing-lg;
-    flex-grow: 1;
-    @include flex-column;
+  &__overlay {
+    & {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: $spacing-xl;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0)
+      );
+      color: $color-text-inverse;
+    }
   }
   
-  &__item-name {
-    font-size: $font-size-lg;
-    font-weight: $font-weight-bold;
-    margin-bottom: $spacing-sm;
-    line-height: $line-height-tight;
+  &__category {
+    & {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-semibold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: $spacing-xs;
+      opacity: 0.8;
+    }
   }
   
-  &__item-description {
-    font-size: $font-size-sm;
-    line-height: $line-height-normal;
-    color: $color-text-secondary;
-    flex-grow: 1;
+  &__title {
+    & {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      line-height: $line-height-tight;
+      margin-bottom: $spacing-sm;
+    }
+  }
+  
+  &__description {
+    & {
+      font-size: $font-size-base;
+      line-height: $line-height-normal;
+      opacity: 0.9;
+    }
+  }
+  
+  &__link {
+    & {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      text-indent: -9999px;
+    }
   }
 } 

@@ -2,8 +2,9 @@
  * Process block editor styles
  */
 
-@import "../../scss/index";
-@import "./style.scss";
+@use "sass:color";
+@use "../../scss/index" as *;
+@use "./style.scss" as *;
 
 // Editor-specific styles
 .obx-process {

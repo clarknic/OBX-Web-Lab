@@ -2,24 +2,26 @@
  * Hero block styles for both editor and frontend
  */
 
-@import "../../scss/variables";
+@use "sass:color";
+@use "../../scss/index" as *;
 
 .obx-hero {
-  position: relative;
-  min-height: 600px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: $spacing-xl $spacing-lg;
-  overflow: hidden;
-  
+  & {
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-xl $spacing-lg;
+    overflow: hidden;
+    @include alignment-classes;
+  }
+
   @media (max-width: $breakpoint-md) {
     min-height: 450px;
     padding: $spacing-lg $spacing-md;
   }
-  
-  @include alignment-classes;
-  
+
   &__background {
     position: absolute;
     top: 0;
@@ -29,8 +31,9 @@
     z-index: -2;
     object-fit: cover;
   }
-  
+
   &__overlay {
+
     position: absolute;
     top: 0;
     left: 0;
@@ -39,139 +42,145 @@
     z-index: -1;
     background-color: rgba(0, 0, 0, 0.5); // Default overlay
   }
-  
+
   &__container {
-    @include responsive-container;
-    max-width: $container-max-width;
     width: 100%;
     z-index: 1;
-    color: $color-secondary; // Default text color
-  }
-  
-  &__content {
+    color: $color-secondary;
     @include responsive-container;
-    color: inherit; // Inherit from container or custom color
+    max-width: $container-max-width;
+  }
+
+  &__content {
+    color: inherit;
     text-align: center;
-    
+    @include responsive-container;
+
     &.text-left {
       text-align: left;
-      
+
       .obx-hero__buttons {
         justify-content: flex-start;
       }
     }
-    
+
     &.text-center {
       text-align: center;
-      
+
       .obx-hero__buttons {
         justify-content: center;
       }
     }
-    
+
     &.text-right {
       text-align: right;
-      
+
       .obx-hero__buttons {
         justify-content: flex-end;
       }
     }
   }
-  
+
   &__title {
-    @include responsive-font-size($font-size-3xl, $font-size-2xl);
-    font-weight: $font-weight-bold;
     margin-bottom: $spacing-md;
     line-height: $line-height-tight;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: inherit; // Inherit from container or custom color
+    color: inherit;
+    font-weight: $font-weight-bold;
+    @include responsive-font-size($font-size-3xl, $font-size-2xl);
+
   }
-  
+
   &__text {
-    @include responsive-font-size($font-size-xl, $font-size-lg);
     margin-bottom: $spacing-lg;
     line-height: $line-height-normal;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    color: inherit; // Inherit from container or custom color
-    
+    color: inherit;
+    @include responsive-font-size($font-size-xl, $font-size-lg);
+
     p {
       margin-bottom: $spacing-md;
-      
+
       &:last-child {
         margin-bottom: 0;
       }
     }
   }
-  
+
   &__buttons {
     display: flex;
     flex-wrap: wrap;
     gap: $spacing-md;
     margin-top: $spacing-lg;
-    
+
+
     @media (max-width: $breakpoint-md) {
       flex-direction: column;
       align-items: center;
-      
+
       &.text-left {
         align-items: flex-start;
       }
-      
+
       &.text-right {
         align-items: flex-end;
       }
     }
   }
-  
+
   &__button {
-    @include button-style;
+
     min-width: 180px;
     text-align: center;
-    
+    @include button-style;
+
     &--primary {
       background-color: $color-primary;
       color: $color-background-primary;
-      
+
       &:hover {
-        background-color: darken($color-primary, 10%);
+        background-color: color.scale($color-primary, $lightness: -10%);
       }
     }
-    
+
     &--secondary {
+
       background-color: transparent;
       color: inherit;
       border: 2px solid currentColor;
-      
+
       &:hover {
         background-color: rgba(0, 0, 0, 0.05);
       }
     }
   }
-  
+
   // When there's a background image, default to white text
   &.has-background-image {
     .obx-hero__container {
       color: $color-background-primary;
     }
-    
+
     .obx-hero__title,
     .obx-hero__text {
       text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
     }
   }
-  
+
   // Support for custom text color
   &[style*="color"] {
+
     .obx-hero__container,
     .obx-hero__content,
     .obx-hero__title,
     .obx-hero__text {
       color: inherit;
     }
-    
+
     .obx-hero__button--secondary {
       color: inherit;
       border-color: currentColor;
     }
   }
-} 
+}

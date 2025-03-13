@@ -2,8 +2,9 @@
  * Portfolio block editor styles
  */
 
-@import "../../scss/variables";
-@import "./style.scss";
+@use "sass:color";
+@use "../../scss/index" as *;
+@use "./style.scss" as *;
 
 // Editor-specific styles
 .obx-portfolio {

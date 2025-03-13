@@ -2,47 +2,62 @@
  * About Us block styles for both editor and frontend
  */
 
-@import "../../scss/variables";
+@use "sass:color";
+@use "../../scss/index" as *;
 
 .obx-about {
+  & {
+    padding: $spacing-xl $spacing-lg;
+  }
+  
   @include section-padding;
   @include alignment-classes;
   @include text-alignment-classes('obx-about');
   
   &__container {
+    & {
+      max-width: $container-max-width;
+    }
     @include responsive-container;
-    max-width: $container-max-width;
   }
   
   &__header {
-    text-align: center;
-    margin-bottom: $spacing-3xl;
+    & {
+      text-align: center;
+      margin-bottom: $spacing-3xl;
+    }
   }
   
   &__tagline {
-    font-size: $font-size-base;
-    font-weight: $font-weight-bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: $spacing-md;
-    color: $color-text-secondary;
+    & {
+      font-size: $font-size-base;
+      font-weight: $font-weight-bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: $spacing-md;
+      color: $color-text-secondary;
+    }
   }
   
   &__heading {
+    & {
+      font-weight: $font-weight-bold;
+      line-height: $line-height-tight;
+      margin: 0 auto;
+      max-width: 800px;
+    }
     @include responsive-font-size($font-size-3xl, $font-size-2xl);
-    font-weight: $font-weight-bold;
-    line-height: $line-height-tight;
-    margin: 0 auto;
-    max-width: 800px;
     @include heading-highlight;
   }
   
   &__intro-text {
-    max-width: 800px;
-    margin: $spacing-xl auto 0;
-    font-size: $font-size-md;
-    line-height: $line-height-relaxed;
-    color: $color-text-tertiary;
+    & {
+      max-width: 800px;
+      margin: $spacing-xl auto 0;
+      font-size: $font-size-md;
+      line-height: $line-height-relaxed;
+      color: $color-text-tertiary;
+    }
     
     @media (max-width: $breakpoint-md) {
       font-size: $font-size-base;
@@ -50,7 +65,9 @@
     }
     
     p {
-      margin-bottom: $spacing-md;
+      & {
+        margin-bottom: $spacing-md;
+      }
       
       &:last-child {
         margin-bottom: 0;
@@ -59,9 +76,11 @@
   }
   
   &__team {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: $spacing-2xl;
+    & {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: $spacing-2xl;
+    }
     
     @media (max-width: $breakpoint-md) {
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -74,29 +93,35 @@
   }
   
   &__member {
+    & {
+      background-color: $color-background-primary;
+      border-radius: $border-radius-md;
+      overflow: hidden;
+      box-shadow: $box-shadow-md;
+    }
     @include flex-column;
-    background-color: $color-background-primary;
-    border-radius: $border-radius-md;
-    overflow: hidden;
-    box-shadow: $box-shadow-md;
     @include hover-lift;
   }
   
   &__member-image-container {
-    position: relative;
-    width: 100%;
-    padding-top: 100%; // 1:1 aspect ratio for team member photos
-    overflow: hidden;
+    & {
+      position: relative;
+      width: 100%;
+      padding-top: 100%; // 1:1 aspect ratio for team member photos
+      overflow: hidden;
+    }
   }
   
   &__member-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform $transition-slow;
+    & {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-slow;
+    }
     
     &:hover {
       transform: scale(1.05);
@@ -104,60 +129,76 @@
   }
   
   &__member-content {
-    padding: $spacing-lg;
-    flex-grow: 1;
+    & {
+      padding: $spacing-lg;
+      flex-grow: 1;
+    }
     @include flex-column;
   }
   
   &__member-name {
-    font-size: $font-size-xl;
-    font-weight: $font-weight-bold;
-    margin-bottom: $spacing-xs;
-    line-height: $line-height-tight;
+    & {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      margin-bottom: $spacing-xs;
+      line-height: $line-height-tight;
+    }
   }
   
   &__member-position {
-    font-size: $font-size-base;
-    font-weight: $font-weight-semibold;
-    color: $color-text-secondary;
-    margin-bottom: $spacing-md;
+    & {
+      font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      color: $color-text-secondary;
+      margin-bottom: $spacing-md;
+    }
   }
   
   &__member-description {
-    font-size: $font-size-sm;
-    line-height: $line-height-normal;
-    color: $color-text-secondary;
-    margin-bottom: $spacing-lg;
+    & {
+      font-size: $font-size-sm;
+      line-height: $line-height-normal;
+      color: $color-text-secondary;
+      margin-bottom: $spacing-lg;
+    }
   }
   
   &__member-quote-container {
-    position: relative;
-    padding: $spacing-lg;
-    background-color: $color-background-secondary;
-    border-radius: $border-radius-md;
-    margin-top: auto;
+    & {
+      position: relative;
+      padding: $spacing-lg;
+      background-color: $color-background-secondary;
+      border-radius: $border-radius-md;
+      margin-top: auto;
+    }
   }
   
   &__member-quote-icon {
-    position: absolute;
-    top: -12px;
-    left: 20px;
-    background-color: $color-background-primary;
-    border-radius: 50%;
-    padding: 5px;
-    box-shadow: $box-shadow-sm;
+    & {
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background-color: $color-background-primary;
+      border-radius: 50%;
+      padding: 5px;
+      box-shadow: $box-shadow-sm;
+    }
     
     svg {
-      display: block;
-      width: 24px;
-      height: 24px;
+      & {
+        display: block;
+        width: 24px;
+        height: 24px;
+      }
     }
   }
   
   &__member-quote {
-    font-size: $font-size-base;
-    line-height: $line-height-normal;
-    font-style: italic;
-    color: $color-text-primary;
+    & {
+      font-size: $font-size-base;
+      line-height: $line-height-normal;
+      font-style: italic;
+      color: $color-text-primary;
+    }
   }
 } 
