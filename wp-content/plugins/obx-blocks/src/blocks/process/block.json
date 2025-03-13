@@ -1,0 +1,96 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "obx-blocks/process",
+  "version": "1.0.0",
+  "title": "Process Steps",
+  "category": "obx-blocks",
+  "icon": "list-view",
+  "description": "Display a step-by-step process with numbered steps, headings, and descriptions.",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "tagline": {
+      "type": "string",
+      "default": ""
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "steps": {
+      "type": "array",
+      "default": [
+        {
+          "id": "step-1",
+          "number": "1",
+          "title": "",
+          "description": ""
+        },
+        {
+          "id": "step-2",
+          "number": "2",
+          "title": "",
+          "description": ""
+        },
+        {
+          "id": "step-3",
+          "number": "3",
+          "title": "",
+          "description": ""
+        }
+      ]
+    },
+    "ctaText": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaUrl": {
+      "type": "string",
+      "default": "#"
+    },
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imageId": {
+      "type": "number",
+      "default": 0
+    },
+    "imageAlt": {
+      "type": "string",
+      "default": ""
+    },
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "textColor": {
+      "type": "string",
+      "default": ""
+    },
+    "accentColor": {
+      "type": "string",
+      "default": "#a7d1fb"
+    },
+    "textAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "contentWidth": {
+      "type": "number",
+      "default": 80
+    }
+  },
+  "textdomain": "obx-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.css",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+} 

@@ -23,6 +23,9 @@ define('OBX_BLOCKS_VERSION', '1.0.0');
 define('OBX_BLOCKS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('OBX_BLOCKS_PLUGIN_URL', plugin_dir_url(__FILE__));
 
+// Include global functions
+require_once plugin_dir_path(__FILE__) . 'includes/functions.php';
+
 /**
  * Initialize the plugin
  */

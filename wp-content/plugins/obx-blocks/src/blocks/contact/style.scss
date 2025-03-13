@@ -1,0 +1,249 @@
+/**
+ * Contact Us block styles for both editor and frontend
+ */
+
+@import "../../scss/variables";
+
+.obx-contact {
+  @include section-padding;
+  @include alignment-classes;
+  
+  // Custom text alignment for contact block
+  &.text-left {
+    .obx-contact__header,
+    .obx-contact__info-heading,
+    .obx-contact__form-heading {
+      text-align: left;
+    }
+    
+    .obx-contact__heading {
+      text-align: left;
+    }
+    
+    .obx-contact__intro-text {
+      text-align: left;
+      margin-left: 0;
+    }
+  }
+  
+  &.text-center {
+    .obx-contact__header,
+    .obx-contact__info-heading,
+    .obx-contact__form-heading {
+      text-align: center;
+    }
+    
+    .obx-contact__heading {
+      text-align: center;
+    }
+    
+    .obx-contact__intro-text {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  &.text-right {
+    .obx-contact__header,
+    .obx-contact__info-heading,
+    .obx-contact__form-heading {
+      text-align: right;
+    }
+    
+    .obx-contact__heading {
+      text-align: right;
+    }
+    
+    .obx-contact__intro-text {
+      text-align: right;
+      margin-right: 0;
+      margin-left: auto;
+    }
+  }
+  
+  &__container {
+    @include responsive-container;
+    max-width: $container-max-width;
+  }
+  
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-3xl;
+  }
+  
+  &__tagline {
+    font-size: $font-size-base;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: $spacing-md;
+    color: $color-text-secondary;
+  }
+  
+  &__heading {
+    @include responsive-font-size($font-size-3xl, $font-size-2xl);
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    margin: 0 auto;
+    max-width: 800px;
+    @include heading-highlight;
+  }
+  
+  &__intro-text {
+    max-width: 800px;
+    margin: $spacing-xl auto 0;
+    font-size: $font-size-md;
+    line-height: $line-height-relaxed;
+    color: $color-text-tertiary;
+    
+    @media (max-width: $breakpoint-md) {
+      font-size: $font-size-base;
+      padding: 0 $spacing-md;
+    }
+    
+    p {
+      margin-bottom: $spacing-md;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-2xl;
+    
+    @media (max-width: $breakpoint-md) {
+      flex-direction: column;
+      gap: $spacing-xl;
+    }
+  }
+  
+  &__info {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  &__info-heading {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-lg;
+  }
+  
+  &__info-items {
+    @include flex-column;
+    gap: $spacing-lg;
+  }
+  
+  &__info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-md;
+  }
+  
+  &__info-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    @include flex-center;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  &__info-content {
+    flex-grow: 1;
+  }
+  
+  &__info-label {
+    font-weight: $font-weight-semibold;
+    margin-bottom: $spacing-xs;
+    color: $color-text-secondary;
+  }
+  
+  &__info-value {
+    font-size: $font-size-md;
+    
+    a {
+      color: inherit;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  &__form {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  &__form-heading {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-lg;
+  }
+  
+  &__form-container {
+    background-color: $color-background-tertiary;
+    border-radius: $border-radius-md;
+    padding: $spacing-xl;
+    
+    @media (max-width: $breakpoint-md) {
+      padding: $spacing-lg;
+    }
+    
+    // Basic form styling that works with most form plugins
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"],
+    textarea,
+    select {
+      width: 100%;
+      padding: $spacing-sm;
+      margin-bottom: $spacing-md;
+      border: 1px solid $color-border;
+      border-radius: $border-radius-sm;
+      background-color: $color-background-primary;
+      font-family: inherit;
+      font-size: $font-size-base;
+      
+      &:focus {
+        outline: none;
+        border-color: $color-primary;
+        box-shadow: 0 0 0 2px rgba($color-primary, 0.2);
+      }
+    }
+    
+    textarea {
+      min-height: 150px;
+    }
+    
+    button,
+    input[type="submit"] {
+      @include button-style;
+    }
+    
+    .wpcf7-not-valid-tip {
+      color: #dc3232;
+      font-size: $font-size-xs;
+      margin-top: -$spacing-sm;
+      margin-bottom: $spacing-md;
+    }
+    
+    .wpcf7-response-output {
+      margin: $spacing-md 0 0;
+      padding: $spacing-sm;
+      border-radius: $border-radius-sm;
+    }
+  }
+} 

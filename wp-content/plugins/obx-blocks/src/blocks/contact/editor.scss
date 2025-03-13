@@ -1,0 +1,79 @@
+/**
+ * Contact Us block editor styles
+ */
+
+@import "../../scss/variables";
+@import "./style.scss";
+
+// Editor-specific styles
+.obx-contact {
+  &__info-item {
+    position: relative;
+    padding: $spacing-md;
+    border-radius: $border-radius-md;
+    transition: background-color $transition-fast;
+    
+    &.is-selected,
+    &:hover {
+      background-color: $color-background-secondary;
+      
+      .obx-contact__info-actions {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+  
+  &__info-controls {
+    margin-bottom: $spacing-md;
+  }
+  
+  &__info-type {
+    margin-bottom: $spacing-sm;
+  }
+  
+  &__info-link {
+    margin-top: $spacing-sm;
+  }
+  
+  &__info-actions {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $transition-fast;
+  }
+  
+  &__add-button {
+    margin-top: $spacing-lg;
+    width: 100%;
+    justify-content: center;
+    padding: $spacing-md;
+    border: 2px dashed $color-border;
+    border-radius: $border-radius-md;
+    
+    &:hover {
+      background-color: $color-background-secondary;
+    }
+  }
+  
+  &__form-preview,
+  &__form-placeholder {
+    padding: $spacing-lg;
+    background-color: $color-background-secondary;
+    border-radius: $border-radius-md;
+    text-align: center;
+    
+    p {
+      margin-bottom: $spacing-sm;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    code {
+      background-color: rgba(0, 0, 0, 0.05);
+      padding: $spacing-xs $spacing-sm;
+      border-radius: $border-radius-sm;
+    }
+  }
+} 

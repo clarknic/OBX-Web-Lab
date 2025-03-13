@@ -41,6 +41,17 @@ const entries = {
     ...cssEntries,
 };
 
+const BLOCKS = [
+    'hero',
+    'services',
+    'technologies',
+    'process',
+    'portfolio',
+    'about',
+    'contact',
+    // Add more blocks here
+];
+
 module.exports = {
     ...defaultConfig,
     entry: entries,

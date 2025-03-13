@@ -2,7 +2,47 @@
  * Hero block editor styles
  */
 
-@import './style.scss';
+@import "../../scss/variables";
+@import "./style.scss";
+
+// Editor-specific styles
+.obx-hero {
+  &__background-placeholder {
+    @include flex-center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background-color: $color-background-secondary;
+  }
+  
+  &__background-button {
+    @include button-style;
+    z-index: 10;
+  }
+  
+  &__background-actions {
+    position: absolute;
+    top: $spacing-md;
+    right: $spacing-md;
+    display: flex;
+    gap: $spacing-sm;
+    z-index: 10;
+  }
+  
+  .components-button {
+    &.is-primary {
+      background-color: $color-primary;
+      color: $color-text-primary;
+      
+      &:hover {
+        background-color: darken($color-primary, 10%);
+      }
+    }
+  }
+}
 
 // Editor-specific overrides to match frontend
 .wp-block-obx-blocks-hero {

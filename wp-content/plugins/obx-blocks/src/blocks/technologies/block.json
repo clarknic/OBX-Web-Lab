@@ -1,0 +1,78 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "obx-blocks/technologies",
+  "version": "1.0.0",
+  "title": "Technologies Grid",
+  "category": "obx-blocks",
+  "icon": "grid-view",
+  "description": "Display a grid of technologies with logos and names.",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "subheading": {
+      "type": "string",
+      "default": ""
+    },
+    "introText": {
+      "type": "string",
+      "default": ""
+    },
+    "technologies": {
+      "type": "array",
+      "default": [
+        {
+          "id": "tech-1",
+          "logoImage": {},
+          "name": "WordPress"
+        },
+        {
+          "id": "tech-2",
+          "logoImage": {},
+          "name": "Magento"
+        },
+        {
+          "id": "tech-3",
+          "logoImage": {},
+          "name": "React"
+        },
+        {
+          "id": "tech-4",
+          "logoImage": {},
+          "name": "Drupal"
+        }
+      ]
+    },
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "textColor": {
+      "type": "string",
+      "default": ""
+    },
+    "textAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "contentWidth": {
+      "type": "number",
+      "default": 80
+    }
+  },
+  "textdomain": "obx-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.css",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+} 

@@ -1,52 +1,44 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "obx-blocks/hero",
+  "name": "obx-blocks/portfolio",
   "version": "1.0.0",
-  "title": "Hero Section",
+  "title": "Portfolio",
   "category": "obx-blocks",
-  "icon": "cover-image",
-  "description": "A full-width hero section with background image, heading, and call-to-action buttons.",
+  "icon": "portfolio",
+  "description": "Display your portfolio items with images, names, and descriptions.",
   "supports": {
     "html": false,
     "align": ["wide", "full"]
   },
   "attributes": {
-    "title": {
+    "tagline": {
       "type": "string",
       "default": ""
     },
-    "content": {
+    "heading": {
       "type": "string",
       "default": ""
     },
-    "backgroundImage": {
-      "type": "object",
-      "default": {}
-    },
-    "overlayColor": {
-      "type": "string",
-      "default": ""
-    },
-    "primaryButtonText": {
-      "type": "string",
-      "default": ""
-    },
-    "primaryButtonUrl": {
-      "type": "string",
-      "default": "#"
-    },
-    "secondaryButtonText": {
-      "type": "string",
-      "default": ""
-    },
-    "secondaryButtonUrl": {
-      "type": "string",
-      "default": "#contact-us"
+    "portfolioItems": {
+      "type": "array",
+      "default": []
     },
     "align": {
       "type": "string",
       "default": "full"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#ffffff"
+    },
+    "textColor": {
+      "type": "string",
+      "default": ""
+    },
+    "accentColor": {
+      "type": "string",
+      "default": "#a7d1fb"
     },
     "textAlign": {
       "type": "string",
@@ -60,6 +52,6 @@
   "textdomain": "obx-blocks",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./editor.css",
-  "style": "file:./style-index.css",
+  "style": "file:./style.css",
   "render": "file:./render.php"
 } 

@@ -1,14 +1,9 @@
 /**
  * Main frontend styles for OBX Blocks
  */
-
-// Common variables
-$color-primary: #0073aa;
-$color-secondary: #23282d;
-$color-accent: #00a0d2;
-$color-light: #f8f9fa;
-$color-dark: #23282d;
-$color-border: #e2e4e7;
+ 
+// Import variables
+@import "../scss/variables";
 
 // Common block styles
 .wp-block-obx-blocks-hero,

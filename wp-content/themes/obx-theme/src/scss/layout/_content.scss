@@ -2,10 +2,6 @@
 @use '../abstracts/variables' as *;
 @use '../abstracts/mixins' as *;
 
-.site-content {
-  padding: $spacing-lg 0;
-}
-
 .site-main {
   width: 100%;
   

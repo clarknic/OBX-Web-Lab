@@ -9,7 +9,7 @@ input[type="reset"],
 input[type="submit"],
 .wp-block-button__link {
   display: inline-block;
-  padding: $spacing-xs $spacing-md;
+  padding: $spacing-xs $spacing-md 4px;
   font-family: $font-ui;
   font-weight: 500;
   font-size: 0.9rem;

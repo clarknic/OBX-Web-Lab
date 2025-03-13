@@ -10,6 +10,7 @@ import {
     ColorPalette,
     BlockControls,
     AlignmentToolbar,
+    BlockAlignmentToolbar,
 } from '@wordpress/block-editor';
 import {
     PanelBody,
@@ -29,27 +30,32 @@ import './editor.scss';
 export default function Edit({ attributes, setAttributes }) {
     const {
         title,
-        content,
-        backgroundImage,
-        overlayColor,
-        textColor,
+        text,
         primaryButtonText,
         primaryButtonUrl,
         secondaryButtonText,
         secondaryButtonUrl,
+        backgroundImageUrl,
+        backgroundImageId,
+        backgroundImageAlt,
+        overlayColor,
+        overlayOpacity,
+        textColor,
+        align,
         textAlign,
+        content,
         contentWidth,
     } = attributes;
 
     const blockProps = useBlockProps({
-        className: 'obx-hero',
+        className: `obx-hero align${align || 'none'} ${backgroundImageUrl ? 'has-background-image' : ''}`,
         style: {
-            color: textColor,
+            color: textColor || '#23282d',
         },
     });
 
     const backgroundStyles = {
-        backgroundImage: backgroundImage.url ? `url(${backgroundImage.url})` : 'none',
+        backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : 'none',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
     };
@@ -61,27 +67,48 @@ export default function Edit({ attributes, setAttributes }) {
 
     return (
         <>
+            <BlockControls>
+                <BlockAlignmentToolbar
+                    value={align}
+                    onChange={(newAlign) => setAttributes({ align: newAlign })}
+                    controls={['wide', 'full']}
+                />
+                <AlignmentToolbar
+                    value={textAlign}
+                    onChange={(newAlign) => setAttributes({ textAlign: newAlign })}
+                />
+            </BlockControls>
+            
             <InspectorControls>
-                <PanelBody title={__('Background Settings', 'obx-blocks')}>
+                <PanelBody title={__('Hero Settings', 'obx-blocks')}>
+                    <div className="components-base-control">
+                        <label className="components-base-control__label">
+                            {__('Text Color', 'obx-blocks')}
+                        </label>
+                        <ColorPalette
+                            value={textColor}
+                            onChange={(color) => setAttributes({ textColor: color || '#23282d' })}
+                        />
+                    </div>
                     <div className="editor-post-featured-image">
                         <MediaUpload
                             onSelect={(media) => setAttributes({ backgroundImage: media })}
                             allowedTypes={['image']}
-                            value={backgroundImage.id}
+                            value={backgroundImageId}
                             render={({ open }) => (
                                 <Button
-                                    className={backgroundImage.id ? 'editor-post-featured-image__preview' : 'editor-post-featured-image__toggle'}
+                                    className={backgroundImageId ? 'editor-post-featured-image__preview' : 'editor-post-featured-image__toggle'}
                                     onClick={open}
                                 >
-                                    {backgroundImage.id ? (
-                                        <img src={backgroundImage.url} alt={__('Background image', 'obx-blocks')} />
+                                    {backgroundImageId ? (
+                                        <img src={backgroundImageUrl} alt={backgroundImageAlt} />
                                     ) : (
                                         __('Set background image', 'obx-blocks')
                                     )}
                                 </Button>
                             )}
                         />
-                        {backgroundImage.id && (
+                        {backgroundImageId && (
                             <Button
                                 onClick={() => setAttributes({ backgroundImage: {} })}
                                 isDestructive
@@ -135,13 +162,6 @@ export default function Edit({ attributes, setAttributes }) {
                 </PanelBody>
             </InspectorControls>
 
-            <BlockControls>
-                <AlignmentToolbar
-                    value={textAlign}
-                    onChange={(newAlign) => setAttributes({ textAlign: newAlign })}
-                />
-            </BlockControls>
-
             <div {...blockProps}>
                 <div className="obx-hero__background" style={backgroundStyles}>
                     <div className="obx-hero__overlay" style={overlayStyles}></div>
@@ -163,8 +183,8 @@ export default function Edit({ attributes, setAttributes }) {
                     <RichText
                         tagName="p"
                         className="obx-hero__text"
-                        value={content}
-                        onChange={(value) => setAttributes({ content: value })}
+                        value={text}
+                        onChange={(value) => setAttributes({ text: value })}
                         placeholder={__('Add content...', 'obx-blocks')}
                         style={{ color: textColor }}
                     />

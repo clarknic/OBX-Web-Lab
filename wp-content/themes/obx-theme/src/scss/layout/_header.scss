@@ -11,7 +11,14 @@
 }
 .site-header {
   padding: $spacing-sm 0;
-  max-height: 75px;
+  height: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include respond-to(md) {
+    height: 75px;
+  }
   
   .container {
     @include flex(row, space-between, center);
