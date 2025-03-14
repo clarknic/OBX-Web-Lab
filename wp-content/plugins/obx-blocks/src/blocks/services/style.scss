@@ -76,14 +76,12 @@
   }
   
   &__item {
-    & {
       display: flex;
       gap: 1.5rem;
       padding: 1.5rem;
       background-color: rgba(0, 0, 0, 0.02);
       border-radius: 8px;
       transition: all 0.3s ease;
-    }
     
     &:hover {
       transform: translateY(-5px);
@@ -96,7 +94,7 @@
   }
   
   &__item-icon {
-    & {
+    
       flex-shrink: 0;
       width: 60px;
       height: 60px;
@@ -106,106 +104,83 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-    }
     
     &-img {
-      & {
         width: 100%;
         height: 100%;
         object-fit: contain;
         padding: 12px;
-      }
     }
     
     &-svg {
-      & {
         width: 100%;
         height: 100%;
         background-size: 36px 36px;
         background-position: center;
         background-repeat: no-repeat;
-      }
     }
     
     &-placeholder {
-      & {
         width: 100%;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-      }
       
       .components-placeholder__label {
-        & {
           margin-bottom: 0;
           font-size: 10px;
-        }
       }
       
       svg {
-        & {
           width: 20px;
           height: 20px;
-        }
       }
     }
   }
   
   &__item-content {
-    & {
-      flex-grow: 1;
-    }
+      flex-grow: 1;  
   }
   
   &__item-title {
-    & {
+      margin-top: 0;
       font-size: 1.25rem;
       font-weight: 600;
       margin-bottom: 0.75rem;
-    }
+    
   }
   
   &__item-description {
-    & {
       font-size: 0.95rem;
       line-height: 1.5;
       color: #666;
-    }
   }
   
   // Alignment classes
   &.alignfull {
-    & {
       width: 100%;
       max-width: 100%;
       margin-left: 0;
       margin-right: 0;
       padding-left: 2rem;
       padding-right: 2rem;
-    }
   }
   
   &.alignwide {
-    & {
       max-width: 1400px;
       margin-left: auto;
       margin-right: auto;
-    }
   }
   
   // Editor-specific styles
   &__add-button {
-    & {
       margin-top: 2rem;
-    }
   }
   
   // Responsive adjustments
   @media (max-width: 768px) {
-    & {
       padding: 3rem 1.5rem;
-    }
     
     &__container {
       flex-direction: column;

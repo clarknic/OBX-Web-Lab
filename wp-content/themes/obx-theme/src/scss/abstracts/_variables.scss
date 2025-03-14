@@ -9,7 +9,13 @@ $color-dark: #23282d;
 $color-border: #e2e4e7;
 
 //  Gradients
-$gradient-primary: linear-gradient(to bottom, $color-accent-light 0%, $color-light 100vh);
+$gradient-primary: linear-gradient(
+    to bottom,
+    $color-accent-light 0%,
+    $color-accent-light 30%,
+    $color-light 70%,
+    $color-light 100%
+);
 
 
 // Typography

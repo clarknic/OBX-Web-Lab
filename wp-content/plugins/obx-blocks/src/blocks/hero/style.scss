@@ -6,16 +6,15 @@
 @use "../../scss/index" as *;
 
 .obx-hero {
-  & {
-    position: relative;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: $spacing-xl $spacing-lg;
-    overflow: hidden;
-    @include alignment-classes;
-  }
+
+  position: relative;
+  min-height: 600px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: $spacing-xl $spacing-lg;
+  overflow: hidden;
+  @include alignment-classes;
 
   @media (max-width: $breakpoint-md) {
     min-height: 450px;
@@ -82,7 +81,8 @@
   }
 
   &__title {
-    margin-bottom: $spacing-md;
+    margin-bottom: $spacing-md !important;
+    margin-top: 0 !important;
     line-height: $line-height-tight;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: inherit;
@@ -99,11 +99,7 @@
     @include responsive-font-size($font-size-xl, $font-size-lg);
 
     p {
-      margin-bottom: $spacing-md;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
+      margin-bottom: 0;
     }
   }
 
@@ -111,7 +107,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: $spacing-md;
-    margin-top: $spacing-lg;
+    margin-top: $spacing-xl;
 
 
     @media (max-width: $breakpoint-md) {

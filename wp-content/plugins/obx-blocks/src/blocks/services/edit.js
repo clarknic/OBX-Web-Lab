@@ -17,6 +17,7 @@ import {
     Button,
     Placeholder,
     Tooltip,
+    Spinner,
 } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import { plus, upload, image, edit } from '@wordpress/icons';
@@ -49,17 +50,18 @@ export default function Edit({ attributes, setAttributes }) {
         return url && url.toLowerCase().endsWith('.svg');
     };
 
-    // Function to fetch SVG content
+    // Function to fetch and cache SVG content
     const fetchSvg = async (url, id) => {
-        if (svgCache[url]) return;
-        
         try {
             const response = await fetch(url);
             const svgText = await response.text();
-            setSvgCache(prev => ({
-                ...prev,
-                [url]: `data:image/svg+xml,${encodeURIComponent(svgText)}`
-            }));
+            
+            // Basic validation that it's an SVG
+            if (svgText.includes('<svg')) {
+                // Create a data URI
+                const dataUri = `data:image/svg+xml;base64,${btoa(svgText)}`;
+                setSvgCache(prev => ({ ...prev, [url]: dataUri }));
+            }
         } catch (error) {
             console.error('Error fetching SVG:', error);
         }
@@ -68,8 +70,8 @@ export default function Edit({ attributes, setAttributes }) {
     // Fetch SVGs when services change
     useEffect(() => {
         services.forEach(service => {
-            if (service.iconImage?.url && isSvgUrl(service.iconImage.url)) {
-                fetchSvg(service.iconImage.url, service.id);
+            if (service.iconImage?.url && isSvgUrl(service.iconImage.url) && !svgCache[service.iconImage.url]) {
+                fetchSvg(service.iconImage.url, service.iconImage.id);
             }
         });
     }, [services]);
@@ -116,22 +118,29 @@ export default function Edit({ attributes, setAttributes }) {
                 <MediaUploadCheck>
                     <MediaUpload
                         onSelect={(media) => {
-                            updateService(index, 'iconImage', media);
+                            const iconImage = {
+                                id: media.id,
+                                url: media.url,
+                                alt: media.alt || '',
+                            };
+                            updateService(index, 'iconImage', iconImage);
                             setEditingIcon(null);
                         }}
-                        allowedTypes={['image', 'svg']}
+                        allowedTypes={['image']}
                         value={service.iconImage?.id}
                         render={({ open }) => (
                             <div className="obx-services__item-icon-edit">
                                 <Button 
                                     onClick={open}
                                     className="obx-services__item-icon-upload-button"
+                                    variant="primary"
                                 >
                                     {service.iconImage?.id ? __('Change Icon', 'obx-blocks') : __('Upload Icon', 'obx-blocks')}
                                 </Button>
                                 <Button 
                                     onClick={() => setEditingIcon(null)}
                                     className="obx-services__item-icon-cancel-button"
+                                    variant="secondary"
                                 >
                                     {__('Cancel', 'obx-blocks')}
                                 </Button>
@@ -142,6 +151,7 @@ export default function Edit({ attributes, setAttributes }) {
                                             setEditingIcon(null);
                                         }}
                                         className="obx-services__item-icon-remove-button"
+                                        variant="tertiary"
                                         isDestructive
                                     >
                                         {__('Remove', 'obx-blocks')}
@@ -158,34 +168,41 @@ export default function Edit({ attributes, setAttributes }) {
         if (service.iconImage && service.iconImage.url) {
             const url = service.iconImage.url;
             
-            // Handle SVG differently
+            // Handle SVG
             if (isSvgUrl(url)) {
                 const dataUri = svgCache[url];
                 if (dataUri) {
                     return (
-                        <div className="obx-services__item-icon-wrapper">
-                            <div 
-                                className="obx-services__item-icon-svg" 
-                                style={{ backgroundImage: `url(${dataUri})` }}
-                                aria-label={service.title}
-                            ></div>
-                            <Tooltip text={__('Edit Icon', 'obx-blocks')}>
-                                <Button 
-                                    className="obx-services__item-icon-edit-button"
-                                    icon={edit}
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        setEditingIcon(index);
-                                    }}
-                                />
-                            </Tooltip>
+                        <div className="obx-services__item-icon-wrapper" style={{ position: 'relative' }}>
+                            <img 
+                                src={dataUri}
+                                alt={service.title || ''}
+                                className="obx-services__item-icon-svg"
+                                style={{
+                                    width: '100%',
+                                    height: '100%',
+                                    objectFit: 'contain',
+                                }}
+                            />
+                            <Button 
+                                style={{
+                                    position: 'absolute',
+                                    top: '-18px',
+                                    left: '-18px',
+                                    background: 'rgb(0 0 0 / 50%)',
+                                    color: 'white'
+                                }}
+                                className="obx-services__item-icon-edit-button"
+                                icon={edit}
+                                onClick={() => setEditingIcon(index)}
+                            />
                         </div>
                     );
                 }
-                // Show loading state while fetching SVG
+                // Show loading spinner while fetching SVG
                 return (
                     <div className="obx-services__item-icon-loading">
-                        {__('Loading...', 'obx-blocks')}
+                        <Spinner />
                     </div>
                 );
             }
@@ -195,39 +212,26 @@ export default function Edit({ attributes, setAttributes }) {
                 <div className="obx-services__item-icon-wrapper">
                     <img 
                         src={url} 
-                        alt={service.title} 
+                        alt={service.title || ''} 
                         className="obx-services__item-icon-img"
                     />
-                    <Tooltip text={__('Edit Icon', 'obx-blocks')}>
-                        <Button 
-                            className="obx-services__item-icon-edit-button"
-                            icon={edit}
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                setEditingIcon(index);
-                            }}
-                        />
-                    </Tooltip>
+                    <Button 
+                        className="obx-services__item-icon-edit-button"
+                        icon={edit}
+                        onClick={() => setEditingIcon(index)}
+                    />
                 </div>
             );
         }
-        
-        // Placeholder for empty icon
+
+        // No icon selected yet
         return (
-            <div 
+            <Button
                 className="obx-services__item-icon-placeholder"
-                onClick={(e) => {
-                    e.stopPropagation();
-                    setEditingIcon(index);
-                }}
+                onClick={() => setEditingIcon(index)}
             >
-                <Tooltip text={__('Add Icon', 'obx-blocks')}>
-                    <Button 
-                        icon={image}
-                        label={__('Add Icon', 'obx-blocks')}
-                    />
-                </Tooltip>
-            </div>
+                {__('Add Icon', 'obx-blocks')}
+            </Button>
         );
     };
 
@@ -300,7 +304,7 @@ export default function Edit({ attributes, setAttributes }) {
                                     className={`obx-services__item ${activeService === index ? 'is-selected' : ''}`}
                                     onClick={() => setActiveService(index)}
                                 >
-                                    <div className="obx-services__item-icon">
+                                    <div className="obx-services__item-icon" style={{ overflow: 'visible' }}>
                                         {renderServiceIcon(service, index)}
                                     </div>
                                     <div className="obx-services__item-content">

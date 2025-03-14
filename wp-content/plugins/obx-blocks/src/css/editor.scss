@@ -2,6 +2,9 @@
  * Main editor styles for OBX Blocks
  */
 
+ @use "sass:color";
+ @use "../scss/index" as *;
+
 // Common variables
 $color-primary: #0073aa;
 $color-secondary: #23282d;
@@ -12,56 +15,57 @@ $color-border: #e2e4e7;
 
 // Editor-specific styles
 .editor-styles-wrapper {
+
   .wp-block-obx-blocks-hero,
   .wp-block-obx-blocks-feature-grid,
   .wp-block-obx-blocks-testimonial {
     // Common block editor styles
     margin-top: 0;
     margin-bottom: 0;
+
+  min-height: auto;
   }
-  
+
   // Block category styles
   .block-editor-block-types-list__item[aria-label*="OBX"] {
     .block-editor-block-types-list__item-icon {
       color: $color-primary;
     }
   }
-  
+
   // Global button styles to match frontend
   .wp-block-button__link,
   .obx-button {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
+    padding: $spacing-xs $spacing-md;
+    font-family: $font-ui;
     font-weight: 500;
+    font-size: 0.9rem;
     text-align: center;
     text-decoration: none;
     cursor: pointer;
     border-radius: 4px;
     border: 1px solid transparent;
     transition: all 0.3s ease;
-    background-color: $color-primary;
-    color: white !important;
-    
-    &:hover, &:focus {
+    background-color: $color-secondary;
+    color: white;
+    transition: all 0.3s ease;
+
+    // Glass effect on hover
+    &:hover,
+    &:focus {
       background: rgba($color-primary, 0.85);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
       box-shadow: 0 8px 32px 0 rgba($color-primary, 0.2);
       transform: translateY(-2px);
       border: 1px solid rgba(255, 255, 255, 0.18);
+      color: white;
     }
-    
-    &.obx-button-ghost {
-      background-color: transparent;
-      border: 1px solid white;
-      color: white !important;
-      
-      &:hover, &:focus {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-        box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.1);
-      }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 16px 0 rgba($color-primary, 0.1);
     }
   }
 }
@@ -78,4 +82,4 @@ $color-border: #e2e4e7;
   svg {
     fill: currentColor;
   }
-} 
+}

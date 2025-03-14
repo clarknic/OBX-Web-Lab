@@ -7,6 +7,9 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
 
+// Include SVG support
+require_once get_template_directory() . '/inc/svg-support.php';
+
 /**
  * Enqueue styles and scripts
  */

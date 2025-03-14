@@ -6,51 +6,80 @@
   background: $gradient-primary;
   background-color: $color-light;
   min-height: 100vh;
-  background-attachment: fixed;
   background-size: 100% 100vh;
+  background-repeat: no-repeat;
 }
+
 .site-header {
-  padding: $spacing-sm 0;
-  height: 125px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  padding: $spacing-md 0;
+  background-color: transparent;
+  transition: all 0.3s ease;
 
-  @include respond-to(md) {
-    height: 75px;
+  &.is-floating {
+    background-color: rgba($color-light, 0.98);
+    box-shadow: 0 2px 8px rgba($color-dark, 0.1);
+    backdrop-filter: blur(8px);
+    padding: $spacing-sm 0;
+
+    .site-branding {
+      img {
+        transform: scale(0.9);
+      }
+    }
   }
-  
+
   .container {
-    @include flex(row, space-between, center);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .main-navigation {
+      li {
+        &:not(.menu-item-contact-button) {
+          a {
+
+            color: $color-text;
+
+            &:hover {
+              color: $color-primary;
+              background-color: transparent;
+              box-shadow: none;
+            }
+          }
+        }
+      }
+
+    }
   }
 
-  &.sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    background-color: $color-light;
+  .site-branding {
+    img {
+      transition: transform 0.3s ease;
+    }
   }
 }
 
 .site-branding {
   display: flex;
   align-items: center;
-  
+
   .custom-logo-link {
     display: block;
-    
+
     img.custom-logo {
       max-width: 300px;
       height: auto;
       width: auto;
     }
   }
-  
+
   .site-logo {
     display: block;
-    
+
     img {
       max-width: 150px;
       height: auto;
@@ -62,15 +91,15 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: $spacing-xs;
-  
+
   a {
     color: $color-dark;
-    
+
     &:hover {
       color: $color-primary;
     }
   }
-  
+
   @include respond-to(sm) {
     font-size: 1.25rem;
   }
@@ -79,4 +108,4 @@
 .site-description {
   font-size: 0.875rem;
   color: color.adjust($color-text, $lightness: 20%);
-} 
+}

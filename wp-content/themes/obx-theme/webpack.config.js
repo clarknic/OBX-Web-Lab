@@ -1,55 +1,57 @@
-const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 
 module.exports = {
-  ...defaultConfig,
-  entry: {
-    main: './src/js/main.js',
-    admin: './src/js/admin.js',
-  },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'js/[name].js',
-  },
-  plugins: [
-    ...defaultConfig.plugins,
-    new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
-    }),
-  ],
-  module: {
-    ...defaultConfig.module,
-    rules: [
-      ...defaultConfig.module.rules.filter(
-        rule => !rule.test || !rule.test.toString().includes('scss')
-      ),
-      {
-        test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: [
-                  require('autoprefixer')
-                ],
-              },
+    ...defaultConfig,
+    entry: {
+        main: './src/js/main.js',
+        admin: './src/js/admin.js'
+    },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'js/[name].js',
+        clean: true
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
             },
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              implementation: require('sass'),
-              sassOptions: {
-                outputStyle: 'compressed',
-              },
-            },
-          },
-        ],
-      },
+            {
+                test: /\.scss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    'autoprefixer'
+                                ]
+                            }
+                        }
+                    },
+                    'sass-loader'
+                ]
+            }
+        ]
+    },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css'
+        })
     ],
-  },
+    devtool: 'source-map',
+    performance: {
+        hints: false
+    }
 }; 

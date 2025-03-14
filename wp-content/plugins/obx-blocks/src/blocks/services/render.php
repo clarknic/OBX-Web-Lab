@@ -31,12 +31,15 @@ if (!empty($background_color)) {
     $block_style .= "background-color: {$background_color};";
 }
 if (!empty($text_color)) {
-    $block_style .= "color: {$text_color};";
+    $block_style .= "color: {$text_color};"; 
 }
+
+// Add anchor ID if it exists
+$anchor_id = !empty($attributes['anchor']) ? 'id="' . esc_attr($attributes['anchor']) . '"' : '';
 
 // Output the HTML
 ?>
-<div class="<?php echo esc_attr($class_names); ?>" <?php echo !empty($block_style) ? 'style="' . esc_attr($block_style) . '"' : ''; ?>>
+<div <?php echo $anchor_id; ?> class="<?php echo esc_attr($class_names); ?>" <?php echo !empty($block_style) ? 'style="' . esc_attr($block_style) . '"' : ''; ?>>
     <div class="obx-services__container container">
         <div class="obx-services__left">
             <?php if (!empty($tagline)) : ?>

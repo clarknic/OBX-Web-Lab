@@ -30,7 +30,6 @@ import './editor.scss';
 export default function Edit({ attributes, setAttributes }) {
     const {
         title,
-        text,
         primaryButtonText,
         primaryButtonUrl,
         secondaryButtonText,
@@ -183,8 +182,8 @@ export default function Edit({ attributes, setAttributes }) {
                     <RichText
                         tagName="p"
                         className="obx-hero__text"
-                        value={text}
-                        onChange={(value) => setAttributes({ text: value })}
+                        value={content}
+                        onChange={(value) => setAttributes({ content: value })}
                         placeholder={__('Add content...', 'obx-blocks')}
                         style={{ color: textColor }}
                     />
@@ -197,10 +196,6 @@ export default function Edit({ attributes, setAttributes }) {
                                     value={primaryButtonText}
                                     onChange={(value) => setAttributes({ primaryButtonText: value })}
                                     placeholder={__('Add text...', 'obx-blocks')}
-                                    style={{ 
-                                        backgroundColor: '#0073aa',
-                                        color: 'white'
-                                    }}
                                 />
                             </div>
                         )}
