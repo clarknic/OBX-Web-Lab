@@ -6,17 +6,13 @@
   "title": "Services Section",
   "category": "obx-blocks",
   "icon": "admin-tools",
-  "description": "A two-column services section with tagline, heading, intro text, and service items.",
+  "description": "A two-column services section with heading, intro text, and service items.",
   "supports": {
     "html": false,
     "align": ["wide", "full"],
     "anchor": true
   },
   "attributes": {
-    "tagline": {
-      "type": "string",
-      "default": ""
-    },
     "heading": {
       "type": "string",
       "default": ""

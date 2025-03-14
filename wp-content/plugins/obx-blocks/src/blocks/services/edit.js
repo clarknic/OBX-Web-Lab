@@ -32,7 +32,6 @@ import './editor.scss';
  */
 export default function Edit({ attributes, setAttributes }) {
     const {
-        tagline,
         heading,
         introText,
         services,
@@ -266,18 +265,24 @@ export default function Edit({ attributes, setAttributes }) {
                         />
                     </div>
                 </PanelBody>
+                {activeService !== null && services[activeService]?.iconImage?.url && isSvgUrl(services[activeService].iconImage.url) && (
+                    <PanelBody title={__('Icon Settings', 'obx-blocks')}>
+                        <div className="components-base-control">
+                            <label className="components-base-control__label">
+                                {__('Icon Color', 'obx-blocks')}
+                            </label>
+                            <ColorPalette
+                                value={services[activeService].iconColor}
+                                onChange={(color) => updateServiceIconColor(activeService, color)}
+                            />
+                        </div>
+                    </PanelBody>
+                )}
             </InspectorControls>
 
             <div {...blockProps}>
                 <div className="obx-services__container">
                     <div className="obx-services__left">
-                        <RichText
-                            tagName="div"
-                            className="obx-services__tagline"
-                            value={tagline}
-                            onChange={(value) => setAttributes({ tagline: value })}
-                            placeholder={__('Enter your tagline here', 'obx-blocks')}
-                        />
                         <RichText
                             tagName="h2"
                             className="obx-services__heading"
@@ -287,6 +292,7 @@ export default function Edit({ attributes, setAttributes }) {
                             allowedFormats={['core/bold', 'core/italic', 'core/link']}
                         />
                     </div>
+
                     <div className="obx-services__right">
                         <RichText
                             tagName="div"
@@ -296,11 +302,11 @@ export default function Edit({ attributes, setAttributes }) {
                             placeholder={__('Enter your intro text here', 'obx-blocks')}
                             allowedFormats={['core/bold', 'core/italic', 'core/link']}
                         />
-                        
+
                         <div className="obx-services__grid">
                             {services.map((service, index) => (
-                                <div 
-                                    key={service.id} 
+                                <div
+                                    key={service.id}
                                     className={`obx-services__item ${activeService === index ? 'is-selected' : ''}`}
                                     onClick={() => setActiveService(index)}
                                 >
@@ -340,11 +346,12 @@ export default function Edit({ attributes, setAttributes }) {
                                 </div>
                             ))}
                         </div>
-                        
+
                         <Button
+                            variant="primary"
+                            onClick={addService}
                             className="obx-services__add-button"
                             icon={plus}
-                            onClick={addService}
                         >
                             {__('Add Service', 'obx-blocks')}
                         </Button>

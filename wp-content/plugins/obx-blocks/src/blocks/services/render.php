@@ -11,7 +11,6 @@ if (!defined('ABSPATH')) {
 }
 
 // Extract attributes with defaults
-$tagline = $attributes['tagline'] ?? '';
 $heading = $attributes['heading'] ?? '';
 $intro_text = $attributes['introText'] ?? '';
 $services = $attributes['services'] ?? [];
@@ -42,10 +41,6 @@ $anchor_id = !empty($attributes['anchor']) ? 'id="' . esc_attr($attributes['anch
 <div <?php echo $anchor_id; ?> class="<?php echo esc_attr($class_names); ?>" <?php echo !empty($block_style) ? 'style="' . esc_attr($block_style) . '"' : ''; ?>>
     <div class="obx-services__container container">
         <div class="obx-services__left">
-            <?php if (!empty($tagline)) : ?>
-                <div class="obx-services__tagline"><?php echo wp_kses_post($tagline); ?></div>
-            <?php endif; ?>
-            
             <?php if (!empty($heading)) : ?>
                 <h2 class="obx-services__heading"><?php echo wp_kses_post($heading); ?></h2>
             <?php endif; ?>
@@ -60,13 +55,8 @@ $anchor_id = !empty($attributes['anchor']) ? 'id="' . esc_attr($attributes['anch
                 <div class="obx-services__grid">
                     <?php foreach ($services as $service) : ?>
                         <div class="obx-services__item">
-                            <div class="obx-services__item-icon">
-                                <?php echo obx_render_service_icon($service); ?>
-                            </div>
-                            <div class="obx-services__item-content">
-                                <h3 class="obx-services__item-title"><?php echo wp_kses_post($service['title']); ?></h3>
-                                <p class="obx-services__item-description"><?php echo wp_kses_post($service['description']); ?></p>
-                            </div>
+                            <h3 class="obx-services__item-title"><?php echo obx_render_service_icon($service); ?> <?php echo wp_kses_post($service['title']); ?></h3>
+                            <p class="obx-services__item-description"><?php echo wp_kses_post($service['description']); ?></p>
                         </div>
                     <?php endforeach; ?>
                 </div>

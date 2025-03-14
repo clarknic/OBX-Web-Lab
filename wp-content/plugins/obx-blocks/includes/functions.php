@@ -19,8 +19,7 @@ if (!defined('ABSPATH')) {
 function obx_render_service_icon($service) {
     if (!empty($service['iconImage']) && !empty($service['iconImage']['url'])) {
         $url = esc_url($service['iconImage']['url']);
-        $alt = !empty($service['title']) ? esc_attr($service['title']) : esc_attr__('Service icon', 'obx-blocks');
-        
+        $alt = !empty($service['title']) ? esc_attr(strip_tags($service['title'])) : esc_attr__('Service icon', 'obx-blocks');
         // Check if it's an SVG
         $is_svg = pathinfo($url, PATHINFO_EXTENSION) === 'svg';
         
