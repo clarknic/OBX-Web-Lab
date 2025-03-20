@@ -11,16 +11,18 @@ import {
     MediaUploadCheck,
     BlockControls,
     BlockAlignmentToolbar,
+    URLInput,
 } from '@wordpress/block-editor';
 import {
     PanelBody,
     Button,
-    Placeholder,
-    Tooltip,
     Spinner,
+    ToggleControl,
+    TextControl,
+    RangeControl,
 } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
-import { plus, upload, image, edit } from '@wordpress/icons';
+import { plus,  edit, link } from '@wordpress/icons';
 
 /**
  * Internal dependencies
@@ -34,15 +36,19 @@ export default function Edit({ attributes, setAttributes }) {
     const {
         heading,
         introText,
+        ctaText,
+        ctaUrl,
         services,
         backgroundColor,
         textColor,
         align,
+        contentWidth,
     } = attributes;
 
     const [activeService, setActiveService] = useState(null);
     const [svgCache, setSvgCache] = useState({});
     const [editingIcon, setEditingIcon] = useState(null);
+    const [isEditingURL, setIsEditingURL] = useState(false);
 
     // Function to check if a URL is an SVG
     const isSvgUrl = (url) => {
@@ -64,6 +70,16 @@ export default function Edit({ attributes, setAttributes }) {
         } catch (error) {
             console.error('Error fetching SVG:', error);
         }
+    };
+
+    // Function to update service icon color
+    const updateServiceIconColor = (index, color) => {
+        const newServices = [...services];
+        newServices[index] = {
+            ...newServices[index],
+            iconColor: color,
+        };
+        setAttributes({ services: newServices });
     };
 
     // Fetch SVGs when services change
@@ -181,6 +197,7 @@ export default function Edit({ attributes, setAttributes }) {
                                     width: '100%',
                                     height: '100%',
                                     objectFit: 'contain',
+                                    filter: service.iconColor ? `drop-shadow(0 0 0 ${service.iconColor})` : undefined,
                                 }}
                             />
                             <Button 
@@ -245,6 +262,17 @@ export default function Edit({ attributes, setAttributes }) {
             </BlockControls>
             
             <InspectorControls>
+                <PanelBody title={__('Content Settings', 'obx-blocks')}>
+                    <RangeControl
+                        label={__('Content Width (%)', 'obx-blocks')}
+                        value={contentWidth}
+                        onChange={(value) => setAttributes({ contentWidth: value })}
+                        min={30}
+                        max={100}
+                        step={5}
+                        help={__('Width of content area on desktop. Mobile will always be 100%.', 'obx-blocks')}
+                    />
+                </PanelBody>
                 <PanelBody title={__('Service Settings', 'obx-blocks')}>
                     <div className="components-base-control">
                         <label className="components-base-control__label">
@@ -265,6 +293,20 @@ export default function Edit({ attributes, setAttributes }) {
                         />
                     </div>
                 </PanelBody>
+                <PanelBody title={__('CTA Settings', 'obx-blocks')}>
+                    <TextControl
+                        label={__('CTA Text', 'obx-blocks')}
+                        value={ctaText}
+                        onChange={(value) => setAttributes({ ctaText: value })}
+                        placeholder={__('Enter CTA text...', 'obx-blocks')}
+                    />
+                    <TextControl
+                        label={__('CTA URL', 'obx-blocks')}
+                        value={ctaUrl}
+                        onChange={(value) => setAttributes({ ctaUrl: value })}
+                        placeholder={__('https://example.com', 'obx-blocks')}
+                    />
+                </PanelBody>
                 {activeService !== null && services[activeService]?.iconImage?.url && isSvgUrl(services[activeService].iconImage.url) && (
                     <PanelBody title={__('Icon Settings', 'obx-blocks')}>
                         <div className="components-base-control">
@@ -281,7 +323,7 @@ export default function Edit({ attributes, setAttributes }) {
             </InspectorControls>
 
             <div {...blockProps}>
-                <div className="obx-services__container">
+                <div className="obx-services__container" style={{ maxWidth: `${contentWidth}%` }}>
                     <div className="obx-services__left">
                         <RichText
                             tagName="h2"
@@ -291,6 +333,54 @@ export default function Edit({ attributes, setAttributes }) {
                             placeholder={__('Enter your heading here', 'obx-blocks')}
                             allowedFormats={['core/bold', 'core/italic', 'core/link']}
                         />
+                        
+                        <div className="obx-services__cta-wrapper">
+                            <div className="obx-services__cta-text-wrapper">
+                                <RichText
+                                    tagName="div"
+                                    className="obx-services__cta-text"
+                                    value={ctaText}
+                                    onChange={(value) => setAttributes({ ctaText: value })}
+                                    placeholder={__('Enter CTA text...', 'obx-blocks')}
+                                    allowedFormats={['core/bold', 'core/italic']}
+                                />
+                                {isEditingURL ? (
+                                    <div className="obx-services__cta-url-input">
+                                        <URLInput
+                                            value={ctaUrl}
+                                            onChange={(value) => setAttributes({ ctaUrl: value })}
+                                            autoFocus={true}
+                                            onBlur={() => setIsEditingURL(false)}
+                                        />
+                                        <Button
+                                            icon="editor-break"
+                                            label={__('Apply', 'obx-blocks')}
+                                            onClick={() => setIsEditingURL(false)}
+                                        />
+                                    </div>
+                                ) : (
+                                    <Button
+                                        icon={link}
+                                        label={__('Edit URL', 'obx-blocks')}
+                                        onClick={() => setIsEditingURL(true)}
+                                        className="obx-services__cta-url-button"
+                                    />
+                                )}
+                            </div>
+                            {ctaText && ctaUrl && (
+                                <div className="obx-services__cta-preview">
+                                    <span>{__('Preview:', 'obx-blocks')}</span>
+                                    <a 
+                                        href={ctaUrl}
+                                        className="obx-services__cta-link"
+                                        target={'_self'}
+                                        rel={'noopener noreferrer'}
+                                    >
+                                        {ctaText}
+                                    </a>
+                                </div>
+                            )}
+                        </div>
                     </div>
 
                     <div className="obx-services__right">
@@ -310,10 +400,10 @@ export default function Edit({ attributes, setAttributes }) {
                                     className={`obx-services__item ${activeService === index ? 'is-selected' : ''}`}
                                     onClick={() => setActiveService(index)}
                                 >
-                                    <div className="obx-services__item-icon" style={{ overflow: 'visible' }}>
-                                        {renderServiceIcon(service, index)}
-                                    </div>
-                                    <div className="obx-services__item-content">
+                                    <div className="obx-services__title-wrapper">
+                                        <div className="obx-services__item-icon" style={{ overflow: 'visible' }}>
+                                            {renderServiceIcon(service, index)}
+                                        </div>
                                         <RichText
                                             tagName="h3"
                                             className="obx-services__item-title"
@@ -322,6 +412,7 @@ export default function Edit({ attributes, setAttributes }) {
                                             placeholder={__('Service Title', 'obx-blocks')}
                                             allowedFormats={['core/bold', 'core/italic']}
                                         />
+                                    </div>
                                         <RichText
                                             tagName="p"
                                             className="obx-services__item-description"
@@ -342,7 +433,6 @@ export default function Edit({ attributes, setAttributes }) {
                                                 {__('Remove Service', 'obx-blocks')}
                                             </Button>
                                         </div>
-                                    </div>
                                 </div>
                             ))}
                         </div>

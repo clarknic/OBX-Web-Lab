@@ -13,6 +13,8 @@ if (!defined('ABSPATH')) {
 // Extract attributes with defaults
 $heading = $attributes['heading'] ?? '';
 $intro_text = $attributes['introText'] ?? '';
+$cta_text = $attributes['ctaText'] ?? '';
+$cta_url = $attributes['ctaUrl'] ?? '';
 $services = $attributes['services'] ?? [];
 $align = !empty($attributes['align']) ? $attributes['align'] : 'full';
 $background_color = !empty($attributes['backgroundColor']) ? $attributes['backgroundColor'] : '#ffffff';
@@ -43,6 +45,17 @@ $anchor_id = !empty($attributes['anchor']) ? 'id="' . esc_attr($attributes['anch
         <div class="obx-services__left">
             <?php if (!empty($heading)) : ?>
                 <h2 class="obx-services__heading"><?php echo wp_kses_post($heading); ?></h2>
+            <?php endif; ?>
+            
+            <?php if (!empty($cta_text) && !empty($cta_url)) : ?>
+                <div class="obx-services__cta">
+                    <a 
+                        href="<?php echo esc_url($cta_url); ?>" 
+                        class="obx-services__cta-link"
+                    >
+                        <?php echo wp_kses_post($cta_text); ?>
+                    </a>
+                </div>
             <?php endif; ?>
         </div>
         

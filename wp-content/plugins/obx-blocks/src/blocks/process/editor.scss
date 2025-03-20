@@ -53,4 +53,37 @@
     gap: $spacing-sm;
     z-index: 10;
   }
+}
+
+.wp-block-obx-blocks-process {
+  .obx-process__cta-container {
+    margin-top: $spacing-lg;
+    text-align: left;
+  }
+  
+  .obx-process__cta-button {
+    display: inline-block;
+    padding: $spacing-xs $spacing-md;
+    font-family: $font-ui;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    background-color: $color-secondary;
+    color: $color-text-inverse;
+    
+    &:hover, &:focus {
+      background: rgba($color-primary, 0.85);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      box-shadow: 0 8px 32px 0 rgba($color-primary, 0.2);
+      transform: translateY(-2px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: $color-text-inverse;
+    }
+  }
 } 

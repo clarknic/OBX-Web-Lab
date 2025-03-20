@@ -7,12 +7,11 @@ import {
     RichText,
     InspectorControls,
     ColorPalette,
-    MediaUpload,
-    MediaUploadCheck,
     BlockControls,
     BlockAlignmentToolbar,
     AlignmentToolbar,
     URLInputButton,
+    URLInput,
 } from '@wordpress/block-editor';
 import {
     PanelBody,
@@ -22,37 +21,38 @@ import {
     RangeControl,
 } from '@wordpress/components';
 import { useState } from '@wordpress/element';
-import { plus, trash } from '@wordpress/icons';
+import { plus, trash, link } from '@wordpress/icons';
+import { v4 as uuidv4 } from 'uuid';
 
 /**
  * Internal dependencies
  */
 import './editor.scss';
+import './style.scss';
 
 /**
  * Edit function for the Process block
  */
 export default function Edit({ attributes, setAttributes }) {
     const {
-        tagline,
         heading,
+        introText,
         steps,
         ctaText,
         ctaUrl,
-        imageUrl,
-        imageId,
-        imageAlt,
         backgroundColor,
         textColor,
         accentColor,
         align,
         textAlign,
+        contentWidth,
     } = attributes;
 
     const [activeStep, setActiveStep] = useState(null);
+    const [isEditingURL, setIsEditingURL] = useState(false);
 
     const blockProps = useBlockProps({
-        className: `obx-process align${align || 'none'} text-${textAlign || 'center'}`,
+        className: `obx-process align${align || 'none'} text-${textAlign || 'center'} content-width-${contentWidth}`,
         style: {
             backgroundColor,
             color: textColor,
@@ -60,37 +60,28 @@ export default function Edit({ attributes, setAttributes }) {
     });
 
     const addStep = () => {
-        const newSteps = [...steps];
-        const newNumber = newSteps.length + 1;
-        newSteps.push({
-            id: `step-${Date.now()}`,
-            number: newNumber.toString(),
+        const newStep = {
+            id: uuidv4(),
+            number: (steps.length + 1).toString(),
             title: '',
             description: '',
-        });
-        setAttributes({ steps: newSteps });
+        };
+        setAttributes({ steps: [...steps, newStep] });
     };
 
-    const removeStep = (index) => {
-        const newSteps = [...steps];
-        newSteps.splice(index, 1);
-        
-        // Update the numbers of remaining steps
-        newSteps.forEach((step, i) => {
-            step.number = (i + 1).toString();
+    const removeStep = (stepId) => {
+        setAttributes({
+            steps: steps.filter(step => step.id !== stepId),
         });
-        
-        setAttributes({ steps: newSteps });
         setActiveStep(null);
     };
 
-    const updateStep = (index, property, value) => {
-        const newSteps = [...steps];
-        newSteps[index] = {
-            ...newSteps[index],
-            [property]: value,
-        };
-        setAttributes({ steps: newSteps });
+    const updateStep = (stepId, field, value) => {
+        setAttributes({
+            steps: steps.map(step => 
+                step.id === stepId ? { ...step, [field]: value } : step
+            ),
+        });
     };
 
     return (
@@ -109,53 +100,6 @@ export default function Edit({ attributes, setAttributes }) {
             
             <InspectorControls>
                 <PanelBody title={__('Process Settings', 'obx-blocks')}>
-                    <BaseControl label={__('Process Image', 'obx-blocks')}>
-                        <MediaUploadCheck>
-                            <MediaUpload
-                                onSelect={(media) => {
-                                    setAttributes({
-                                        imageUrl: media.url,
-                                        imageId: media.id,
-                                        imageAlt: media.alt || '',
-                                    });
-                                }}
-                                allowedTypes={['image']}
-                                value={imageId}
-                                render={({ open }) => (
-                                    <div className="editor-post-featured-image">
-                                        <Button
-                                            className={imageId ? 'editor-post-featured-image__preview' : 'editor-post-featured-image__toggle'}
-                                            onClick={open}
-                                        >
-                                            {imageId ? (
-                                                <img 
-                                                    src={imageUrl} 
-                                                    alt={imageAlt} 
-                                                    style={{ maxWidth: '100%', maxHeight: '200px' }}
-                                                />
-                                            ) : (
-                                                __('Set process image', 'obx-blocks')
-                                            )}
-                                        </Button>
-                                        {imageId && (
-                                            <Button
-                                                onClick={() => {
-                                                    setAttributes({
-                                                        imageUrl: '',
-                                                        imageId: 0,
-                                                        imageAlt: '',
-                                                    });
-                                                }}
-                                                isDestructive
-                                            >
-                                                {__('Remove image', 'obx-blocks')}
-                                            </Button>
-                                        )}
-                                    </div>
-                                )}
-                            />
-                        </MediaUploadCheck>
-                    </BaseControl>
                     
                     <TextControl
                         label={__('CTA Button Text', 'obx-blocks')}
@@ -200,31 +144,86 @@ export default function Edit({ attributes, setAttributes }) {
                         />
                     </div>
                 </PanelBody>
+                <PanelBody title={__('Content Settings', 'obx-blocks')}>
+                    <RangeControl
+                        label={__('Content Width (%)', 'obx-blocks')}
+                        value={contentWidth}
+                        onChange={(value) => setAttributes({ contentWidth: value })}
+                        min={30}
+                        max={100}
+                        step={5}
+                        help={__('Width of content area on desktop. Mobile will always be 100%.', 'obx-blocks')}
+                    />
+                </PanelBody>
             </InspectorControls>
 
             <div {...blockProps}>
-                <div className="obx-process__container">
+                <div className="obx-process__container" style={{ maxWidth: `${contentWidth}%` }}>
                     <div className="obx-process__header" style={{ textAlign }}>
-                        <RichText
-                            tagName="div"
-                            className="obx-process__tagline"
-                            value={tagline}
-                            onChange={(value) => setAttributes({ tagline: value })}
-                            placeholder={__('OUR PROCESS', 'obx-blocks')}
-                        />
                         <RichText
                             tagName="h2"
                             className="obx-process__heading"
                             value={heading}
                             onChange={(value) => setAttributes({ heading: value })}
-                            placeholder={__('Your path to paid search excellence starts here!', 'obx-blocks')}
-                            style={{ 
-                                backgroundImage: accentColor ? `linear-gradient(transparent 60%, ${accentColor} 60%)` : 'none' 
-                            }}
+                            placeholder={__('Enter section heading', 'obx-blocks')}
                         />
+                        <div className="obx-process__cta-wrapper">
+                            <div className="obx-process__cta-text-wrapper">
+                                <RichText
+                                    tagName="div"
+                                    className="obx-process__cta-text"
+                                    value={ctaText}
+                                    onChange={(value) => setAttributes({ ctaText: value })}
+                                    placeholder={__('Enter CTA text...', 'obx-blocks')}
+                                    allowedFormats={['core/bold', 'core/italic']}
+                                />
+                                {isEditingURL ? (
+                                    <div className="obx-process__cta-url-input">
+                                        <URLInput
+                                            value={ctaUrl}
+                                            onChange={(value) => setAttributes({ ctaUrl: value })}
+                                            autoFocus={true}
+                                            onBlur={() => setIsEditingURL(false)}
+                                        />
+                                        <Button
+                                            icon="editor-break"
+                                            label={__('Apply', 'obx-blocks')}
+                                            onClick={() => setIsEditingURL(false)}
+                                        />
+                                    </div>
+                                ) : (
+                                    <Button
+                                        icon={link}
+                                        label={__('Edit URL', 'obx-blocks')}
+                                        onClick={() => setIsEditingURL(true)}
+                                        className="obx-process__cta-url-button"
+                                    />
+                                )}
+                            </div>
+                            {ctaText && ctaUrl && (
+                                <div className="obx-process__cta-preview">
+                                    <span>{__('Preview:', 'obx-blocks')}</span>
+                                    <a 
+                                        href={ctaUrl}
+                                        className="obx-process__cta-link"
+                                        onClick={(e) => { e.preventDefault(); }}
+                                    >
+                                        {ctaText}
+                                    </a>
+                                </div>
+                            )}
+                        </div>
                     </div>
                     
                     <div className="obx-process__content">
+                        <RichText
+                            tagName="div"
+                            className="obx-process__intro"
+                            value={introText}
+                            onChange={(value) => setAttributes({ introText: value })}
+                            placeholder={__('Enter intro text...', 'obx-blocks')}
+                            allowedFormats={['core/bold', 'core/italic', 'core/link']}
+                        />
                         <div className="obx-process__steps">
                             {steps.map((step, index) => (
                                 <div 
@@ -243,7 +242,7 @@ export default function Edit({ attributes, setAttributes }) {
                                             tagName="h3"
                                             className="obx-process__step-title"
                                             value={step.title}
-                                            onChange={(value) => updateStep(index, 'title', value)}
+                                            onChange={(value) => updateStep(step.id, 'title', value)}
                                             placeholder={__('Step Title', 'obx-blocks')}
                                             allowedFormats={['core/bold', 'core/italic']}
                                         />
@@ -251,7 +250,7 @@ export default function Edit({ attributes, setAttributes }) {
                                             tagName="div"
                                             className="obx-process__step-description"
                                             value={step.description}
-                                            onChange={(value) => updateStep(index, 'description', value)}
+                                            onChange={(value) => updateStep(step.id, 'description', value)}
                                             placeholder={__('Step description...', 'obx-blocks')}
                                             allowedFormats={['core/bold', 'core/italic', 'core/link']}
                                         />
@@ -260,7 +259,7 @@ export default function Edit({ attributes, setAttributes }) {
                                                 isDestructive
                                                 onClick={(e) => {
                                                     e.stopPropagation();
-                                                    removeStep(index);
+                                                    removeStep(step.id);
                                                 }}
                                                 className="obx-process__step-remove"
                                             >
@@ -278,60 +277,6 @@ export default function Edit({ attributes, setAttributes }) {
                             >
                                 {__('Add Step', 'obx-blocks')}
                             </Button>
-                        </div>
-                        
-                        <div className="obx-process__image-container">
-                            {imageUrl ? (
-                                <img 
-                                    src={imageUrl} 
-                                    alt={imageAlt} 
-                                    className="obx-process__image"
-                                />
-                            ) : (
-                                <div className="obx-process__image-placeholder">
-                                    <MediaUploadCheck>
-                                        <MediaUpload
-                                            onSelect={(media) => {
-                                                setAttributes({
-                                                    imageUrl: media.url,
-                                                    imageId: media.id,
-                                                    imageAlt: media.alt || '',
-                                                });
-                                            }}
-                                            allowedTypes={['image']}
-                                            value={imageId}
-                                            render={({ open }) => (
-                                                <Button
-                                                    onClick={open}
-                                                    className="obx-process__image-button"
-                                                >
-                                                    {__('Add Process Image', 'obx-blocks')}
-                                                </Button>
-                                            )}
-                                        />
-                                    </MediaUploadCheck>
-                                </div>
-                            )}
-                            
-                            {ctaText && (
-                                <div className="obx-process__cta-container">
-                                    <RichText
-                                        tagName="a"
-                                        className="obx-process__cta-button"
-                                        value={ctaText}
-                                        onChange={(value) => setAttributes({ ctaText: value })}
-                                        placeholder={__('Call to Action', 'obx-blocks')}
-                                        style={{ 
-                                            backgroundColor: '#000',
-                                            color: '#fff',
-                                            borderRadius: '50px',
-                                            padding: '12px 24px',
-                                            display: 'inline-block',
-                                            textDecoration: 'none',
-                                        }}
-                                    />
-                                </div>
-                            )}
                         </div>
                     </div>
                 </div>
