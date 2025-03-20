@@ -271,7 +271,7 @@ export default function Edit({ attributes, setAttributes }) {
                             className="obx-technologies__heading"
                             value={heading}
                             onChange={(value) => setAttributes({ heading: value })}
-                            placeholder={__('Top platforms', 'obx-blocks')}
+                            placeholder={__('Enter section heading', 'obx-blocks')}
                             allowedFormats={['core/bold', 'core/italic']}
                         />
                         <RichText
@@ -279,7 +279,7 @@ export default function Edit({ attributes, setAttributes }) {
                             className="obx-technologies__subheading"
                             value={subheading}
                             onChange={(value) => setAttributes({ subheading: value })}
-                            placeholder={__('we use', 'obx-blocks')}
+                            placeholder={__('Enter section subheading', 'obx-blocks')}
                             allowedFormats={['core/bold', 'core/italic']}
                         />
                         <RichText

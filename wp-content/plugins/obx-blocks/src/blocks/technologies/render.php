@@ -57,7 +57,13 @@ if (!empty($text_color)) {
                 <?php foreach ($technologies as $tech) : ?>
                     <div class="obx-technologies__item">
                         <div class="obx-technologies__item-logo">
-                            <?php echo obx_render_service_icon($tech); ?>
+                            <?php if (!empty($tech['logoImage']['url'])) : ?>
+                                <?php if (strtolower(pathinfo($tech['logoImage']['url'], PATHINFO_EXTENSION)) === 'svg') : ?>
+                                    <div class="obx-technologies__item-logo-svg" style="background-image: url('<?php echo esc_url($tech['logoImage']['url']); ?>')" aria-label="<?php echo esc_attr($tech['name']); ?>"></div>
+                                <?php else : ?>
+                                    <img src="<?php echo esc_url($tech['logoImage']['url']); ?>" alt="<?php echo esc_attr($tech['name']); ?>" class="obx-technologies__item-logo-img">
+                                <?php endif; ?>
+                            <?php endif; ?>
                         </div>
                         <div class="obx-technologies__item-content">
                             <div class="obx-technologies__item-name"><?php echo wp_kses_post($tech['name']); ?></div>
