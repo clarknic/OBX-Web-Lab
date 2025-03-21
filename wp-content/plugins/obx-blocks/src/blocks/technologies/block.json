@@ -9,7 +9,8 @@
   "description": "Display a grid of technologies with logos and names.",
   "supports": {
     "html": false,
-    "align": ["wide", "full"]
+    "align": ["wide", "full"],
+    "anchor": true
   },
   "attributes": {
     "heading": {

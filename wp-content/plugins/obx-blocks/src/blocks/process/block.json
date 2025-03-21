@@ -13,7 +13,8 @@
     "spacing": {
       "margin": true,
       "padding": true
-    }
+    },
+    "anchor": true
   },
   "attributes": {
     "contentWidth": {

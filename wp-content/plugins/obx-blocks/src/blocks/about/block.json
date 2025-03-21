@@ -9,7 +9,8 @@
   "description": "Display your team members with images, names, positions, descriptions, and quotes.",
   "supports": {
     "html": false,
-    "align": ["wide", "full"]
+    "align": ["wide", "full"],
+    "anchor": true
   },
   "attributes": {
     "tagline": {

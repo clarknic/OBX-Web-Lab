@@ -1,12 +1,12 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
+  "apiVersion": 2,
   "name": "obx-blocks/services",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "title": "Services",
   "category": "obx-blocks",
-  "icon": "grid-view",
-  "description": "Display a list of services with icons",
+  "icon": "admin-tools",
+  "description": "Display a list of services with icons and descriptions.",
   "supports": {
     "html": false,
     "align": ["wide", "full"],
