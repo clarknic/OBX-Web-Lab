@@ -1,0 +1,59 @@
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/css/editor.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/**
+ * Main editor styles for OBX Blocks
+ */
+.editor-styles-wrapper .wp-block-obx-blocks-hero,
+.editor-styles-wrapper .wp-block-obx-blocks-feature-grid,
+.editor-styles-wrapper .wp-block-obx-blocks-testimonial {
+  margin-top: 0;
+  margin-bottom: 0;
+  min-height: auto;
+}
+.editor-styles-wrapper .block-editor-block-types-list__item[aria-label*=OBX] .block-editor-block-types-list__item-icon {
+  color: #0073aa;
+}
+.editor-styles-wrapper .wp-block-button__link,
+.editor-styles-wrapper .obx-button {
+  display: inline-block;
+  padding: 5px 20px;
+  font-family: "Outfit", sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  background-color: #23282d;
+  color: white;
+  transition: all 0.3s ease;
+}
+.editor-styles-wrapper .wp-block-button__link:hover, .editor-styles-wrapper .wp-block-button__link:focus,
+.editor-styles-wrapper .obx-button:hover,
+.editor-styles-wrapper .obx-button:focus {
+  background: rgba(0, 115, 170, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 8px 32px 0 rgba(0, 115, 170, 0.2);
+  transform: translateY(-2px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
+}
+.editor-styles-wrapper .wp-block-button__link:active,
+.editor-styles-wrapper .obx-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 16px 0 rgba(0, 115, 170, 0.1);
+}
+
+.components-panel__body .obx-blocks-inspector-control {
+  margin-bottom: 16px;
+}
+
+.obx-blocks-toolbar-button svg {
+  fill: currentColor;
+}
+
+/*# sourceMappingURL=editor.css.map*/

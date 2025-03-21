@@ -51,7 +51,9 @@ export default function Edit({ attributes, setAttributes }) {
     const [editingItemId, setEditingItemId] = useState(null);
     const [newItem, setNewItem] = useState({
         id: '',
-        image: {},
+        imageUrl: '',
+        imageId: 0,
+        imageAlt: '',
         name: '',
         description: ''
     });
@@ -67,7 +69,9 @@ export default function Edit({ attributes, setAttributes }) {
     const addPortfolioItem = () => {
         const newItems = [...portfolioItems, {
             id: `portfolio-${portfolioItems.length + 1}`,
-            image: {},
+            imageUrl: '',
+            imageId: 0,
+            imageAlt: '',
             name: '',
             description: ''
         }];
@@ -85,7 +89,9 @@ export default function Edit({ attributes, setAttributes }) {
             setEditingItemId(null);
             setNewItem({
                 id: '',
-                image: {},
+                imageUrl: '',
+                imageId: 0,
+                imageAlt: '',
                 name: '',
                 description: ''
             });
@@ -95,6 +101,14 @@ export default function Edit({ attributes, setAttributes }) {
     const updatePortfolioItem = (itemId, field, value) => {
         const updatedItems = portfolioItems.map(item => {
             if (item.id === itemId) {
+                if (field === 'image') {
+                    return {
+                        ...item,
+                        imageUrl: value ? value.url : '',
+                        imageId: value ? value.id : 0,
+                        imageAlt: value ? value.alt : '',
+                    };
+                }
                 return { ...item, [field]: value };
             }
             return item;
@@ -120,7 +134,9 @@ export default function Edit({ attributes, setAttributes }) {
         setEditingItemId(null);
         setNewItem({
             id: '',
-            image: {},
+            imageUrl: '',
+            imageId: 0,
+            imageAlt: '',
             name: '',
             description: ''
         });
@@ -131,7 +147,9 @@ export default function Edit({ attributes, setAttributes }) {
         setEditingItemId(null);
         setNewItem({
             id: '',
-            image: {},
+            imageUrl: '',
+            imageId: 0,
+            imageAlt: '',
             name: '',
             description: ''
         });
@@ -245,68 +263,64 @@ export default function Edit({ attributes, setAttributes }) {
                                 className="obx-portfolio__item"
                             >
                                 <div className="obx-portfolio__item-image-container">
-                                    {item.image && item.image.url && (
-                                        <img 
-                                            src={item.image.url} 
-                                            alt={item.name} 
-                                            className="obx-portfolio__item-image"
-                                        />
-                                    )}
-                                    <div className="obx-portfolio__item-image-placeholder">
-                                        <MediaUploadCheck>
-                                            <MediaUpload
-                                                onSelect={(media) => {
-                                                    updatePortfolioItem(item.id, 'image', media);
-                                                    updatePortfolioItem(item.id, 'imageId', media.id);
-                                                    updatePortfolioItem(item.id, 'imageAlt', media.alt || '');
-                                                }}
-                                                allowedTypes={['image']}
-                                                value={item.imageId}
-                                                render={({ open }) => (
-                                                    <Button
-                                                        onClick={open}
-                                                        className="obx-portfolio__item-image-button"
-                                                    >
-                                                        {__('Add Image', 'obx-blocks')}
-                                                    </Button>
-                                                )}
+                                    {item.imageUrl ? (
+                                        <>
+                                            <img 
+                                                src={item.imageUrl} 
+                                                alt={item.imageAlt || item.name} 
+                                                className="obx-portfolio__item-image"
                                             />
-                                        </MediaUploadCheck>
-                                    </div>
-                                    {item.image && item.image.url && (
-                                        <div className="obx-portfolio__item-image-actions">
+                                            <div className="obx-portfolio__item-image-actions">
+                                                <MediaUploadCheck>
+                                                    <MediaUpload
+                                                        onSelect={(media) => {
+                                                            updatePortfolioItem(item.id, 'image', media);
+                                                        }}
+                                                        allowedTypes={['image']}
+                                                        value={item.imageId}
+                                                        render={({ open }) => (
+                                                            <Button
+                                                                onClick={open}
+                                                                variant="secondary"
+                                                                isSmall
+                                                            >
+                                                                {__('Replace', 'obx-blocks')}
+                                                            </Button>
+                                                        )}
+                                                    />
+                                                </MediaUploadCheck>
+                                                <Button
+                                                    onClick={() => {
+                                                        updatePortfolioItem(item.id, 'image', null);
+                                                    }}
+                                                    variant="secondary"
+                                                    isSmall
+                                                    isDestructive
+                                                >
+                                                    {__('Remove', 'obx-blocks')}
+                                                </Button>
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <div className="obx-portfolio__item-image-placeholder">
                                             <MediaUploadCheck>
                                                 <MediaUpload
                                                     onSelect={(media) => {
                                                         updatePortfolioItem(item.id, 'image', media);
-                                                        updatePortfolioItem(item.id, 'imageId', media.id);
-                                                        updatePortfolioItem(item.id, 'imageAlt', media.alt || '');
                                                     }}
                                                     allowedTypes={['image']}
                                                     value={item.imageId}
                                                     render={({ open }) => (
                                                         <Button
                                                             onClick={open}
-                                                            variant="secondary"
-                                                            isSmall
+                                                            className="obx-portfolio__item-image-button"
+                                                            icon={plus}
                                                         >
-                                                            {__('Replace', 'obx-blocks')}
+                                                            {__('Add Image', 'obx-blocks')}
                                                         </Button>
                                                     )}
                                                 />
                                             </MediaUploadCheck>
-                                            <Button
-                                                onClick={() => {
-                                                    updatePortfolioItem(item.id, 'image', null);
-                                                    updatePortfolioItem(item.id, 'imageId', 0);
-                                                    updatePortfolioItem(item.id, 'imageAlt', '');
-                                                }}
-                                                variant="secondary"
-                                                isSmall
-                                                isDestructive
-                                            >
-                                                {__('Remove', 'obx-blocks')}
-                                            </Button>
                                         </div>
                                     )}
                                 </div>
@@ -355,20 +369,45 @@ export default function Edit({ attributes, setAttributes }) {
                                         {__('Image', 'obx-blocks')}
                                     </label>
                                     <div className="obx-portfolio__image-preview">
-                                        {newItem.image && newItem.image.url && (
-                                            <img src={newItem.image.url} alt={newItem.name} style={{ maxWidth: '200px', marginBottom: '10px' }} />
-                                        )}
+                                        {newItem.imageUrl ? (
+                                            <>
+                                                <img 
+                                                    src={newItem.imageUrl} 
+                                                    alt={newItem.imageAlt || newItem.name} 
+                                                    className="obx-portfolio__item-image"
+                                                />
+                                                <Button
+                                                    isDestructive
+                                                    onClick={() => setNewItem({
+                                                        ...newItem,
+                                                        imageUrl: '',
+                                                        imageId: 0,
+                                                        imageAlt: ''
+                                                    })}
+                                                    className="components-button"
+                                                    style={{ marginTop: '10px' }}
+                                                >
+                                                    {__('Remove Image', 'obx-blocks')}
+                                                </Button>
+                                            </>
+                                        ) : null}
                                         <MediaUploadCheck>
                                             <MediaUpload
-                                                onSelect={(media) => setNewItem({ ...newItem, image: media })}
+                                                onSelect={(media) => setNewItem({
+                                                    ...newItem,
+                                                    imageUrl: media.url,
+                                                    imageId: media.id,
+                                                    imageAlt: media.alt || media.title || ''
+                                                })}
                                                 allowedTypes={['image']}
-                                                value={newItem.image.id}
+                                                value={newItem.imageId}
                                                 render={({ open }) => (
                                                     <Button
                                                         onClick={open}
                                                         className="components-button is-secondary"
+                                                        style={{ marginTop: newItem.imageUrl ? '10px' : 0 }}
                                                     >
-                                                        {newItem.image.url ? __('Change Image', 'obx-blocks') : __('Select Image', 'obx-blocks')}
+                                                        {newItem.imageUrl ? __('Change Image', 'obx-blocks') : __('Select Image', 'obx-blocks')}
                                                     </Button>
                                                 )}
                                             />

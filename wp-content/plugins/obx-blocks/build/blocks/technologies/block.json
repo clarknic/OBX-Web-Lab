@@ -1,15 +1,18 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "obx-blocks/portfolio",
+  "name": "obx-blocks/technologies",
   "version": "1.0.0",
-  "title": "Portfolio",
+  "title": "Technologies Grid",
   "category": "obx-blocks",
-  "icon": "portfolio",
-  "description": "Display your portfolio items with images, names, and descriptions.",
+  "icon": "grid-view",
+  "description": "Display a grid of technologies with logos and names.",
   "supports": {
     "html": false,
-    "align": ["wide", "full"],
+    "align": [
+      "wide",
+      "full"
+    ],
     "anchor": true
   },
   "attributes": {
@@ -17,40 +20,42 @@
       "type": "string",
       "default": ""
     },
-    "tagline": {
-      "type": "string",
-      "default": ""
-    },
     "heading": {
       "type": "string",
       "default": ""
     },
-    "portfolioItems": {
+    "subheading": {
+      "type": "string",
+      "default": ""
+    },
+    "introText": {
+      "type": "string",
+      "default": ""
+    },
+    "technologies": {
       "type": "array",
-      "default": [],
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "imageUrl": {
-            "type": "string"
-          },
-          "imageId": {
-            "type": "number"
-          },
-          "imageAlt": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          }
+      "default": [
+        {
+          "id": "tech-1",
+          "logoImage": {},
+          "name": "WordPress"
+        },
+        {
+          "id": "tech-2",
+          "logoImage": {},
+          "name": "Magento"
+        },
+        {
+          "id": "tech-3",
+          "logoImage": {},
+          "name": "React"
+        },
+        {
+          "id": "tech-4",
+          "logoImage": {},
+          "name": "Drupal"
         }
-      }
+      ]
     },
     "align": {
       "type": "string",
@@ -63,10 +68,6 @@
     "textColor": {
       "type": "string",
       "default": ""
-    },
-    "accentColor": {
-      "type": "string",
-      "default": "#a7d1fb"
     },
     "textAlign": {
       "type": "string",
@@ -82,4 +83,4 @@
   "editorStyle": "file:./editor.css",
   "style": "file:./style-index.css",
   "render": "file:./render.php"
-} 
+}

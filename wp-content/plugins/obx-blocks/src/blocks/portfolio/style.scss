@@ -6,215 +6,133 @@
 @use "../../scss/index" as *;
 
 .obx-portfolio {
-  & {
-    padding: $spacing-xl $spacing-lg;
-  }
-  
-  @include section-padding;
-  @include alignment-classes;
-  @include text-alignment-classes('obx-portfolio');
-  
+  padding: $spacing-xl 0;
+  background-color: $color-background-primary;
+
   &__container {
-    & {
-      max-width: $container-max-width;
-    }
-    @include responsive-container;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
   }
-  
+
   &__header {
-    & {
-      text-align: center;
-      margin-bottom: $spacing-3xl;
-    }
+    margin-bottom: $spacing-xl;
+    text-align: center;
   }
-  
+
   &__tagline {
-    & {
-      font-size: $font-size-base;
-      font-weight: $font-weight-bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: $spacing-md;
-      color: $color-text-secondary;
-    }
+    font-family: $font-ui;
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: $spacing-xs;
+    color: $color-text-secondary;
   }
-  
+
   &__heading {
-    & {
-      font-weight: $font-weight-bold;
-      line-height: $line-height-tight;
-      margin: 0 auto;
-      max-width: 800px;
-    }
-    @include responsive-font-size($font-size-3xl, $font-size-2xl);
-    @include heading-highlight;
+    font-family: $font-heading;
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-tight;
+    margin: 0;
+    display: inline;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    padding: 0 $spacing-xs;
   }
-  
-  &__intro-text {
-    & {
-      max-width: 800px;
-      margin: $spacing-xl auto 0;
-      font-size: $font-size-md;
-      line-height: $line-height-relaxed;
-      color: $color-text-tertiary;
-    }
-    
-    @media (max-width: $breakpoint-md) {
-      font-size: $font-size-base;
-      padding: 0 $spacing-md;
-    }
-    
-    p {
-      & {
-        margin-bottom: $spacing-md;
-      }
-      
-      &:last-child {
-        margin-bottom: 0;
-      }
+
+  &__content {
+    display: flex;
+    gap: $spacing-xl;
+    margin-top: $spacing-xl;
+
+    @include respond-to(md) {
+      flex-direction: column;
+      gap: $spacing-lg;
     }
   }
-  
-  &__filters {
-    & {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: $spacing-sm;
-      margin-bottom: $spacing-3xl;
+
+  &__project-list {
+    flex: 0 0 30%;
+    border-right: 1px solid $color-border;
+    padding-right: $spacing-lg;
+
+    @include respond-to(md) {
+      flex: none;
+      border-right: none;
+      padding-right: 0;
+      border-bottom: 1px solid $color-border;
+      padding-bottom: $spacing-md;
     }
   }
-  
-  &__filter {
-    & {
-      padding: $spacing-sm $spacing-lg;
-      font-size: $font-size-sm;
-      font-weight: $font-weight-semibold;
-      color: $color-text-secondary;
-      background-color: transparent;
-      border: 1px solid $color-border;
-      border-radius: $border-radius-lg;
-      cursor: pointer;
-      transition: all $transition-fast;
-    }
-    
+
+  &__project-item {
+    padding: $spacing-sm 0;
+    cursor: pointer;
+    transition: all $transition-normal;
+    border-left: 3px solid transparent;
+    padding-left: $spacing-sm;
+
     &:hover {
-      color: $color-text-primary;
-      border-color: $color-text-primary;
+      color: $color-primary;
     }
-    
+
     &.active {
-      color: $color-text-inverse;
-      background-color: $color-primary;
-      border-color: $color-primary;
+      border-left-color: $color-primary;
+      color: $color-primary;
     }
   }
-  
-  &__grid {
-    & {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: $spacing-2xl;
-    }
-    
-    @media (max-width: $breakpoint-md) {
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: $spacing-xl;
-    }
-    
-    @media (max-width: $breakpoint-sm) {
-      grid-template-columns: 1fr;
+
+  &__project-title {
+    font-family: $font-ui;
+    font-size: $font-size-md;
+    font-weight: $font-weight-medium;
+    margin: 0;
+    transition: all $transition-normal;
+  }
+
+  &__project-details {
+    flex: 1;
+  }
+
+  &__project-content {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all $transition-normal;
+
+    &.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
     }
   }
-  
-  &__item {
-    & {
-      position: relative;
-      border-radius: $border-radius-lg;
-      overflow: hidden;
-      box-shadow: $box-shadow-md;
-    }
-    @include hover-lift;
-  }
-  
-  &__image-container {
-    & {
-      position: relative;
+
+  &__project-image {
+    margin-bottom: $spacing-md;
+    border-radius: $border-radius-md;
+    overflow: hidden;
+    box-shadow: $box-shadow-md;
+
+    img {
       width: 100%;
-      padding-top: 75%; // 4:3 aspect ratio
-      overflow: hidden;
+      height: auto;
+      display: block;
     }
   }
-  
-  &__image {
-    & {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform $transition-slow;
-    }
-    
-    &:hover {
-      transform: scale(1.05);
-    }
+
+  &__project-name {
+    font-family: $font-heading;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    margin: 0 0 $spacing-sm;
+    color: $color-text-primary;
   }
-  
-  &__overlay {
-    & {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: $spacing-xl;
-      background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.8),
-        rgba(0, 0, 0, 0)
-      );
-      color: $color-text-inverse;
-    }
+
+  &__project-description {
+    font-family: $font-body;
+    font-size: $font-size-base;
+    line-height: $line-height-normal;
+    color: $color-text-secondary;
   }
-  
-  &__category {
-    & {
-      font-size: $font-size-sm;
-      font-weight: $font-weight-semibold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: $spacing-xs;
-      opacity: 0.8;
-    }
-  }
-  
-  &__title {
-    & {
-      font-size: $font-size-xl;
-      font-weight: $font-weight-bold;
-      line-height: $line-height-tight;
-      margin-bottom: $spacing-sm;
-    }
-  }
-  
-  &__description {
-    & {
-      font-size: $font-size-base;
-      line-height: $line-height-normal;
-      opacity: 0.9;
-    }
-  }
-  
-  &__link {
-    & {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      text-indent: -9999px;
-    }
-  }
-} 
+}

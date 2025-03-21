@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "obx-blocks/services",
+  "version": "0.1.0",
+  "title": "Services",
+  "category": "obx-blocks",
+  "icon": "admin-tools",
+  "description": "Display a list of services with icons and descriptions.",
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "anchor": true
+  },
+  "attributes": {
+    "anchor": {
+      "type": "string",
+      "default": ""
+    },
+    "contentWidth": {
+      "type": "number",
+      "default": 80
+    },
+    "heading": {
+      "type": "string",
+      "default": ""
+    },
+    "introText": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaText": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "services": {
+      "type": "array",
+      "default": [
+        {
+          "id": "service-1",
+          "iconImage": {},
+          "title": "",
+          "description": ""
+        }
+      ]
+    },
+    "align": {
+      "type": "string",
+      "default": "full"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "transparent"
+    }
+  },
+  "textdomain": "obx-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

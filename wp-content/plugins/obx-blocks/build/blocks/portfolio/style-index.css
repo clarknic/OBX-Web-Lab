@@ -1,0 +1,124 @@
+/*!********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/portfolio/style.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************/
+/**
+ * Portfolio block styles for both editor and frontend
+ */
+.obx-portfolio {
+  padding: 80px 0;
+  background-color: #ffffff;
+}
+.obx-portfolio__container {
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.obx-portfolio__header {
+  margin-bottom: 80px;
+  text-align: center;
+}
+.obx-portfolio__tagline {
+  font-family: "Outfit", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 5px;
+  color: rgb(90.78125, 103.75, 116.71875);
+}
+.obx-portfolio__heading {
+  font-family: "Merriweather", serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0 5px;
+}
+.obx-portfolio__content {
+  display: flex;
+  gap: 80px;
+  margin-top: 80px;
+}
+@media (max-width: 992px) {
+  .obx-portfolio__content {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+.obx-portfolio__project-list {
+  flex: 0 0 30%;
+  border-right: 1px solid #e2e4e7;
+  padding-right: 40px;
+}
+@media (max-width: 992px) {
+  .obx-portfolio__project-list {
+    flex: none;
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid #e2e4e7;
+    padding-bottom: 20px;
+  }
+}
+.obx-portfolio__project-item {
+  padding: 10px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+  padding-left: 10px;
+}
+.obx-portfolio__project-item:hover {
+  color: #0073aa;
+}
+.obx-portfolio__project-item.active {
+  border-left-color: #0073aa;
+  color: #0073aa;
+}
+.obx-portfolio__project-title {
+  font-family: "Outfit", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+.obx-portfolio__project-details {
+  flex: 1;
+}
+.obx-portfolio__project-content {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+.obx-portfolio__project-content.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+.obx-portfolio__project-image {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+.obx-portfolio__project-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.obx-portfolio__project-name {
+  font-family: "Merriweather", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 10px;
+  color: #23282d;
+}
+.obx-portfolio__project-description {
+  font-family: "Figtree", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgb(90.78125, 103.75, 116.71875);
+}
+
+/*# sourceMappingURL=style-index.css.map*/

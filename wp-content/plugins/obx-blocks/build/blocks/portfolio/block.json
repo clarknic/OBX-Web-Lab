@@ -9,7 +9,10 @@
   "description": "Display your portfolio items with images, names, and descriptions.",
   "supports": {
     "html": false,
-    "align": ["wide", "full"],
+    "align": [
+      "wide",
+      "full"
+    ],
     "anchor": true
   },
   "attributes": {
@@ -82,4 +85,4 @@
   "editorStyle": "file:./editor.css",
   "style": "file:./style-index.css",
   "render": "file:./render.php"
-} 
+}

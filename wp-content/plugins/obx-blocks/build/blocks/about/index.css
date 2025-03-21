@@ -1,0 +1,304 @@
+/*!*****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/blocks/about/editor.scss ***!
+  \*****************************************************************************************************************************************************************************************************************************************************/
+/**
+ * About Us block editor styles
+ */
+/**
+ * About Us block styles for both editor and frontend
+ */
+.obx-about {
+  padding: 80px 40px;
+}
+.obx-about {
+  padding: 80px 40px;
+}
+@media (max-width: 992px) {
+  .obx-about {
+    padding: 40px 20px;
+  }
+}
+.obx-about.alignfull {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+@media (max-width: 992px) {
+  .obx-about.alignfull {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+.obx-about.alignwide {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.obx-about.text-left .obx-about__header {
+  text-align: left;
+}
+.obx-about.text-left .obx-about__heading {
+  text-align: left;
+}
+.obx-about.text-left .obx-about__intro-text,
+.obx-about.text-left .obx-about__tagline {
+  text-align: left;
+  margin-left: 0;
+}
+.obx-about.text-center .obx-about__header {
+  text-align: center;
+}
+.obx-about.text-center .obx-about__heading {
+  text-align: center;
+}
+.obx-about.text-center .obx-about__intro-text,
+.obx-about.text-center .obx-about__tagline {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.obx-about.text-right .obx-about__header {
+  text-align: right;
+}
+.obx-about.text-right .obx-about__heading {
+  text-align: right;
+}
+.obx-about.text-right .obx-about__intro-text,
+.obx-about.text-right .obx-about__tagline {
+  text-align: right;
+  margin-right: 0;
+  margin-left: auto;
+}
+.obx-about__container {
+  max-width: 1140px;
+}
+.obx-about__container {
+  margin: 0 auto;
+}
+@media (max-width: 992px) {
+  .obx-about__container {
+    max-width: 100% !important;
+  }
+}
+.obx-about__header {
+  text-align: center;
+  margin-bottom: 160px;
+}
+.obx-about__tagline {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  color: rgb(90.78125, 103.75, 116.71875);
+}
+.obx-about__heading {
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 auto;
+  max-width: 800px;
+}
+.obx-about__heading {
+  font-size: 2.5rem;
+}
+@media (max-width: 992px) {
+  .obx-about__heading {
+    font-size: 2rem;
+  }
+}
+.obx-about__heading {
+  display: inline;
+  padding: 0 10px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  background-image: linear-gradient(transparent 60%, #0073aa 60%);
+}
+.obx-about__intro-text {
+  max-width: 800px;
+  margin: 80px auto 0;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgb(79.625, 91, 102.375);
+}
+@media (max-width: 992px) {
+  .obx-about__intro-text {
+    font-size: 16px;
+    padding: 0 20px;
+  }
+}
+.obx-about__intro-text p {
+  margin-bottom: 20px;
+}
+.obx-about__intro-text p:last-child {
+  margin-bottom: 0;
+}
+.obx-about__team {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 120px;
+}
+@media (max-width: 992px) {
+  .obx-about__team {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 80px;
+  }
+}
+@media (max-width: 768px) {
+  .obx-about__team {
+    grid-template-columns: 1fr;
+  }
+}
+.obx-about__member {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+.obx-about__member {
+  display: flex;
+  flex-direction: column;
+}
+.obx-about__member {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.obx-about__member:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+.obx-about__member-image-container {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  overflow: hidden;
+}
+.obx-about__member-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.obx-about__member-image:hover {
+  transform: scale(1.05);
+}
+.obx-about__member-content {
+  padding: 40px;
+  flex-grow: 1;
+}
+.obx-about__member-content {
+  display: flex;
+  flex-direction: column;
+}
+.obx-about__member-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  line-height: 1.2;
+}
+.obx-about__member-position {
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(90.78125, 103.75, 116.71875);
+  margin-bottom: 20px;
+}
+.obx-about__member-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgb(90.78125, 103.75, 116.71875);
+  margin-bottom: 40px;
+}
+.obx-about__member-quote-container {
+  position: relative;
+  padding: 40px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  margin-top: auto;
+}
+.obx-about__member-quote-icon {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  padding: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.obx-about__member-quote-icon svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+.obx-about__member-quote {
+  font-size: 16px;
+  line-height: 1.6;
+  font-style: italic;
+  color: #23282d;
+}
+
+.obx-about__member {
+  position: relative;
+}
+.obx-about__member.is-selected .obx-about__member-actions,
+.obx-about__member.is-selected .obx-about__member-image-actions, .obx-about__member:hover .obx-about__member-actions,
+.obx-about__member:hover .obx-about__member-image-actions {
+  opacity: 1;
+  visibility: visible;
+}
+.obx-about__member-actions {
+  margin-top: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+}
+.obx-about__member-image-actions {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+.obx-about__member-image-placeholder {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #f8f8f8;
+}
+.obx-about__member-image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.obx-about__member-image-button {
+  width: 100%;
+  height: 100%;
+}
+.obx-about__member-image-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.obx-about__add-button {
+  margin-top: 80px;
+  width: 100%;
+  justify-content: center;
+  padding: 40px;
+  border: 2px dashed #e2e4e7;
+  border-radius: 8px;
+}
+.obx-about__add-button:hover {
+  background-color: #f8f8f8;
+}
+
+/*# sourceMappingURL=index.css.map*/

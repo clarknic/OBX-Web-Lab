@@ -1,15 +1,22 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 2,
-  "name": "obx-blocks/portfolio",
+  "apiVersion": 3,
+  "name": "obx-blocks/process",
   "version": "1.0.0",
-  "title": "Portfolio",
+  "title": "Process",
   "category": "obx-blocks",
-  "icon": "portfolio",
-  "description": "Display your portfolio items with images, names, and descriptions.",
+  "icon": "chart-line",
+  "description": "Display a process or steps with images",
   "supports": {
     "html": false,
-    "align": ["wide", "full"],
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
     "anchor": true
   },
   "attributes": {
@@ -17,40 +24,29 @@
       "type": "string",
       "default": ""
     },
-    "tagline": {
-      "type": "string",
-      "default": ""
+    "contentWidth": {
+      "type": "number",
+      "default": 80
     },
     "heading": {
       "type": "string",
       "default": ""
     },
-    "portfolioItems": {
+    "introText": {
+      "type": "string",
+      "default": ""
+    },
+    "steps": {
       "type": "array",
-      "default": [],
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "imageUrl": {
-            "type": "string"
-          },
-          "imageId": {
-            "type": "number"
-          },
-          "imageAlt": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          }
-        }
-      }
+      "default": []
+    },
+    "ctaText": {
+      "type": "string",
+      "default": ""
+    },
+    "ctaUrl": {
+      "type": "string",
+      "default": ""
     },
     "align": {
       "type": "string",
@@ -71,15 +67,11 @@
     "textAlign": {
       "type": "string",
       "default": "center"
-    },
-    "contentWidth": {
-      "type": "number",
-      "default": 80
     }
   },
   "textdomain": "obx-blocks",
   "editorScript": "file:./index.js",
-  "editorStyle": "file:./editor.css",
+  "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
   "render": "file:./render.php"
-} 
+}
