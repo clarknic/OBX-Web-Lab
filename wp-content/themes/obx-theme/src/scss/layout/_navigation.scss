@@ -345,48 +345,9 @@
     }
   }
 
-  // Mobile menu toggle
-  .menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    padding: $spacing-xs;
-    cursor: pointer;
-
-    @include respond-to(sm) {
-      display: block;
-    }
-
-    .menu-burger {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background-color: $color-dark;
-      position: relative;
-
-      &:before,
-      &:after {
-        content: '';
-        display: block;
-        width: 24px;
-        height: 2px;
-        background-color: $color-dark;
-        position: absolute;
-        left: 0;
-      }
-
-      &:before {
-        top: -6px;
-      }
-
-      &:after {
-        bottom: -6px;
-      }
-    }
-  }
 
   // Mobile menu
-  @include respond-to(sm) {
+  @include respond-to(md) {
     ul {
       display: none;
       flex-direction: column;

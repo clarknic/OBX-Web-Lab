@@ -18,6 +18,9 @@ import {
     Button,
     BaseControl,
     RangeControl,
+    TextControl,
+    TextareaControl,
+    ColorPicker,
 } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { plus, trash } from '@wordpress/icons';
@@ -41,9 +44,17 @@ export default function Edit({ attributes, setAttributes }) {
         align,
         textAlign,
         contentWidth,
+        anchor
     } = attributes;
 
-    const [activeItem, setActiveItem] = useState(null);
+    const [isAddingItem, setIsAddingItem] = useState(false);
+    const [editingItemId, setEditingItemId] = useState(null);
+    const [newItem, setNewItem] = useState({
+        id: '',
+        image: {},
+        name: '',
+        description: ''
+    });
 
     const blockProps = useBlockProps({
         className: `obx-portfolio align${align || 'none'} text-${textAlign || 'center'}`,
@@ -54,32 +65,76 @@ export default function Edit({ attributes, setAttributes }) {
     });
 
     const addPortfolioItem = () => {
-        const newItems = [...portfolioItems];
-        newItems.push({
-            id: `portfolio-${Date.now()}`,
-            imageUrl: '',
-            imageId: 0,
-            imageAlt: '',
+        const newItems = [...portfolioItems, {
+            id: `portfolio-${portfolioItems.length + 1}`,
+            image: {},
             name: '',
-            description: '',
+            description: ''
+        }];
+        setAttributes({ portfolioItems: newItems });
+        setIsAddingItem(true);
+        setEditingItemId(newItems[newItems.length - 1].id);
+        setNewItem(newItems[newItems.length - 1]);
+    };
+
+    const removePortfolioItem = (itemId) => {
+        const updatedItems = portfolioItems.filter(item => item.id !== itemId);
+        setAttributes({ portfolioItems: updatedItems });
+        if (editingItemId === itemId) {
+            setIsAddingItem(false);
+            setEditingItemId(null);
+            setNewItem({
+                id: '',
+                image: {},
+                name: '',
+                description: ''
+            });
+        }
+    };
+
+    const updatePortfolioItem = (itemId, field, value) => {
+        const updatedItems = portfolioItems.map(item => {
+            if (item.id === itemId) {
+                return { ...item, [field]: value };
+            }
+            return item;
         });
-        setAttributes({ portfolioItems: newItems });
+        setAttributes({ portfolioItems: updatedItems });
     };
 
-    const removePortfolioItem = (index) => {
-        const newItems = [...portfolioItems];
-        newItems.splice(index, 1);
-        setAttributes({ portfolioItems: newItems });
-        setActiveItem(null);
+    const editPortfolioItem = (item) => {
+        setIsAddingItem(true);
+        setEditingItemId(item.id);
+        setNewItem(item);
     };
 
-    const updatePortfolioItem = (index, property, value) => {
-        const newItems = [...portfolioItems];
-        newItems[index] = {
-            ...newItems[index],
-            [property]: value,
-        };
-        setAttributes({ portfolioItems: newItems });
+    const savePortfolioItem = () => {
+        const updatedItems = portfolioItems.map(item => {
+            if (item.id === editingItemId) {
+                return newItem;
+            }
+            return item;
+        });
+        setAttributes({ portfolioItems: updatedItems });
+        setIsAddingItem(false);
+        setEditingItemId(null);
+        setNewItem({
+            id: '',
+            image: {},
+            name: '',
+            description: ''
+        });
+    };
+
+    const cancelEdit = () => {
+        setIsAddingItem(false);
+        setEditingItemId(null);
+        setNewItem({
+            id: '',
+            image: {},
+            name: '',
+            description: ''
+        });
     };
 
     return (
@@ -98,38 +153,16 @@ export default function Edit({ attributes, setAttributes }) {
             
             <InspectorControls>
                 <PanelBody title={__('Portfolio Settings', 'obx-blocks')}>
-                    <div className="components-base-control">
-                        <label className="components-base-control__label">
-                            {__('Background Color', 'obx-blocks')}
-                        </label>
-                        <ColorPalette
-                            value={backgroundColor}
-                            onChange={(color) => setAttributes({ backgroundColor: color })}
-                        />
-                    </div>
-                    
-                    <div className="components-base-control">
-                        <label className="components-base-control__label">
-                            {__('Text Color', 'obx-blocks')}
-                        </label>
-                        <ColorPalette
-                            value={textColor}
-                            onChange={(color) => setAttributes({ textColor: color })}
-                        />
-                    </div>
-                    
-                    <div className="components-base-control">
-                        <label className="components-base-control__label">
-                            {__('Accent Color', 'obx-blocks')}
-                        </label>
-                        <ColorPalette
-                            value={accentColor}
-                            onChange={(color) => setAttributes({ accentColor: color })}
-                        />
-                    </div>
-                </PanelBody>
-                
-                <PanelBody title={__('Content Settings', 'obx-blocks')}>
+                    <TextControl
+                        label={__('Tagline', 'obx-blocks')}
+                        value={tagline}
+                        onChange={(value) => setAttributes({ tagline: value })}
+                    />
+                    <TextControl
+                        label={__('Heading', 'obx-blocks')}
+                        value={heading}
+                        onChange={(value) => setAttributes({ heading: value })}
+                    />
                     <RangeControl
                         label={__('Content Width (%)', 'obx-blocks')}
                         value={contentWidth}
@@ -139,6 +172,47 @@ export default function Edit({ attributes, setAttributes }) {
                         step={5}
                         help={__('Controls the width of the content container on desktop. Mobile will always be 100%.', 'obx-blocks')}
                     />
+                    <div className="components-base-control">
+                        <label className="components-base-control__label">
+                            {__('Background Color', 'obx-blocks')}
+                        </label>
+                        <ColorPicker
+                            color={backgroundColor}
+                            onChange={(value) => setAttributes({ backgroundColor: value })}
+                        />
+                    </div>
+                    <div className="components-base-control">
+                        <label className="components-base-control__label">
+                            {__('Text Color', 'obx-blocks')}
+                        </label>
+                        <ColorPicker
+                            color={textColor}
+                            onChange={(value) => setAttributes({ textColor: value })}
+                        />
+                    </div>
+                    <div className="components-base-control">
+                        <label className="components-base-control__label">
+                            {__('Accent Color', 'obx-blocks')}
+                        </label>
+                        <ColorPicker
+                            color={accentColor}
+                            onChange={(value) => setAttributes({ accentColor: value })}
+                        />
+                    </div>
+                    <div className="components-base-control">
+                        <label className="components-base-control__label">
+                            {__('Text Alignment', 'obx-blocks')}
+                        </label>
+                        <select
+                            value={textAlign}
+                            onChange={(e) => setAttributes({ textAlign: e.target.value })}
+                            className="components-select-control__input"
+                        >
+                            <option value="left">{__('Left', 'obx-blocks')}</option>
+                            <option value="center">{__('Center', 'obx-blocks')}</option>
+                            <option value="right">{__('Right', 'obx-blocks')}</option>
+                        </select>
+                    </div>
                 </PanelBody>
             </InspectorControls>
 
@@ -150,14 +224,14 @@ export default function Edit({ attributes, setAttributes }) {
                             className="obx-portfolio__tagline"
                             value={tagline}
                             onChange={(value) => setAttributes({ tagline: value })}
-                            placeholder={__('OUR PORTFOLIO', 'obx-blocks')}
+                            placeholder={__('Enter a section subheading', 'obx-blocks')}
                         />
                         <RichText
                             tagName="h2"
                             className="obx-portfolio__heading"
                             value={heading}
                             onChange={(value) => setAttributes({ heading: value })}
-                            placeholder={__('Check out our latest work', 'obx-blocks')}
+                            placeholder={__('Enter a section heading', 'obx-blocks')}
                             style={{ 
                                 backgroundImage: accentColor ? `linear-gradient(transparent 60%, ${accentColor} 60%)` : 'none' 
                             }}
@@ -165,50 +239,48 @@ export default function Edit({ attributes, setAttributes }) {
                     </div>
                     
                     <div className="obx-portfolio__items">
-                        {portfolioItems.map((item, index) => (
+                        {portfolioItems.map((item) => (
                             <div 
                                 key={item.id} 
-                                className={`obx-portfolio__item ${activeItem === index ? 'is-selected' : ''}`}
-                                onClick={() => setActiveItem(index)}
+                                className="obx-portfolio__item"
                             >
                                 <div className="obx-portfolio__item-image-container">
-                                    {item.imageUrl ? (
+                                    {item.image && item.image.url && (
                                         <img 
-                                            src={item.imageUrl} 
-                                            alt={item.imageAlt} 
+                                            src={item.image.url} 
+                                            alt={item.name} 
                                             className="obx-portfolio__item-image"
                                         />
-                                    ) : (
-                                        <div className="obx-portfolio__item-image-placeholder">
-                                            <MediaUploadCheck>
-                                                <MediaUpload
-                                                    onSelect={(media) => {
-                                                        updatePortfolioItem(index, 'imageUrl', media.url);
-                                                        updatePortfolioItem(index, 'imageId', media.id);
-                                                        updatePortfolioItem(index, 'imageAlt', media.alt || '');
-                                                    }}
-                                                    allowedTypes={['image']}
-                                                    value={item.imageId}
-                                                    render={({ open }) => (
-                                                        <Button
-                                                            onClick={open}
-                                                            className="obx-portfolio__item-image-button"
-                                                        >
-                                                            {__('Add Image', 'obx-blocks')}
-                                                        </Button>
-                                                    )}
-                                                />
-                                            </MediaUploadCheck>
-                                        </div>
                                     )}
-                                    {item.imageUrl && (
+                                    <div className="obx-portfolio__item-image-placeholder">
+                                        <MediaUploadCheck>
+                                            <MediaUpload
+                                                onSelect={(media) => {
+                                                    updatePortfolioItem(item.id, 'image', media);
+                                                    updatePortfolioItem(item.id, 'imageId', media.id);
+                                                    updatePortfolioItem(item.id, 'imageAlt', media.alt || '');
+                                                }}
+                                                allowedTypes={['image']}
+                                                value={item.imageId}
+                                                render={({ open }) => (
+                                                    <Button
+                                                        onClick={open}
+                                                        className="obx-portfolio__item-image-button"
+                                                    >
+                                                        {__('Add Image', 'obx-blocks')}
+                                                    </Button>
+                                                )}
+                                            />
+                                        </MediaUploadCheck>
+                                    </div>
+                                    {item.image && item.image.url && (
                                         <div className="obx-portfolio__item-image-actions">
                                             <MediaUploadCheck>
                                                 <MediaUpload
                                                     onSelect={(media) => {
-                                                        updatePortfolioItem(index, 'imageUrl', media.url);
-                                                        updatePortfolioItem(index, 'imageId', media.id);
-                                                        updatePortfolioItem(index, 'imageAlt', media.alt || '');
+                                                        updatePortfolioItem(item.id, 'image', media);
+                                                        updatePortfolioItem(item.id, 'imageId', media.id);
+                                                        updatePortfolioItem(item.id, 'imageAlt', media.alt || '');
                                                     }}
                                                     allowedTypes={['image']}
                                                     value={item.imageId}
@@ -225,9 +297,9 @@ export default function Edit({ attributes, setAttributes }) {
                                             </MediaUploadCheck>
                                             <Button
                                                 onClick={() => {
-                                                    updatePortfolioItem(index, 'imageUrl', '');
-                                                    updatePortfolioItem(index, 'imageId', 0);
-                                                    updatePortfolioItem(index, 'imageAlt', '');
+                                                    updatePortfolioItem(item.id, 'image', null);
+                                                    updatePortfolioItem(item.id, 'imageId', 0);
+                                                    updatePortfolioItem(item.id, 'imageAlt', '');
                                                 }}
                                                 variant="secondary"
                                                 isSmall
@@ -243,7 +315,7 @@ export default function Edit({ attributes, setAttributes }) {
                                         tagName="h3"
                                         className="obx-portfolio__item-name"
                                         value={item.name}
-                                        onChange={(value) => updatePortfolioItem(index, 'name', value)}
+                                        onChange={(value) => updatePortfolioItem(item.id, 'name', value)}
                                         placeholder={__('Project Name', 'obx-blocks')}
                                         allowedFormats={['core/bold', 'core/italic']}
                                     />
@@ -251,33 +323,96 @@ export default function Edit({ attributes, setAttributes }) {
                                         tagName="div"
                                         className="obx-portfolio__item-description"
                                         value={item.description}
-                                        onChange={(value) => updatePortfolioItem(index, 'description', value)}
+                                        onChange={(value) => updatePortfolioItem(item.id, 'description', value)}
                                         placeholder={__('Project description...', 'obx-blocks')}
                                         allowedFormats={['core/bold', 'core/italic', 'core/link']}
                                     />
                                     <div className="obx-portfolio__item-actions">
                                         <Button
-                                            isDestructive
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                removePortfolioItem(index);
-                                            }}
-                                            className="obx-portfolio__item-remove"
+                                            isSmall
+                                            onClick={() => editPortfolioItem(item)}
+                                            className="components-button is-secondary"
                                         >
-                                            {__('Remove Item', 'obx-blocks')}
+                                            {__('Edit', 'obx-blocks')}
+                                        </Button>
+                                        <Button
+                                            isSmall
+                                            onClick={() => removePortfolioItem(item.id)}
+                                            className="components-button is-destructive"
+                                        >
+                                            {__('Remove', 'obx-blocks')}
                                         </Button>
                                     </div>
                                 </div>
                             </div>
                         ))}
                         
-                        <Button
-                            className="obx-portfolio__add-button"
-                            icon={plus}
-                            onClick={addPortfolioItem}
-                        >
-                            {__('Add Portfolio Item', 'obx-blocks')}
-                        </Button>
+                        {isAddingItem && (
+                            <div className="obx-portfolio__edit-form">
+                                <h3>{editingItemId ? __('Edit Portfolio Item', 'obx-blocks') : __('Add New Portfolio Item', 'obx-blocks')}</h3>
+                                <div className="components-base-control">
+                                    <label className="components-base-control__label">
+                                        {__('Image', 'obx-blocks')}
+                                    </label>
+                                    <div className="obx-portfolio__image-preview">
+                                        {newItem.image && newItem.image.url && (
+                                            <img src={newItem.image.url} alt={newItem.name} style={{ maxWidth: '200px', marginBottom: '10px' }} />
+                                        )}
+                                        <MediaUploadCheck>
+                                            <MediaUpload
+                                                onSelect={(media) => setNewItem({ ...newItem, image: media })}
+                                                allowedTypes={['image']}
+                                                value={newItem.image.id}
+                                                render={({ open }) => (
+                                                    <Button
+                                                        onClick={open}
+                                                        className="components-button is-secondary"
+                                                    >
+                                                        {newItem.image.url ? __('Change Image', 'obx-blocks') : __('Select Image', 'obx-blocks')}
+                                                    </Button>
+                                                )}
+                                            />
+                                        </MediaUploadCheck>
+                                    </div>
+                                </div>
+                                <TextControl
+                                    label={__('Name', 'obx-blocks')}
+                                    value={newItem.name}
+                                    onChange={(value) => setNewItem({ ...newItem, name: value })}
+                                />
+                                <TextareaControl
+                                    label={__('Description', 'obx-blocks')}
+                                    value={newItem.description}
+                                    onChange={(value) => setNewItem({ ...newItem, description: value })}
+                                />
+                                <div className="obx-portfolio__form-actions">
+                                    <Button
+                                        isPrimary
+                                        onClick={savePortfolioItem}
+                                        className="components-button"
+                                    >
+                                        {__('Save', 'obx-blocks')}
+                                    </Button>
+                                    <Button
+                                        isSecondary
+                                        onClick={cancelEdit}
+                                        className="components-button"
+                                    >
+                                        {__('Cancel', 'obx-blocks')}
+                                    </Button>
+                                </div>
+                            </div>
+                        )}
+
+                        {!isAddingItem && (
+                            <Button
+                                isPrimary
+                                onClick={addPortfolioItem}
+                                className="components-button"
+                            >
+                                {__('Add Portfolio Item', 'obx-blocks')}
+                            </Button>
+                        )}
                     </div>
                 </div>
             </div>
