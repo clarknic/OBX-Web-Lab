@@ -25,23 +25,20 @@
     backdrop-filter: blur(8px);
     padding: $spacing-sm 0;
 
-    .site-branding {
-      img {
-        transform: scale(0.9);
-      }
-    }
+   
   }
 
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+    z-index: 101;
 
     .main-navigation {
       li {
         &:not(.menu-item-contact-button) {
           a {
-
             color: $color-text;
 
             &:hover {
@@ -52,7 +49,6 @@
           }
         }
       }
-
     }
   }
 
@@ -61,11 +57,18 @@
       transition: transform 0.3s ease;
     }
   }
+
+  @include respond-to(md) {
+    .container {
+      padding: 0 $spacing-md;
+    }
+  }
 }
 
 .site-branding {
   display: flex;
   align-items: center;
+  z-index: 102;
 
   .custom-logo-link {
     display: block;
@@ -74,6 +77,9 @@
       max-width: 300px;
       height: auto;
       width: auto;
+      @include respond-to(md) {
+        max-width: 200px;
+      }
     }
   }
 

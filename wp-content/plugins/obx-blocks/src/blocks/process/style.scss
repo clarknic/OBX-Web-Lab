@@ -45,6 +45,9 @@
       flex-wrap: wrap;
       gap: $spacing-xl;
       margin-top: $spacing-xl;
+      @include respond-to(md) {
+        margin-top: $spacing-lg;
+      }
     }
     
     @media (max-width: $breakpoint-md) {
@@ -59,6 +62,9 @@
     color: color.adjust($color-light, $lightness: -20%);
     margin-bottom: $spacing-xl;
     transition: color 0.3s ease;
+    @include respond-to(md) {
+      margin-bottom:0;
+    }
     &:hover {
       color: var(--block-color, $color-light);
     }

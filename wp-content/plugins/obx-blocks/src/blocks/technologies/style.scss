@@ -24,6 +24,10 @@
     & {
       text-align: center;
       margin-bottom: $spacing-xl;
+      @include respond-to(md) {
+        margin-bottom: $spacing-lg;
+        text-align: left;
+      }
     }
   }
   
@@ -35,6 +39,9 @@
       line-height: $line-height-tight;
       @include responsive-font-size($font-size-3xl, $font-size-2xl);
       @include heading-highlight($color-accent-light);
+      @include respond-to(md) {
+        padding: 0 !important;
+      }
     }
   }
   
@@ -90,10 +97,6 @@
     @media (max-width: $breakpoint-sm) {
       grid-template-columns: repeat(2, 1fr);
     }
-    
-    @media (max-width: $breakpoint-xs) {
-      grid-template-columns: 1fr;
-    }
   }
   
   &__item {
@@ -102,7 +105,7 @@
     align-items: center;
     text-align: center;
     padding: $spacing-md;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     background-color: $color-background-primary;
     border-radius: $border-radius-md;
     box-shadow: $box-shadow-sm;
@@ -110,7 +113,7 @@
     &:hover {
       transform: translateY(-5px);
       box-shadow: $box-shadow-md;
-      background-color: $color-dark;
+      background-color: $color-secondary;
 
       .obx-technologies__item-name {
         color: $color-light;

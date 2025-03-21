@@ -42,19 +42,15 @@
     background-color: rgba(0, 0, 0, 0.5); // Default overlay
   }
 
-  &__container {
-    width: 100%;
-    z-index: 1;
-    color: $color-secondary;
-    @include responsive-container;
-    max-width: $container-max-width;
-  }
 
   &__content {
     color: inherit;
     text-align: center;
     @include responsive-container;
 
+    @include respond-to(md) {
+      padding: 0 !important;
+    }
     &.text-left {
       text-align: left;
 
