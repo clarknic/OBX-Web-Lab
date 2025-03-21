@@ -18,6 +18,7 @@ $technologies = $attributes['technologies'] ?? [];
 $align = !empty($attributes['align']) ? $attributes['align'] : 'full';
 $background_color = !empty($attributes['backgroundColor']) ? $attributes['backgroundColor'] : '#ffffff';
 $text_color = !empty($attributes['textColor']) ? $attributes['textColor'] : '';
+$anchor = !empty($attributes['anchor']) ? $attributes['anchor'] : '';
 
 // Build the class names
 $class_names = 'obx-technologies';
@@ -36,7 +37,9 @@ if (!empty($text_color)) {
 
 // Output the HTML
 ?>
-<div class="<?php echo esc_attr($class_names); ?>" <?php echo !empty($block_style) ? 'style="' . esc_attr($block_style) . '"' : ''; ?>>
+<div class="<?php echo esc_attr($class_names); ?>"
+    <?php echo !empty($anchor) ? ' id="' . esc_attr($anchor) . '"' : ''; ?>
+    <?php echo !empty($block_style) ? ' style="' . esc_attr($block_style) . '"' : ''; ?>>
     <div class="obx-technologies__container">
         <div class="obx-technologies__header">
             <?php if (!empty($heading)) : ?>

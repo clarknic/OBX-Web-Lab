@@ -25,6 +25,7 @@ $background_color = !empty($attributes['backgroundColor']) ? $attributes['backgr
 $text_color = !empty($attributes['textColor']) ? $attributes['textColor'] : '';
 $accent_color = !empty($attributes['accentColor']) ? $attributes['accentColor'] : '#a7d1fb';
 $text_align = !empty($attributes['textAlign']) ? $attributes['textAlign'] : 'center';
+$anchor = !empty($attributes['anchor']) ? $attributes['anchor'] : '';
 
 // Build the class names
 $class_names = 'obx-contact';
@@ -43,7 +44,9 @@ if (!empty($text_color)) {
 
 // Output the HTML
 ?>
-<div class="<?php echo esc_attr($class_names); ?>" <?php echo !empty($block_style) ? 'style="' . esc_attr($block_style) . '"' : ''; ?>>
+<div class="<?php echo esc_attr($class_names); ?>"
+    <?php echo !empty($anchor) ? ' id="' . esc_attr($anchor) . '"' : ''; ?>
+    <?php echo !empty($block_style) ? ' style="' . esc_attr($block_style) . '"' : ''; ?>>
     <div class="obx-contact__container">
         <div class="obx-contact__header" style="text-align: <?php echo esc_attr($text_align); ?>">
             <?php if (!empty($tagline)) : ?>

@@ -13,12 +13,13 @@ if (!defined('ABSPATH')) {
 // Extract attributes with defaults
 $heading = $attributes['heading'] ?? '';
 $intro_text = $attributes['introText'] ?? '';
+$services = $attributes['services'] ?? [];
 $cta_text = $attributes['ctaText'] ?? '';
 $cta_url = $attributes['ctaUrl'] ?? '';
-$services = $attributes['services'] ?? [];
 $align = !empty($attributes['align']) ? $attributes['align'] : 'full';
 $background_color = !empty($attributes['backgroundColor']) ? $attributes['backgroundColor'] : '#ffffff';
 $text_color = !empty($attributes['textColor']) ? $attributes['textColor'] : '';
+$anchor = !empty($attributes['anchor']) ? $attributes['anchor'] : '';
 
 // Build the class names
 $class_names = 'obx-services';
@@ -35,12 +36,11 @@ if (!empty($text_color)) {
     $block_style .= "color: {$text_color};"; 
 }
 
-// Add anchor ID if it exists
-$anchor_id = !empty($attributes['anchor']) ? 'id="' . esc_attr($attributes['anchor']) . '"' : '';
-
 // Output the HTML
 ?>
-<div <?php echo $anchor_id; ?> class="<?php echo esc_attr($class_names); ?>" <?php echo !empty($block_style) ? 'style="' . esc_attr($block_style) . '"' : ''; ?>>
+<div class="<?php echo esc_attr($class_names); ?>"
+    <?php echo !empty($anchor) ? ' id="' . esc_attr($anchor) . '"' : ''; ?>
+    <?php echo !empty($block_style) ? ' style="' . esc_attr($block_style) . '"' : ''; ?>>
     <div class="obx-services__container container">
         <div class="obx-services__left">
             <?php if (!empty($heading)) : ?>

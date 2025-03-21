@@ -24,6 +24,8 @@ $secondary_button_url = !empty($attributes['secondaryButtonUrl']) ? $attributes[
 $align = !empty($attributes['align']) ? $attributes['align'] : 'full';
 $text_align = !empty($attributes['textAlign']) ? $attributes['textAlign'] : 'center';
 $content_width = !empty($attributes['contentWidth']) ? $attributes['contentWidth'] : 80;
+$anchor = !empty($attributes['anchor']) ? $attributes['anchor'] : '';
+
 
 // Build the class names
 $class_names = 'obx-hero';
@@ -44,7 +46,8 @@ if (!empty($overlay_color)) {
 
 // Output the HTML
 ?>
-<div class="<?php echo esc_attr($class_names); ?>">
+<div class="<?php echo esc_attr($class_names); ?>"
+    <?php echo !empty($anchor) ? ' id="' . esc_attr($anchor) . '"' : ''; ?>>
     <?php if (!empty($background_style) || !empty($overlay_style)) : ?>
         <div class="obx-hero__background" <?php echo !empty($background_style) ? 'style="' . esc_attr($background_style) . '"' : ''; ?>>
             <?php if (!empty($overlay_style)) : ?>
