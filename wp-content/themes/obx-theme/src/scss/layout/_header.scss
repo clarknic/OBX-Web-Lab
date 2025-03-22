@@ -11,35 +11,51 @@
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   z-index: 100;
   width: 100%;
-  padding: $spacing-md 0;
+  height: 80px;
   background-color: transparent;
-  transition: all 0.3s ease;
+  transform: translateZ(0);
+  will-change: transform;
+  background-color: rgba(255,255,255, 0.85);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+    z-index: -1;
+  }
 
   &.is-floating {
-    background-color: rgba($color-light, 0.98);
-    box-shadow: 0 2px 8px rgba($color-dark, 0.1);
-    backdrop-filter: blur(8px);
-    padding: $spacing-sm 0;
-
-   
+    &::before {
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 8px #c8c8c8;
+    }
   }
 
   .container {
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: relative;
     z-index: 101;
+    padding: 0 $spacing-md;
 
     .main-navigation {
       li {
         &:not(.menu-item-contact-button) {
           a {
             color: $color-text;
+            transition: color 0.3s ease;
 
             &:hover {
               color: $color-primary;
@@ -53,42 +69,54 @@
   }
 
   .site-branding {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    z-index: 102;
+
     img {
+      max-height: 50px;
+      width: auto;
       transition: transform 0.3s ease;
     }
   }
 
   @include respond-to(md) {
-    .container {
-      padding: 0 $spacing-md;
-    }
+    height: 70px;
+  }
+}
+
+body {
+  padding-top: 80px;
+
+  @include respond-to(md) {
+    padding-top: 70px;
   }
 }
 
 .site-branding {
-  display: flex;
-  align-items: center;
-  z-index: 102;
-
   .custom-logo-link {
-    display: block;
+    display: flex;
+    align-items: center;
+    height: 100%;
 
     img.custom-logo {
-      max-width: 300px;
-      height: auto;
+      max-height: 50px;
       width: auto;
       @include respond-to(md) {
-        max-width: 200px;
+        max-height: 40px;
       }
     }
   }
 
   .site-logo {
-    display: block;
+    display: flex;
+    align-items: center;
+    height: 100%;
 
     img {
-      max-width: 150px;
-      height: auto;
+      max-height: 40px;
+      width: auto;
     }
   }
 }

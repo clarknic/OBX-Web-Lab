@@ -304,69 +304,99 @@ input[type=submit],
 }
 
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   z-index: 100;
   width: 100%;
-  padding: 20px 0;
+  height: 80px;
   background-color: transparent;
-  transition: all 0.3s ease;
+  transform: translateZ(0);
+  will-change: transform;
+  background-color: rgba(255, 255, 255, 0.85);
 }
-.site-header.is-floating {
-  background-color: rgba(248, 249, 250, 0.98);
-  box-shadow: 0 2px 8px rgba(35, 40, 45, 0.1);
+.site-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  z-index: -1;
+}
+.site-header.is-floating::before {
   -webkit-backdrop-filter: blur(8px);
           backdrop-filter: blur(8px);
-  padding: 10px 0;
+  box-shadow: 0 2px 8px #c8c8c8;
 }
 .site-header .container {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
   z-index: 101;
+  padding: 0 20px;
 }
 .site-header .container .main-navigation li:not(.menu-item-contact-button) a {
   color: #333;
+  transition: color 0.3s ease;
 }
 .site-header .container .main-navigation li:not(.menu-item-contact-button) a:hover {
   color: #0073aa;
   background-color: transparent;
   box-shadow: none;
 }
-.site-header .site-branding img {
-  transition: transform 0.3s ease;
-}
-@media (max-width: 992px) {
-  .site-header .container {
-    padding: 0 20px;
-  }
-}
-
-.site-branding {
+.site-header .site-branding {
+  height: 100%;
   display: flex;
   align-items: center;
   z-index: 102;
 }
+.site-header .site-branding img {
+  max-height: 50px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+@media (max-width: 992px) {
+  .site-header {
+    height: 70px;
+  }
+}
+
+body {
+  padding-top: 80px;
+}
+@media (max-width: 992px) {
+  body {
+    padding-top: 70px;
+  }
+}
+
 .site-branding .custom-logo-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 .site-branding .custom-logo-link img.custom-logo {
-  max-width: 300px;
-  height: auto;
+  max-height: 50px;
   width: auto;
 }
 @media (max-width: 992px) {
   .site-branding .custom-logo-link img.custom-logo {
-    max-width: 200px;
+    max-height: 40px;
   }
 }
 .site-branding .site-logo {
-  display: block;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 .site-branding .site-logo img {
-  max-width: 150px;
-  height: auto;
+  max-height: 40px;
+  width: auto;
 }
 
 .site-title {
@@ -739,8 +769,6 @@ input[type=submit],
     max-width: 400px;
     height: 100vh;
     background: #f8f9fa;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     padding: 80px 40px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 999;
