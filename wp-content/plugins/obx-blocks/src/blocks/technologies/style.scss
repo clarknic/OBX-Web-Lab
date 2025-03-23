@@ -38,7 +38,6 @@
       font-weight: $font-weight-bold;
       line-height: $line-height-tight;
       @include responsive-font-size($font-size-3xl, $font-size-2xl);
-      @include heading-highlight($color-accent-light);
       @include respond-to(md) {
         padding: 0 !important;
       }
@@ -51,7 +50,7 @@
       max-width: 800px;
       font-size: $font-size-md;
       font-weight: $font-weight-semibold;
-      color: $color-text-secondary;
+      color: $color-primary;
     }
   }
   
@@ -109,6 +108,7 @@
     background-color: $color-background-primary;
     border-radius: $border-radius-md;
     box-shadow: $box-shadow-sm;
+    border: 1px solid rgba(193, 241, 255, 0.8);
 
     &:hover {
       transform: translateY(-5px);

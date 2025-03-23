@@ -6,199 +6,107 @@
 @use "../../scss/index" as *;
 
 .obx-about {
-  & {
-    padding: $spacing-xl $spacing-lg;
+  padding: 80px 20px;
+  background-color: var(--background-color, #ffffff);
+  color: var(--text-color, #000000);
+
+  &__content {
+    max-width: var(--content-width, 100%);
+    margin: 0 auto;
   }
-  
-  @include section-padding;
-  @include alignment-classes;
-  @include text-alignment-classes('obx-about');
-  
-  &__container {
-    & {
-      max-width: $container-max-width;
-    }
-    @include responsive-container;
-  }
-  
-  &__header {
-    & {
-      text-align: center;
-      margin-bottom: $spacing-3xl;
-    }
-  }
-  
+
   &__tagline {
-    & {
-      font-size: $font-size-base;
-      font-weight: $font-weight-bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: $spacing-md;
-      color: $color-text-secondary;
-    }
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--accent-color, #a7d1fb);
   }
-  
+
   &__heading {
-    & {
-      font-weight: $font-weight-bold;
-      line-height: $line-height-tight;
-      margin: 0 auto;
-      max-width: 800px;
+    font-size: $font-size-3xl;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+    display: inline;
+    box-decoration-break: clone;
+    padding: 0.125em 0;
+    background: linear-gradient(transparent 60%, var(--accent-color, #a7d1fb) 60%);
+
+    @media (max-width: 768px) {
+      font-size: $font-size-xl;
     }
-    @include responsive-font-size($font-size-3xl, $font-size-2xl);
-    @include heading-highlight;
   }
-  
+
   &__intro-text {
-    & {
-      max-width: 800px;
-      margin: $spacing-xl auto 0;
-      font-size: $font-size-md;
-      line-height: $line-height-relaxed;
-      color: $color-text-tertiary;
-    }
-    
-    @media (max-width: $breakpoint-md) {
-      font-size: $font-size-base;
-      padding: 0 $spacing-md;
-    }
-    
-    p {
-      & {
-        margin-bottom: $spacing-md;
-      }
-      
-      &:last-child {
-        margin-bottom: 0;
-      }
+    margin: $spacing-md auto $spacing-lg;
+    font-size: $font-size-lg;
+    line-height: 1.6;
+    color: var(--text-color, #666666);
+
+    @media (max-width: 768px) {
+      font-size: 1.125rem;
+      margin-bottom: 3rem;
     }
   }
-  
+
   &__team {
-    & {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: $spacing-2xl;
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+    margin-top: $spacing-lg;
+  }
+
+  &__team-member {
+    text-align: center;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: $spacing-lg;
+    width: 100%;
+  }
+
+  &__team-member-image {
+    min-width: 200px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
     
-    @media (max-width: $breakpoint-md) {
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: $spacing-xl;
-    }
-    
-    @media (max-width: $breakpoint-sm) {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  &__member {
-    & {
-      background-color: $color-background-primary;
-      border-radius: $border-radius-md;
-      overflow: hidden;
-      box-shadow: $box-shadow-md;
-    }
-    @include flex-column;
-    @include hover-lift;
-  }
-  
-  &__member-image-container {
-    & {
-      position: relative;
-      width: 100%;
-      padding-top: 100%; // 1:1 aspect ratio for team member photos
-      overflow: hidden;
-    }
-  }
-  
-  &__member-image {
-    & {
-      position: absolute;
-      top: 0;
-      left: 0;
+    img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform $transition-slow;
-    }
-    
-    &:hover {
-      transform: scale(1.05);
     }
   }
-  
-  &__member-content {
-    & {
-      padding: $spacing-lg;
-      flex-grow: 1;
-    }
-    @include flex-column;
+
+  &__team-member-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: $spacing-sm;
+    align-items: flex-start;
   }
-  
-  &__member-name {
-    & {
-      font-size: $font-size-xl;
-      font-weight: $font-weight-bold;
-      margin-bottom: $spacing-xs;
-      line-height: $line-height-tight;
-    }
-  }
-  
-  &__member-position {
-    & {
-      font-size: $font-size-base;
-      font-weight: $font-weight-semibold;
-      color: $color-text-secondary;
-      margin-bottom: $spacing-md;
+
+  &__team-member-name {
+    font-size: $font-size-lg;
+    font-weight: 600;
+    margin: 0 0 $spacing-sm !important;
+    text-align: left;
+    span {
+      font-size: $font-size-md;
+      color: $color-primary;
     }
   }
-  
-  &__member-description {
-    & {
-      font-size: $font-size-sm;
-      line-height: $line-height-normal;
-      color: $color-text-secondary;
-      margin-bottom: $spacing-lg;
-    }
-  }
-  
-  &__member-quote-container {
-    & {
-      position: relative;
-      padding: $spacing-lg;
-      background-color: $color-background-secondary;
-      border-radius: $border-radius-md;
-      margin-top: auto;
-    }
-  }
-  
-  &__member-quote-icon {
-    & {
-      position: absolute;
-      top: -12px;
-      left: 20px;
-      background-color: $color-background-primary;
-      border-radius: 50%;
-      padding: 5px;
-      box-shadow: $box-shadow-sm;
-    }
-    
-    svg {
-      & {
-        display: block;
-        width: 24px;
-        height: 24px;
-      }
-    }
-  }
-  
-  &__member-quote {
-    & {
-      font-size: $font-size-base;
-      line-height: $line-height-normal;
-      font-style: italic;
-      color: $color-text-primary;
-    }
+
+
+  &__team-member-description {
+    font-size: $font-size-md;
+    line-height: 1.6;
+    color: var(--text-color, #666666);
+    text-align: left;
   }
 } 

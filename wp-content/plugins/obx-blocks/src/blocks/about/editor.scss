@@ -7,11 +7,105 @@
 @use "./style.scss" as *;
 
 // Editor-specific styles
+.wp-block-obx-blocks-about {
+  max-width: 100% !important;
+
+  .obx-about__team-member {
+    position: relative;
+    cursor: pointer;
+    border: 2px solid transparent;
+    
+    &.is-selected {
+      border-color: var(--wp-admin-theme-color);
+    }
+    
+    &:hover {
+      .obx-about__team-member-image-actions,
+      .obx-about__team-member-remove {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+  
+  .obx-about__team-member-image-actions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: $spacing-sm;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $transition-fast;
+    background: rgba(0, 0, 0, 0.7);
+    padding: $spacing-sm;
+    border-radius: $border-radius-sm;
+    z-index: 10;
+  }
+  
+  .obx-about__team-member-image-placeholder {
+    @include flex-center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $color-background-secondary;
+  }
+  
+  .obx-about__team-member-image-button {
+    @include flex-center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 8px 12px;
+    
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+  
+  .obx-about__add-button {
+    margin-top: $spacing-xl;
+    width: 100%;
+    justify-content: center;
+    padding: $spacing-lg;
+    border: 2px dashed $color-border;
+    border-radius: $border-radius-md;
+    min-height: 100px;
+    background: transparent;
+    transition: all 0.2s;
+    
+    &:hover {
+      background-color: $color-background-secondary;
+      border-color: #999;
+    }
+  }
+
+  // Make rich text fields more visible when empty
+  [data-empty="true"] {
+    &::before {
+      content: attr(placeholder);
+      color: #757575;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+  }
+}
+
 .obx-about {
+  max-width: 100%  !important;
+
   &__member {
     position: relative;
+    cursor: pointer;
+    border: 2px solid transparent;
     
-    &.is-selected,
+    &.is-selected {
+      border-color: var(--wp-admin-theme-color);
+    }
+    
     &:hover {
       .obx-about__member-actions,
       .obx-about__member-image-actions {
@@ -68,4 +162,167 @@
       background-color: $color-background-secondary;
     }
   }
+}
+
+.wp-block-obx-blocks-about {
+    .obx-about__team {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $spacing-md;
+        margin-top: $spacing-lg;
+    }
+
+    .obx-about__team-member {
+        text-align: center;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+        display: flex;
+        justify-content: flex-start;
+        align-items: stretch;
+        gap: $spacing-lg;
+        width: 100%;
+        position: relative;
+        cursor: pointer;
+        border: 2px solid transparent;
+
+        &.is-selected {
+            border-color: var(--wp-admin-theme-color);
+        }
+
+        &:hover {
+            .obx-about__team-member-image-actions,
+            .obx-about__team-member-remove {
+                opacity: 1;
+            }
+        }
+    }
+
+    .obx-about__team-member-image {
+        min-width: 200px;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        background-color: #f0f0f0;
+        position: relative;
+        margin: 0;
+    }
+
+    .obx-about__team-member-image-wrapper {
+        width: 100%;
+        height: 100%;
+        position: relative;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    .obx-about__team-member-image-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .obx-about__team-member-image-button {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px 12px;
+            
+            &:hover {
+                background-color: #f0f0f0;
+            }
+        }
+    }
+
+    .obx-about__team-member-image-actions {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        gap: 8px;
+        opacity: 0;
+        transition: opacity 0.2s;
+        background: rgba(0, 0, 0, 0.7);
+        padding: 8px;
+        border-radius: 4px;
+        z-index: 1;
+    }
+
+    .obx-about__team-member-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: $spacing-sm;
+        align-items: flex-start;
+        flex: 1;
+    }
+
+    .obx-about__team-member-name {
+        font-size: $font-size-lg;
+        font-weight: 600;
+        margin: 0 0 $spacing-sm;
+        text-align: left;
+
+        span {
+            font-size: $font-size-md;
+            color: var(--accent-color, #a7d1fb);
+        }
+    }
+
+    .obx-about__team-member-position {
+        font-size: $font-size-md;
+        color: var(--accent-color, #a7d1fb);
+        margin: 0 0 $spacing-sm;
+        text-align: left;
+    }
+
+    .obx-about__team-member-description {
+        font-size: $font-size-md;
+        line-height: 1.6;
+        color: var(--text-color, #666666);
+        text-align: left;
+        margin: 0;
+    }
+
+    .obx-about__team-member-remove {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+
+    .obx-about__add-button {
+        width: 100%;
+        min-height: 100px;
+        justify-content: center;
+        border: 2px dashed #ddd;
+        background: transparent;
+        transition: all 0.2s;
+        margin-top: 20px;
+
+        &:hover {
+            background: #f0f0f0;
+            border-color: #999;
+        }
+    }
+
+    // Make rich text fields more visible when empty
+    [data-empty="true"] {
+        &::before {
+            content: attr(placeholder);
+            color: #757575;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+    }
 } 

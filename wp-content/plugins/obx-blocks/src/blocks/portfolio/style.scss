@@ -33,7 +33,7 @@
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: $spacing-xs;
-    color: $color-text-secondary;
+    color: $color-primary;
   }
 
   &__heading {
@@ -147,6 +147,7 @@
     float: right;
     margin-left: $spacing-lg;
     max-width: 50%;
+    border: 1px solid rgba(193, 241, 255, 0.8);
     @include respond-to(md) {
       max-width: 100%;
       margin-left: 0;

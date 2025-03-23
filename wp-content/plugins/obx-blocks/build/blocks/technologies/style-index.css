@@ -104,13 +104,6 @@
     font-size: 2rem;
   }
 }
-.obx-technologies__heading {
-  display: inline;
-  padding: 0 10px;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  background-image: linear-gradient(transparent 60%, #c1f1ff 60%);
-}
 @media (max-width: 992px) {
   .obx-technologies__heading {
     padding: 0 !important;
@@ -121,7 +114,7 @@
   max-width: 800px;
   font-size: 1.1rem;
   font-weight: 600;
-  color: rgb(90.78125, 103.75, 116.71875);
+  color: #0073aa;
 }
 .obx-technologies__intro-text {
   max-width: 800px;
@@ -170,6 +163,7 @@
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(193, 241, 255, 0.8);
 }
 .obx-technologies__item:hover {
   transform: translateY(-5px);

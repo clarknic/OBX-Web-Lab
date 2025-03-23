@@ -2,11 +2,11 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
   "name": "obx-blocks/about",
-  "version": "1.0.0",
-  "title": "About Us",
+  "version": "0.1.0",
+  "title": "About",
   "category": "obx-blocks",
-  "icon": "groups",
-  "description": "Display your team members with images, names, positions, descriptions, and quotes.",
+  "icon": "info",
+  "description": "About section block.",
   "supports": {
     "html": false,
     "align": ["wide", "full"],
@@ -14,44 +14,62 @@
   },
   "attributes": {
     "anchor": {
-      "type": "string",
-      "default": ""
-    },
-    "tagline": {
-      "type": "string",
-      "default": ""
+      "type": "string"
     },
     "heading": {
       "type": "string",
-      "default": ""
+      "default": "We are a team of passionate professionals"
     },
     "introText": {
       "type": "string",
-      "default": ""
+      "default": "We believe in delivering exceptional value to our clients through innovative solutions and dedicated service."
     },
     "teamMembers": {
       "type": "array",
-      "default": []
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "imageUrl": {
+            "type": "string"
+          },
+          "imageId": {
+            "type": "number"
+          },
+          "imageAlt": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "position": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
     },
     "align": {
       "type": "string",
       "default": "full"
     },
     "backgroundColor": {
-      "type": "string",
-      "default": "#ffffff"
+      "type": "string"
     },
     "textColor": {
-      "type": "string",
-      "default": ""
+      "type": "string"
     },
     "accentColor": {
-      "type": "string",
-      "default": "#a7d1fb"
+      "type": "string"
     },
     "textAlign": {
       "type": "string",
-      "default": "center"
+      "default": "left"
     },
     "contentWidth": {
       "type": "number",
@@ -60,7 +78,7 @@
   },
   "textdomain": "obx-blocks",
   "editorScript": "file:./index.js",
-  "editorStyle": "file:./editor.css",
+  "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
   "render": "file:./render.php"
 } 

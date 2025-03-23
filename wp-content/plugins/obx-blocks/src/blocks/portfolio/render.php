@@ -38,12 +38,6 @@ if (!empty($text_color)) {
     $block_style .= "color: {$text_color};";
 }
 
-// Heading style with accent color
-$heading_style = '';
-if (!empty($accent_color)) {
-    $heading_style = "background-image: linear-gradient(transparent 60%, {$accent_color} 60%);";
-}
-
 // Container style with content width
 $container_style = "max-width: {$content_width}%;";
 
@@ -59,7 +53,7 @@ $container_style = "max-width: {$content_width}%;";
             <?php endif; ?>
             
             <?php if (!empty($heading)) : ?>
-                <h2 class="obx-portfolio__heading" <?php echo !empty($heading_style) ? 'style="' . esc_attr($heading_style) . '"' : ''; ?>>
+                <h2 class="obx-portfolio__heading">
                     <?php echo wp_kses_post($heading); ?>
                 </h2>
             <?php endif; ?>

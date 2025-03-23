@@ -32,9 +32,9 @@ const plus = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_pri
 
 /***/ }),
 
-/***/ "./node_modules/@wordpress/icons/build-module/library/quote.js":
+/***/ "./node_modules/@wordpress/icons/build-module/library/trash.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/@wordpress/icons/build-module/library/quote.js ***!
+  !*** ./node_modules/@wordpress/icons/build-module/library/trash.js ***!
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -51,14 +51,16 @@ __webpack_require__.r(__webpack_exports__);
  * WordPress dependencies
  */
 
-const quote = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
-  viewBox: "0 0 24 24",
-  xmlns: "http://www.w3.org/2000/svg"
+const trash = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.SVG, {
+  xmlns: "http://www.w3.org/2000/svg",
+  viewBox: "0 0 24 24"
 }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_primitives__WEBPACK_IMPORTED_MODULE_1__.Path, {
-  d: "M13 6v6h5.2v4c0 .8-.2 1.4-.5 1.7-.6.6-1.6.6-2.5.5h-.3v1.5h.5c1 0 2.3-.1 3.3-1 .6-.6 1-1.6 1-2.8V6H13zm-9 6h5.2v4c0 .8-.2 1.4-.5 1.7-.6.6-1.6.6-2.5.5h-.3v1.5h.5c1 0 2.3-.1 3.3-1 .6-.6 1-1.6 1-2.8V6H4v6z"
+  fillRule: "evenodd",
+  clipRule: "evenodd",
+  d: "M12 5.5A2.25 2.25 0 0 0 9.878 7h4.244A2.251 2.251 0 0 0 12 5.5ZM12 4a3.751 3.751 0 0 0-3.675 3H5v1.5h1.27l.818 8.997a2.75 2.75 0 0 0 2.739 2.501h4.347a2.75 2.75 0 0 0 2.738-2.5L17.73 8.5H19V7h-3.325A3.751 3.751 0 0 0 12 4Zm4.224 4.5H7.776l.806 8.861a1.25 1.25 0 0 0 1.245 1.137h4.347a1.25 1.25 0 0 0 1.245-1.137l.805-8.861Z"
 }));
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (quote);
-//# sourceMappingURL=quote.js.map
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (trash);
+//# sourceMappingURL=trash.js.map
 
 /***/ }),
 
@@ -68,7 +70,7 @@ const quote = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_pr
   \*************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"obx-blocks/about","version":"1.0.0","title":"About Us","category":"obx-blocks","icon":"groups","description":"Display your team members with images, names, positions, descriptions, and quotes.","supports":{"html":false,"align":["wide","full"],"anchor":true},"attributes":{"anchor":{"type":"string","default":""},"tagline":{"type":"string","default":""},"heading":{"type":"string","default":""},"introText":{"type":"string","default":""},"teamMembers":{"type":"array","default":[]},"align":{"type":"string","default":"full"},"backgroundColor":{"type":"string","default":"#ffffff"},"textColor":{"type":"string","default":""},"accentColor":{"type":"string","default":"#a7d1fb"},"textAlign":{"type":"string","default":"center"},"contentWidth":{"type":"number","default":80}},"textdomain":"obx-blocks","editorScript":"file:./index.js","editorStyle":"file:./editor.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"obx-blocks/about","version":"0.1.0","title":"About","category":"obx-blocks","icon":"info","description":"About section block.","supports":{"html":false,"align":["wide","full"],"anchor":true},"attributes":{"anchor":{"type":"string"},"heading":{"type":"string","default":"We are a team of passionate professionals"},"introText":{"type":"string","default":"We believe in delivering exceptional value to our clients through innovative solutions and dedicated service."},"teamMembers":{"type":"array","default":[],"items":{"type":"object","properties":{"id":{"type":"string"},"imageUrl":{"type":"string"},"imageId":{"type":"number"},"imageAlt":{"type":"string"},"name":{"type":"string"},"position":{"type":"string"},"description":{"type":"string"}}}},"align":{"type":"string","default":"full"},"backgroundColor":{"type":"string"},"textColor":{"type":"string"},"accentColor":{"type":"string"},"textAlign":{"type":"string","default":"left"},"contentWidth":{"type":"number","default":80}},"textdomain":"obx-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ }),
 
@@ -92,8 +94,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/quote.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/plus.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/plus.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/trash.js");
 /* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editor.scss */ "./src/blocks/about/editor.scss");
 
 /**
@@ -118,7 +120,6 @@ function Edit({
   setAttributes
 }) {
   const {
-    tagline,
     heading,
     introText,
     teamMembers,
@@ -126,14 +127,18 @@ function Edit({
     textColor,
     accentColor,
     align,
-    textAlign
+    textAlign,
+    contentWidth
   } = attributes;
   const [activeMember, setActiveMember] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(null);
   const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)({
-    className: `obx-about align${align || 'none'} text-${textAlign || 'center'}`,
+    className: `obx-about align${align}`,
     style: {
-      backgroundColor,
-      color: textColor
+      textAlign: textAlign,
+      '--content-width': `${contentWidth}%`,
+      '--background-color': backgroundColor,
+      '--text-color': textColor,
+      '--accent-color': accentColor
     }
   });
   const addTeamMember = () => {
@@ -145,8 +150,7 @@ function Edit({
       imageAlt: '',
       name: '',
       position: '',
-      description: '',
-      quote: ''
+      description: ''
     });
     setAttributes({
       teamMembers: newMembers
@@ -182,6 +186,18 @@ function Edit({
       textAlign: newAlign
     })
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content Settings', 'obx-blocks')
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content Width (%)', 'obx-blocks'),
+    value: contentWidth,
+    onChange: value => setAttributes({
+      contentWidth: value
+    }),
+    min: 30,
+    max: 100,
+    step: 5,
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Width of content area on desktop. Mobile will always be 100%.', 'obx-blocks')
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('About Us Settings', 'obx-blocks')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "components-base-control"
@@ -213,28 +229,15 @@ function Edit({
   })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...blockProps
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__container"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__header",
-    style: {
-      textAlign
-    }
+    className: "obx-about__content"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    tagName: "div",
-    className: "obx-about__tagline",
-    value: tagline,
-    onChange: value => setAttributes({
-      tagline: value
-    }),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('OUR TEAM', 'obx-blocks')
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "h2",
     className: "obx-about__heading",
     value: heading,
     onChange: value => setAttributes({
       heading: value
     }),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Meet the people behind our success', 'obx-blocks'),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter a section heading', 'obx-blocks'),
     style: {
       backgroundImage: accentColor ? `linear-gradient(transparent 60%, ${accentColor} 60%)` : 'none'
     }
@@ -245,119 +248,122 @@ function Edit({
     onChange: value => setAttributes({
       introText: value
     }),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add an introduction about your team or company...', 'obx-blocks'),
-    allowedFormats: ['core/bold', 'core/italic', 'core/link']
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter introduction text', 'obx-blocks')
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "obx-about__team"
   }, teamMembers.map((member, index) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     key: member.id,
-    className: `obx-about__member ${activeMember === index ? 'is-selected' : ''}`,
+    className: `obx-about__team-member ${activeMember === index ? 'is-selected' : ''}`,
     onClick: () => setActiveMember(index)
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__member-image-container"
-  }, member.imageUrl ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
-    src: member.imageUrl,
-    alt: member.imageAlt,
-    className: "obx-about__member-image"
-  }) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__member-image-placeholder"
+    className: "obx-about__team-member-image"
+  }, !member.imageUrl ? (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-about__team-member-image-placeholder"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
     onSelect: media => {
-      updateTeamMember(index, 'imageUrl', media.url);
-      updateTeamMember(index, 'imageId', media.id);
-      updateTeamMember(index, 'imageAlt', media.alt || '');
+      const newMembers = [...teamMembers];
+      newMembers[index] = {
+        ...newMembers[index],
+        imageUrl: media.url,
+        imageId: media.id,
+        imageAlt: media.alt || media.title || ''
+      };
+      setAttributes({
+        teamMembers: newMembers
+      });
     },
     allowedTypes: ['image'],
     value: member.imageId,
     render: ({
       open
     }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-      onClick: open,
-      className: "obx-about__member-image-button"
+      onClick: e => {
+        e.stopPropagation();
+        open();
+      },
+      className: "obx-about__team-member-image-button",
+      icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__["default"]
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Image', 'obx-blocks'))
-  }))), member.imageUrl && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__member-image-actions"
+  }))) : (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-about__team-member-image-wrapper"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("img", {
+    src: member.imageUrl,
+    alt: member.imageAlt || member.name
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-about__team-member-image-actions"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUploadCheck, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.MediaUpload, {
     onSelect: media => {
-      updateTeamMember(index, 'imageUrl', media.url);
-      updateTeamMember(index, 'imageId', media.id);
-      updateTeamMember(index, 'imageAlt', media.alt || '');
+      const newMembers = [...teamMembers];
+      newMembers[index] = {
+        ...newMembers[index],
+        imageUrl: media.url,
+        imageId: media.id,
+        imageAlt: media.alt || media.title || ''
+      };
+      setAttributes({
+        teamMembers: newMembers
+      });
     },
     allowedTypes: ['image'],
     value: member.imageId,
     render: ({
       open
     }) => (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-      onClick: open,
+      onClick: e => {
+        e.stopPropagation();
+        open();
+      },
       variant: "secondary",
       isSmall: true
     }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Replace', 'obx-blocks'))
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    onClick: () => {
-      updateTeamMember(index, 'imageUrl', '');
-      updateTeamMember(index, 'imageId', 0);
-      updateTeamMember(index, 'imageAlt', '');
+    onClick: e => {
+      e.stopPropagation();
+      const newMembers = [...teamMembers];
+      newMembers[index] = {
+        ...newMembers[index],
+        imageUrl: '',
+        imageId: 0,
+        imageAlt: ''
+      };
+      setAttributes({
+        teamMembers: newMembers
+      });
     },
     variant: "secondary",
     isSmall: true,
     isDestructive: true
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove', 'obx-blocks')))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__member-content"
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove', 'obx-blocks'))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "obx-about__team-member-content"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "h3",
-    className: "obx-about__member-name",
+    className: "obx-about__team-member-name",
     value: member.name,
     onChange: value => updateTeamMember(index, 'name', value),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Team Member Name', 'obx-blocks'),
-    allowedFormats: ['core/bold', 'core/italic']
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Team Member Name', 'obx-blocks')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "div",
-    className: "obx-about__member-position",
+    className: "obx-about__team-member-position",
     value: member.position,
     onChange: value => updateTeamMember(index, 'position', value),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Position', 'obx-blocks'),
-    allowedFormats: ['core/bold', 'core/italic']
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Position', 'obx-blocks')
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
     tagName: "div",
-    className: "obx-about__member-description",
+    className: "obx-about__team-member-description",
     value: member.description,
     onChange: value => updateTeamMember(index, 'description', value),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Short description...', 'obx-blocks'),
-    allowedFormats: ['core/bold', 'core/italic', 'core/link']
-  }), member.quote && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__member-quote-container"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__member-quote-icon",
-    style: {
-      color: accentColor
-    }
-  }, _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__["default"]), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText, {
-    tagName: "div",
-    className: "obx-about__member-quote",
-    value: member.quote,
-    onChange: value => updateTeamMember(index, 'quote', value),
-    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Personal quote...', 'obx-blocks'),
-    allowedFormats: ['core/bold', 'core/italic']
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-    className: "obx-about__member-actions"
-  }, !member.quote && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-    variant: "secondary",
-    onClick: e => {
-      e.stopPropagation();
-      updateTeamMember(index, 'quote', '');
-    },
-    className: "obx-about__member-add-quote",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Quote', 'obx-blocks')), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Short description...', 'obx-blocks')
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     isDestructive: true,
     onClick: e => {
       e.stopPropagation();
       removeTeamMember(index);
     },
-    className: "obx-about__member-remove"
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove Member', 'obx-blocks')))))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
+    className: "obx-about__team-member-remove",
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Remove Member', 'obx-blocks')))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
     className: "obx-about__add-button",
-    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"],
+    icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_6__["default"],
     onClick: addTeamMember
   }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Add Team Member', 'obx-blocks'))))));
 }
