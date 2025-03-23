@@ -41,6 +41,11 @@ function obx_theme_scripts() {
             wp_get_theme()->get('Version'),
             true
         );
+
+        wp_localize_script('obx-theme-script', 'obxContact', array(
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('obx_contact_nonce'),
+        ));
     }
 }
 add_action('wp_enqueue_scripts', 'obx_theme_scripts');

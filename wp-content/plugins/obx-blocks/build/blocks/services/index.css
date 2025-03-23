@@ -184,7 +184,7 @@
   font-size: 1.25rem;
   line-height: 1.7;
   margin-bottom: 40px;
-  color: rgb(90.78125, 103.75, 116.71875);
+  color: #44494E;
 }
 .obx-services__grid {
   display: grid;
@@ -247,7 +247,7 @@
   font-size: 16px;
   line-height: 1.7;
   text-align: left;
-  color: rgb(90.78125, 103.75, 116.71875);
+  color: #44494E;
   margin-bottom: 0 !important;
 }
 .obx-services.alignfull {

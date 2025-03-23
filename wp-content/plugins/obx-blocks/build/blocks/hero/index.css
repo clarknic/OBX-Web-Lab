@@ -257,7 +257,7 @@
   margin-bottom: 40px;
 }
 .wp-block-obx-blocks-hero .obx-hero__content .block-editor-rich-text__editable:focus {
-  outline: 1px dotted rgb(90.78125, 103.75, 116.71875);
+  outline: 1px dotted #44494E;
 }
 .wp-block-obx-blocks-hero .obx-hero__content .obx-hero__buttons .wp-block-button .obx-button,
 .wp-block-obx-blocks-hero .obx-hero__content .obx-hero__buttons .wp-block-button .wp-block-button__link {

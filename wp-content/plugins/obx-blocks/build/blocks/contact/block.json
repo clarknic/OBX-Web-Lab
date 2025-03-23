@@ -2,11 +2,11 @@
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
   "name": "obx-blocks/contact",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "title": "Contact Us",
   "category": "obx-blocks",
   "icon": "email",
-  "description": "Display your contact information and a contact form.",
+  "description": "Contact form block with email configuration.",
   "supports": {
     "html": false,
     "align": [
@@ -16,45 +16,42 @@
     "anchor": true
   },
   "attributes": {
-    "tagline": {
-      "type": "string",
-      "default": ""
+    "anchor": {
+      "type": "string"
     },
     "heading": {
       "type": "string",
-      "default": ""
+      "default": "Get in Touch"
     },
     "introText": {
       "type": "string",
-      "default": ""
+      "default": "Have a question or want to work together? We'd love to hear from you."
     },
-    "contactInfo": {
-      "type": "array",
-      "default": []
-    },
-    "formShortcode": {
-      "type": "string",
-      "default": ""
+    "emailConfig": {
+      "type": "object",
+      "default": {
+        "messageTitle": "New Contact Form Submission",
+        "receivers": "",
+        "successMessage": "Thank you! Your message has been sent successfully.",
+        "errorMessage": "Sorry, there was an error sending your message. Please try again."
+      }
     },
     "align": {
       "type": "string",
       "default": "full"
     },
     "backgroundColor": {
-      "type": "string",
-      "default": "#ffffff"
+      "type": "string"
     },
     "textColor": {
-      "type": "string",
-      "default": ""
+      "type": "string"
     },
     "accentColor": {
-      "type": "string",
-      "default": "#a7d1fb"
+      "type": "string"
     },
     "textAlign": {
       "type": "string",
-      "default": "center"
+      "default": "left"
     },
     "contentWidth": {
       "type": "number",
@@ -63,7 +60,8 @@
   },
   "textdomain": "obx-blocks",
   "editorScript": "file:./index.js",
-  "editorStyle": "file:./editor.css",
+  "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "render": "file:./render.php"
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
 }

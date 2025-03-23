@@ -8,6 +8,7 @@
 
 // Editor-specific styles
 .obx-contact {
+  max-width: 100% !important;
   &__info-item {
     position: relative;
     padding: $spacing-md;
@@ -77,4 +78,31 @@
       border-radius: $border-radius-sm;
     }
   }
+}
+
+.wp-block-obx-blocks-contact {
+    // Make form fields visually appear disabled
+    .obx-contact__form {
+        input, 
+        textarea, 
+        button {
+            opacity: 0.8;
+            cursor: not-allowed;
+            user-select: none;
+        }
+    }
+
+    // Make inline color controls more visible
+    .components-color-palette__custom-color {
+        margin-bottom: 8px;
+    }
+
+    // Inspector panel styles
+    .components-base-control + .components-base-control {
+        margin-top: 16px;
+    }
+
+    .components-panel__body-title {
+        margin-bottom: 12px;
+    }
 } 

@@ -1,221 +1,172 @@
 /**
- * Contact block styles for both editor and frontend
+ * Contact Us block styles for both editor and frontend
  */
 
 @use "sass:color";
 @use "../../scss/index" as *;
 
 .obx-contact {
-  & {
-    padding: $spacing-xl $spacing-lg;
-  }
-  
-  @include section-padding;
-  @include alignment-classes;
-  @include text-alignment-classes('obx-contact');
-  
-  &__container {
-    & {
-      max-width: $container-max-width;
-    }
-    @include responsive-container;
-  }
-  
-  &__header {
-    & {
-      text-align: center;
-      margin-bottom: $spacing-3xl;
-    }
-  }
-  
-  &__tagline {
-    & {
-      font-size: $font-size-base;
-      font-weight: $font-weight-bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: $spacing-md;
-      color: $color-text-secondary;
-    }
-  }
-  
-  &__heading {
-    & {
-      font-weight: $font-weight-bold;
-      line-height: $line-height-tight;
-      margin: 0 auto;
-      max-width: 800px;
-    }
-    @include responsive-font-size($font-size-3xl, $font-size-2xl);
-    @include heading-highlight;
-  }
-  
-  &__content {
-    & {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: $spacing-3xl;
-      align-items: start;
-    }
+    padding: $spacing-lg $spacing-md;
+    background-color: var(--background-color, #ffffff);
+    color: var(--text-color, #000000);
+
     
-    @media (max-width: $breakpoint-md) {
-      grid-template-columns: 1fr;
-      gap: $spacing-2xl;
+    &__content {
+        max-width: var(--content-width, 100%);
+        margin: 0 auto;
+        display: flex;
+        gap: $spacing-xl;
+        align-items: flex-start;
+
+        @media (max-width: $breakpoint-md) {
+            flex-direction: column;
+            gap: $spacing-md;
+            max-width: 100%;
+
+        }
     }
-  }
-  
-  &__info {
-    & {
-      display: flex;
-      flex-direction: column;
-      gap: $spacing-2xl;
+
+    &__info {
+        flex: 1;
+        max-width: 500px;
+
+        @media (max-width: $breakpoint-md) {
+            max-width: 100%;
+        }
     }
-  }
-  
-  &__info-block {
-    & {
-      display: flex;
-      align-items: flex-start;
-      gap: $spacing-lg;
+
+    &__heading {
+        font-size: $font-size-3xl;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 2rem;
+        display: inline;
+        box-decoration-break: clone;
+        padding: 0.125em 0;
+
+        @media (max-width: $breakpoint-md) {
+            font-size: $font-size-xl;
+        }
     }
-  }
-  
-  &__info-icon {
-    & {
-      flex-shrink: 0;
-      width: 48px;
-      height: 48px;
-      border-radius: $border-radius-md;
-      background-color: $color-background-secondary;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+
+    &__intro-text {
+        font-size: $font-size-lg;
+        line-height: 1.6;
+        color: var(--text-color, #666666);
+        margin-bottom: $spacing-lg;
+
+        @media (max-width: $breakpoint-md) {
+            font-size: $font-size-md;
+        }
     }
-    
-    svg {
-      & {
-        width: 24px;
-        height: 24px;
-        color: $color-text-primary;
-      }
+
+    &__form-preview {
+        flex: 1;
+        max-width: 600px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        padding: $spacing-lg;
+        border: 1px solid rgba(193, 241, 255, 0.8);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+
+        @media (max-width: $breakpoint-md) {
+            max-width: 100%;
+            width: 100%;
+            flex: auto;
+            padding: $spacing-md;
+            border: none;
+            box-shadow: none;
+        }
     }
-  }
-  
-  &__info-content {
-    & {
-      flex-grow: 1;
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+        
     }
-  }
-  
-  &__info-title {
-    & {
-      font-size: $font-size-lg;
-      font-weight: $font-weight-bold;
-      margin-bottom: $spacing-sm;
-      color: $color-text-primary;
+
+    &__form-field {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-xs;
+
+        label {
+            font-weight: 500;
+            color: var(--text-color, #000000);
+        }
+
+        input,
+        textarea {
+            padding: $spacing-sm !important;
+            border: 1px solid $color-dark !important;
+            border-radius: $border-radius-sm !important;
+            background: transparent !important;
+            color: var(--text-color, #000000) !important;
+            font-size: $font-size-md !important;
+            width: 100% !important;
+            transition: all 0.2s ease !important;
+
+            &:focus {
+                outline: none;
+                border-color: $color-primary;
+                box-shadow: 0 0 0 2px #c1f1ff;
+            }
+
+            &::placeholder {
+                color: rgba(var(--text-color, #000000), 0.5);
+            }
+
+            &:disabled {
+                opacity: 0.7;
+                cursor: not-allowed;
+            }
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
     }
-  }
-  
-  &__info-text {
-    & {
-      font-size: $font-size-base;
-      line-height: $line-height-relaxed;
-      color: $color-text-secondary;
+
+    &__form-submit {
+        margin-top: $spacing-sm;
+        padding: $spacing-sm $spacing-md;
+        background-color: $color-secondary;
+        color: #ffffff;
+        border: none;
+        border-radius: $border-radius-sm;
+        font-size: $font-size-md;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover:not(:disabled) {
+            background-color: #e2e4e7;
+        }
+
+        &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
     }
-    
-    a {
-      & {
-        color: $color-primary;
-        text-decoration: none;
-        transition: color $transition-fast;
-      }
-      
-      &:hover {
-        color: color.adjust($color-primary, $lightness: -10%);
-      }
+
+    // Success and error messages
+    &__message {
+        margin-top: $spacing-md;
+        padding: $spacing-sm;
+        border-radius: $border-radius-sm;
+        font-size: $font-size-md;
+        text-align: center;
+
+        &--success {
+            background-color: rgba(#4caf50, 0.1);
+            color: #4caf50;
+        }
+
+        &--error {
+            background-color: rgba(#f44336, 0.1);
+            color: #f44336;
+        }
     }
-  }
-  
-  &__form {
-    & {
-      background-color: $color-background-primary;
-      padding: $spacing-2xl;
-      border-radius: $border-radius-lg;
-      box-shadow: $box-shadow-lg;
-    }
-  }
-  
-  &__form-group {
-    & {
-      margin-bottom: $spacing-lg;
-    }
-    
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  
-  &__label {
-    & {
-      display: block;
-      font-size: $font-size-sm;
-      font-weight: $font-weight-semibold;
-      margin-bottom: $spacing-xs;
-      color: $color-text-primary;
-    }
-  }
-  
-  &__input,
-  &__textarea {
-    & {
-      width: 100%;
-      padding: $spacing-md;
-      font-size: $font-size-base;
-      line-height: $line-height-normal;
-      color: $color-text-primary;
-      background-color: $color-background-secondary;
-      border: 1px solid $color-border;
-      border-radius: $border-radius-md;
-      transition: border-color $transition-fast, box-shadow $transition-fast;
-    }
-    
-    &:focus {
-      outline: none;
-      border-color: $color-primary;
-      box-shadow: 0 0 0 3px color.adjust($color-primary, $alpha: -0.8);
-    }
-  }
-  
-  &__textarea {
-    & {
-      min-height: 150px;
-      resize: vertical;
-    }
-  }
-  
-  &__submit {
-    & {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: $spacing-md $spacing-xl;
-      font-size: $font-size-base;
-      font-weight: $font-weight-semibold;
-      color: $color-text-inverse;
-      background-color: $color-primary;
-      border: none;
-      border-radius: $border-radius-md;
-      cursor: pointer;
-      transition: background-color $transition-fast, transform $transition-fast;
-    }
-    
-    &:hover {
-      background-color: color.adjust($color-primary, $lightness: -10%);
-      transform: translateY(-2px);
-    }
-    
-    &:active {
-      transform: translateY(0);
-    }
-  }
 } 
