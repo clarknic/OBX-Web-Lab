@@ -105,8 +105,8 @@ function obx_theme_setup() {
 
     // Add support for custom logo
     add_theme_support('custom-logo', array(
-        'height'      => 50,
-        'width'       => 150,
+        'height'      => 70,
+        'width'       => 375,
         'flex-height' => true,
         'flex-width'  => false,
         'header-text' => array('site-title', 'site-description'),

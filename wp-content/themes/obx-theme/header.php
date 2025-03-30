@@ -34,16 +34,16 @@ global $wpdb;
                     if ($custom_logo_id) :
                         ?>
                         <a href="<?php echo esc_url(home_url('/')); ?>" rel="home" class="custom-logo-link">
-                            <?php echo wp_get_attachment_image($custom_logo_id, 'medium', false, array(
+                            <?php echo wp_get_attachment_image($custom_logo_id, 'full', false, array(
                                 'class' => 'custom-logo',
                                 'width' => 300,
-                                'height' => '',
+                                'height' => null,
                                 'loading' => 'eager'
                             )); ?>
                         </a>
                     <?php else : ?>
                         <a href="<?php echo esc_url(home_url('/')); ?>" rel="home" class="site-logo">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/obx-web-lab-logo-temp.png" alt="<?php bloginfo('name'); ?>" width="150">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/obx-web-lab-logo-temp.png" alt="<?php bloginfo('name'); ?>" width="300">
                         </a>
                     <?php endif; ?>
                 </div><!-- .site-branding -->
