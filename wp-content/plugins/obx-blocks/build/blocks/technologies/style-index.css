@@ -70,7 +70,8 @@
   margin-left: auto;
 }
 .obx-technologies__container {
-  max-width: 1140px;
+  width: 100%;
+  margin: 0;
 }
 .obx-technologies__container {
   margin: 0 auto;
@@ -81,18 +82,23 @@
   }
 }
 .obx-technologies__header {
-  text-align: center;
-  margin-bottom: 80px;
+  text-align: left;
+}
+.obx-technologies__header.container {
+  max-width: var(--content-width, 1000px);
+  width: 100%;
+  margin: 0 auto 80px;
 }
 @media (max-width: 992px) {
-  .obx-technologies__header {
+  .obx-technologies__header.container {
     margin-bottom: 40px;
     text-align: left;
+    max-width: 100%;
+    padding: 0;
   }
 }
 .obx-technologies__heading {
   margin: 0 auto;
-  max-width: 800px;
   font-weight: 700;
   line-height: 1.2;
 }
@@ -111,13 +117,11 @@
 }
 .obx-technologies__subheading {
   margin: 20px auto 0 !important;
-  max-width: 800px;
   font-size: 1.1rem;
   font-weight: 600;
   color: #0073aa;
 }
 .obx-technologies__intro-text {
-  max-width: 800px;
   margin: 80px auto 0;
   font-size: 1.1rem;
   line-height: 1.7;
@@ -139,8 +143,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 40px;
-  max-width: 1000px;
   margin: 0 auto;
+  max-width: 1000px;
 }
 @media (max-width: 992px) {
   .obx-technologies__grid {

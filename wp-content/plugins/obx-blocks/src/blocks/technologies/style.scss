@@ -15,18 +15,27 @@
   
   &__container {
     & {
-      max-width: $container-max-width;
+      width: 100%;
+      margin: 0;
       @include responsive-container;
     }
   }
   
   &__header {
     & {
-      text-align: center;
-      margin-bottom: $spacing-xl;
+      &.container {
+        max-width: var(--content-width, 1000px);
+        width: 100%;
+        margin: 0 auto $spacing-xl;
+      }
+      text-align: left;
       @include respond-to(md) {
-        margin-bottom: $spacing-lg;
-        text-align: left;
+        &.container {
+          margin-bottom: $spacing-lg;
+          text-align: left;
+          max-width: 100%;
+          padding: 0;
+        }
       }
     }
   }
@@ -34,7 +43,6 @@
   &__heading {
     & {
       margin: 0 auto;
-      max-width: 800px;
       font-weight: $font-weight-bold;
       line-height: $line-height-tight;
       @include responsive-font-size($font-size-3xl, $font-size-2xl);
@@ -47,7 +55,6 @@
   &__subheading {
     & {
       margin: $spacing-md auto 0 !important;
-      max-width: 800px;
       font-size: $font-size-md;
       font-weight: $font-weight-semibold;
       color: $color-primary;
@@ -56,7 +63,6 @@
   
   &__intro-text {
     & {
-      max-width: 800px;
       margin: $spacing-xl auto 0;
       font-size: $font-size-md;
       line-height: $line-height-relaxed;
@@ -84,8 +90,8 @@
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: $spacing-lg;
-      max-width: 1000px;
       margin: 0 auto;
+      max-width: 1000px;
     }
     
     @media (max-width: $breakpoint-md) {

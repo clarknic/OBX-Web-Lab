@@ -72,25 +72,19 @@
     padding-right: 20px !important;
   }
 }
-.obx-services__container {
+.obx-services__container.container {
+  max-width: var(--content-width, 1140px);
+  width: 100%;
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   gap: 80px;
 }
-.obx-services__container {
-  width: 100%;
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 40px;
-}
 @media (max-width: 992px) {
-  .obx-services__container {
-    padding: 0 20px;
-  }
-}
-@media (max-width: 992px) {
-  .obx-services__container {
+  .obx-services__container.container {
     padding: 0 !important;
+    max-width: 100%;
+    gap: 20px;
   }
 }
 .obx-services__left {

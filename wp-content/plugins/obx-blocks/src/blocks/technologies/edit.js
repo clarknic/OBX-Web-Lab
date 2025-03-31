@@ -17,6 +17,7 @@ import {
     Button,
     Placeholder,
     Tooltip,
+    RangeControl,
 } from '@wordpress/components';
 import { useState, useEffect } from '@wordpress/element';
 import { plus, upload, image, edit } from '@wordpress/icons';
@@ -38,6 +39,7 @@ export default function Edit({ attributes, setAttributes }) {
         backgroundColor,
         textColor,
         align,
+        contentWidth,
     } = attributes;
 
     const [activeTech, setActiveTech] = useState(null);
@@ -79,6 +81,7 @@ export default function Edit({ attributes, setAttributes }) {
         style: {
             backgroundColor,
             color: textColor,
+            '--content-width': `${contentWidth}%`,
         },
     });
 
@@ -242,6 +245,14 @@ export default function Edit({ attributes, setAttributes }) {
             
             <InspectorControls>
                 <PanelBody title={__('Technology Settings', 'obx-blocks')}>
+                    <RangeControl
+                        label={__('Content Width', 'obx-blocks')}
+                        value={contentWidth}
+                        onChange={(value) => setAttributes({ contentWidth: value })}
+                        min={20}
+                        max={100}
+                        help={__('Set the width of the content as a percentage of the container.', 'obx-blocks')}
+                    />
                     <div className="components-base-control">
                         <label className="components-base-control__label">
                             {__('Background Color', 'obx-blocks')}

@@ -176,7 +176,8 @@ function Edit({
     technologies,
     backgroundColor,
     textColor,
-    align
+    align,
+    contentWidth
   } = attributes;
   const [activeTech, setActiveTech] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)(null);
   const [svgCache, setSvgCache] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_4__.useState)({});
@@ -214,7 +215,8 @@ function Edit({
     className: `obx-technologies align${align || 'none'}`,
     style: {
       backgroundColor,
-      color: textColor
+      color: textColor,
+      '--content-width': `${contentWidth}%`
     }
   });
   const addTechnology = () => {
@@ -351,7 +353,16 @@ function Edit({
     controls: ['wide', 'full']
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Technology Settings', 'obx-blocks')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content Width', 'obx-blocks'),
+    value: contentWidth,
+    onChange: value => setAttributes({
+      contentWidth: value
+    }),
+    min: 20,
+    max: 100,
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the width of the content as a percentage of the container.', 'obx-blocks')
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "components-base-control"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", {
     className: "components-base-control__label"

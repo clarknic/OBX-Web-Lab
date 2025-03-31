@@ -96,6 +96,7 @@ export default function Edit({ attributes, setAttributes }) {
         style: {
             backgroundColor,
             color: textColor,
+            '--content-width': `${contentWidth}%`,
         },
     });
 
@@ -262,15 +263,14 @@ export default function Edit({ attributes, setAttributes }) {
             </BlockControls>
             
             <InspectorControls>
-                <PanelBody title={__('Content Settings', 'obx-blocks')}>
+                <PanelBody title={__('Service Settings', 'obx-blocks')}>
                     <RangeControl
-                        label={__('Content Width (%)', 'obx-blocks')}
+                        label={__('Content Width', 'obx-blocks')}
                         value={contentWidth}
                         onChange={(value) => setAttributes({ contentWidth: value })}
-                        min={30}
+                        min={20}
                         max={100}
-                        step={5}
-                        help={__('Width of content area on desktop. Mobile will always be 100%.', 'obx-blocks')}
+                        help={__('Set the width of the content as a percentage of the container.', 'obx-blocks')}
                     />
                 </PanelBody>
                 <PanelBody title={__('Service Settings', 'obx-blocks')}>

@@ -20,6 +20,7 @@ $align = !empty($attributes['align']) ? $attributes['align'] : 'full';
 $background_color = !empty($attributes['backgroundColor']) ? $attributes['backgroundColor'] : '#ffffff';
 $text_color = !empty($attributes['textColor']) ? $attributes['textColor'] : '';
 $anchor = !empty($attributes['anchor']) ? $attributes['anchor'] : '';
+$content_width = !empty($attributes['contentWidth']) ? $attributes['contentWidth'] : 80;
 
 // Build the class names
 $class_names = 'obx-services';
@@ -35,6 +36,7 @@ if (!empty($background_color)) {
 if (!empty($text_color)) {
     $block_style .= "color: {$text_color};"; 
 }
+$block_style .= "--content-width: {$content_width}%;";
 
 // Output the HTML
 ?>

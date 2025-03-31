@@ -234,7 +234,8 @@ function Edit({
     className: `obx-services align${align || 'none'}`,
     style: {
       backgroundColor,
-      color: textColor
+      color: textColor,
+      '--content-width': `${contentWidth}%`
     }
   });
   const addService = () => {
@@ -375,17 +376,16 @@ function Edit({
     }),
     controls: ['wide', 'full']
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content Settings', 'obx-blocks')
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Service Settings', 'obx-blocks')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
-    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content Width (%)', 'obx-blocks'),
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content Width', 'obx-blocks'),
     value: contentWidth,
     onChange: value => setAttributes({
       contentWidth: value
     }),
-    min: 30,
+    min: 20,
     max: 100,
-    step: 5,
-    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Width of content area on desktop. Mobile will always be 100%.', 'obx-blocks')
+    help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Set the width of the content as a percentage of the container.', 'obx-blocks')
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Service Settings', 'obx-blocks')
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {

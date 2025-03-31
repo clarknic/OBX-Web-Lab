@@ -19,6 +19,7 @@ $align = !empty($attributes['align']) ? $attributes['align'] : 'full';
 $background_color = !empty($attributes['backgroundColor']) ? $attributes['backgroundColor'] : '#ffffff';
 $text_color = !empty($attributes['textColor']) ? $attributes['textColor'] : '';
 $anchor = !empty($attributes['anchor']) ? $attributes['anchor'] : '';
+$content_width = !empty($attributes['contentWidth']) ? $attributes['contentWidth'] : 80;
 
 // Build the class names
 $class_names = 'obx-technologies';
@@ -34,6 +35,9 @@ if (!empty($background_color)) {
 if (!empty($text_color)) {
     $block_style .= "color: {$text_color};";
 }
+if (!empty($content_width)) {
+    $block_style .= "--content-width: {$content_width}%;";
+}
 
 // Output the HTML
 ?>
@@ -41,7 +45,7 @@ if (!empty($text_color)) {
     <?php echo !empty($anchor) ? ' id="' . esc_attr($anchor) . '"' : ''; ?>
     <?php echo !empty($block_style) ? ' style="' . esc_attr($block_style) . '"' : ''; ?>>
     <div class="obx-technologies__container">
-        <div class="obx-technologies__header">
+        <div class="obx-technologies__header container">
             <?php if (!empty($heading)) : ?>
                 <h2 class="obx-technologies__heading"><?php echo wp_kses_post($heading); ?></h2>
             <?php endif; ?>
