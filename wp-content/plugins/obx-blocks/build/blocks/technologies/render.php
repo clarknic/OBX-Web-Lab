@@ -68,7 +68,12 @@ if (!empty($content_width)) {
                                 <?php if (strtolower(pathinfo($tech['logoImage']['url'], PATHINFO_EXTENSION)) === 'svg') : ?>
                                     <div class="obx-technologies__item-logo-svg" style="background-image: url('<?php echo esc_url($tech['logoImage']['url']); ?>')" aria-label="<?php echo esc_attr($tech['name']); ?>"></div>
                                 <?php else : ?>
-                                    <img src="<?php echo esc_url($tech['logoImage']['url']); ?>" alt="<?php echo esc_attr($tech['name']); ?>" class="obx-technologies__item-logo-img">
+                                    <img 
+                                        src="<?php echo esc_url($tech['logoImage']['url']); ?>" 
+                                        alt="<?php echo esc_attr($tech['name']); ?>" 
+                                        class="obx-technologies__item-logo-img"
+                                        loading="lazy"
+                                    >
                                 <?php endif; ?>
                             <?php endif; ?>
                         </div>

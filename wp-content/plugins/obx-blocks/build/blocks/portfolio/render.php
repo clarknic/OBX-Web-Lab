@@ -79,7 +79,8 @@ $container_style = "max-width: {$content_width}%;";
                             <?php if (!empty($item['imageUrl'])) : ?>
                                 <div class="obx-portfolio__project-image">
                                     <img src="<?php echo esc_url($item['imageUrl']); ?>" 
-                                         alt="<?php echo esc_attr($item['imageAlt']); ?>" />
+                                         alt="<?php echo esc_attr($item['imageAlt']); ?>"
+                                         loading="lazy" />
                                 </div>
                             <?php endif; ?>
                             <h3 class="obx-portfolio__project-name"><?php echo wp_kses_post($item['name']); ?></h3>

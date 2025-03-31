@@ -72,6 +72,15 @@ $block_style .= "--content-width: {$content_width}%;";
                         <div class="obx-services__item">
                             <h3 class="obx-services__item-title"><?php echo obx_render_service_icon($service); ?> <?php echo wp_kses_post($service['title']); ?></h3>
                             <p class="obx-services__item-description"><?php echo wp_kses_post($service['description']); ?></p>
+                            <?php if (!empty($service['iconImage']['url'])) : ?>
+                                <div class="obx-services__item-icon">
+                                    <img 
+                                        src="<?php echo esc_url($service['iconImage']['url']); ?>" 
+                                        alt="<?php echo esc_attr($service['title']); ?>"
+                                        loading="lazy"
+                                    >
+                                </div>
+                            <?php endif; ?>
                         </div>
                     <?php endforeach; ?>
                 </div>

@@ -62,10 +62,11 @@ $wrapper_attributes = get_block_wrapper_attributes([
                     <div class="obx-about__team-member">
                         <?php if (!empty($member['imageUrl'])) : ?>
                             <div class="obx-about__team-member-image">
-                                <img src="<?php echo esc_url($member['imageUrl']); ?>" 
-                                     alt="<?php echo esc_attr($member['imageAlt']); ?>" 
-                                     style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"
-                                />
+                                <img 
+                                    src="<?php echo esc_url($member['imageUrl']); ?>" 
+                                    alt="<?php echo esc_attr($member['imageAlt']); ?>"
+                                    loading="lazy"
+                                >
                             </div>
                         <?php endif; ?>
                         <div class="obx-about__team-member-content">
