@@ -24,6 +24,14 @@
       "type": "string",
       "default": "Have a question or want to work together? We'd love to hear from you."
     },
+    "phone": {
+      "type": "string",
+      "default": ""
+    },
+    "email": {
+      "type": "string",
+      "default": ""
+    },
     "emailConfig": {
       "type": "object",
       "default": {

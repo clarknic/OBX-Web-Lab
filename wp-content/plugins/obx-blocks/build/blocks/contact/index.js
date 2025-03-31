@@ -8,7 +8,7 @@
   \***************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"obx-blocks/contact","version":"0.1.0","title":"Contact Us","category":"obx-blocks","icon":"email","description":"Contact form block with email configuration.","supports":{"html":false,"align":["wide","full"],"anchor":true},"attributes":{"anchor":{"type":"string"},"heading":{"type":"string","default":"Get in Touch"},"introText":{"type":"string","default":"Have a question or want to work together? We\'d love to hear from you."},"emailConfig":{"type":"object","default":{"messageTitle":"New Contact Form Submission","receivers":"","successMessage":"Thank you! Your message has been sent successfully.","errorMessage":"Sorry, there was an error sending your message. Please try again."}},"align":{"type":"string","default":"full"},"backgroundColor":{"type":"string"},"textColor":{"type":"string"},"accentColor":{"type":"string"},"textAlign":{"type":"string","default":"left"},"contentWidth":{"type":"number","default":80}},"textdomain":"obx-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"obx-blocks/contact","version":"0.1.0","title":"Contact Us","category":"obx-blocks","icon":"email","description":"Contact form block with email configuration.","supports":{"html":false,"align":["wide","full"],"anchor":true},"attributes":{"anchor":{"type":"string"},"heading":{"type":"string","default":"Get in Touch"},"introText":{"type":"string","default":"Have a question or want to work together? We\'d love to hear from you."},"phone":{"type":"string","default":""},"email":{"type":"string","default":""},"emailConfig":{"type":"object","default":{"messageTitle":"New Contact Form Submission","receivers":"","successMessage":"Thank you! Your message has been sent successfully.","errorMessage":"Sorry, there was an error sending your message. Please try again."}},"align":{"type":"string","default":"full"},"backgroundColor":{"type":"string"},"textColor":{"type":"string"},"accentColor":{"type":"string"},"textAlign":{"type":"string","default":"left"},"contentWidth":{"type":"number","default":80}},"textdomain":"obx-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -50,6 +50,8 @@ function Edit({
   const {
     heading,
     introText,
+    phone,
+    email,
     emailConfig,
     backgroundColor,
     textColor,
@@ -89,7 +91,21 @@ function Edit({
     })
   })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content Settings', 'obx-blocks')
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Phone Number', 'obx-blocks'),
+    value: phone,
+    onChange: value => setAttributes({
+      phone: value
+    }),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter phone number...', 'obx-blocks')
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Email Address', 'obx-blocks'),
+    value: email,
+    onChange: value => setAttributes({
+      email: value
+    }),
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Enter email address...', 'obx-blocks')
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Content Width (%)', 'obx-blocks'),
     value: contentWidth,
     onChange: value => setAttributes({

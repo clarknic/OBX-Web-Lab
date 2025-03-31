@@ -53,13 +53,60 @@
 .obx-contact__intro-text {
   font-size: 1.25rem;
   line-height: 1.6;
-  color: var(--text-color, #666666);
   margin-bottom: 40px;
+  color: var(--text-color, #44494E);
 }
 @media (max-width: 992px) {
   .obx-contact__intro-text {
     font-size: 1.1rem;
   }
+}
+.obx-contact__contact-info {
+  margin-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+@media (max-width: 992px) {
+  .obx-contact__contact-info {
+    margin-bottom: 20px;
+  }
+}
+.obx-contact__contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  color: var(--text-color, #23282d);
+  padding: 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+.obx-contact__contact-item:hover {
+  background-color: rgba(var(--accent-color, #0073aa), 0.05);
+}
+.obx-contact__contact-icon {
+  color: var(--accent-color, #0073aa);
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+.obx-contact__contact-label {
+  font-weight: 600;
+  color: var(--accent-color, #0073aa);
+}
+.obx-contact__contact-link {
+  color: var(--text-color, #23282d);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+.obx-contact__contact-link:hover {
+  color: var(--accent-color, #0073aa);
+}
+.obx-contact__contact-link:hover + .obx-contact__contact-icon {
+  transform: scale(1.1);
 }
 .obx-contact__form-preview {
   flex: 1;
@@ -128,23 +175,33 @@
   min-height: 120px;
 }
 .obx-contact__form-submit {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #15304b;
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  font-size: 1.1rem;
+  display: inline-block;
+  padding: 5px 20px;
+  font-family: "Outfit", sans-serif;
   font-weight: 500;
+  font-size: 0.9rem;
+  text-align: center;
+  text-decoration: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  background-color: #15304b;
+  color: white;
+  width: 100%;
 }
-.obx-contact__form-submit:hover:not(:disabled) {
-  background-color: #e2e4e7;
+.obx-contact__form-submit:hover, .obx-contact__form-submit:focus {
+  background: rgba(0, 115, 170, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 8px 32px 0 rgba(0, 115, 170, 0.2);
+  transform: translateY(-2px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: white;
 }
-.obx-contact__form-submit:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
+.obx-contact__form-submit:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 16px 0 rgba(0, 115, 170, 0.1);
 }
 .obx-contact__message {
   margin-top: 20px;

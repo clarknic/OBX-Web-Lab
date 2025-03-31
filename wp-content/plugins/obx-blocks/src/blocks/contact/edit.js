@@ -26,6 +26,8 @@ export default function Edit({ attributes, setAttributes }) {
     const {
         heading,
         introText,
+        phone,
+        email,
         emailConfig,
         backgroundColor,
         textColor,
@@ -71,6 +73,18 @@ export default function Edit({ attributes, setAttributes }) {
             
             <InspectorControls>
                 <PanelBody title={__('Content Settings', 'obx-blocks')}>
+                    <TextControl
+                        label={__('Phone Number', 'obx-blocks')}
+                        value={phone}
+                        onChange={(value) => setAttributes({ phone: value })}
+                        placeholder={__('Enter phone number...', 'obx-blocks')}
+                    />
+                    <TextControl
+                        label={__('Email Address', 'obx-blocks')}
+                        value={email}
+                        onChange={(value) => setAttributes({ email: value })}
+                        placeholder={__('Enter email address...', 'obx-blocks')}
+                    />
                     <RangeControl
                         label={__('Content Width (%)', 'obx-blocks')}
                         value={contentWidth}

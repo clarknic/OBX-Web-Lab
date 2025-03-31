@@ -52,11 +52,64 @@
     &__intro-text {
         font-size: $font-size-lg;
         line-height: 1.6;
-        color: var(--text-color, #666666);
         margin-bottom: $spacing-lg;
+        color: var(--text-color, $color-text-secondary);
 
         @media (max-width: $breakpoint-md) {
             font-size: $font-size-md;
+        }
+    }
+
+    &__contact-info {
+        margin-bottom: $spacing-xl;
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+        @include respond-to(md) {
+            margin-bottom: $spacing-md;
+        }
+    }
+
+    &__contact-item {
+        display: flex;
+        align-items: center;
+        gap: $spacing-sm;
+        font-size: $font-size-base;
+        color: var(--text-color, $color-text-primary);
+        padding: $spacing-sm;
+        border-radius: $border-radius-sm;
+        transition: background-color $transition-normal;
+
+        &:hover {
+            background-color: rgba(var(--accent-color, $color-primary), 0.05);
+        }
+    }
+
+    &__contact-icon {
+        color: var(--accent-color, $color-primary);
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+        transition: transform $transition-normal;
+    }
+
+    &__contact-label {
+        font-weight: $font-weight-semibold;
+        color: var(--accent-color, $color-primary);
+    }
+
+    &__contact-link {
+        color: var(--text-color, $color-text-primary);
+        text-decoration: none;
+        transition: color $transition-normal;
+        font-weight: $font-weight-medium;
+
+        &:hover {
+            color: var(--accent-color, $color-primary);
+        }
+
+        &:hover + .obx-contact__contact-icon {
+            transform: scale(1.1);
         }
     }
 
@@ -130,24 +183,34 @@
     }
 
     &__form-submit {
-        margin-top: $spacing-sm;
-        padding: $spacing-sm $spacing-md;
-        background-color: $color-secondary;
-        color: #ffffff;
-        border: none;
-        border-radius: $border-radius-sm;
-        font-size: $font-size-md;
+        display: inline-block;
+        padding: $spacing-xs $spacing-md;
+        font-family: $font-ui;
         font-weight: 500;
+        font-size: 0.9rem;
+        text-align: center;
+        text-decoration: none;
         cursor: pointer;
-        transition: all 0.2s ease;
-
-        &:hover:not(:disabled) {
-            background-color: #e2e4e7;
+        border-radius: 4px;
+        border: 1px solid transparent;
+        transition: all 0.3s ease;
+        background-color: $color-secondary;
+        color: white;
+        width: 100%;
+        
+        &:hover, &:focus {
+            background: rgba($color-primary, 0.85);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            box-shadow: 0 8px 32px 0 rgba($color-primary, 0.2);
+            transform: translateY(-2px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: white;
         }
-
-        &:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
+        
+        &:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 16px 0 rgba($color-primary, 0.1);
         }
     }
 
