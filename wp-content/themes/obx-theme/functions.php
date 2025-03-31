@@ -14,14 +14,24 @@ require_once get_template_directory() . '/inc/svg-support.php';
  * Enqueue styles and scripts
  */
 function obx_theme_scripts() {
-    // Enqueue compiled CSS if it exists
+    // Enqueue main CSS with preload and media="print" + onload
     if (file_exists(get_template_directory() . '/dist/css/main.css')) {
+        // Add preload link for main CSS
+        add_action('wp_head', function() {
+            ?>
+            <link rel="preload" href="<?php echo esc_url(get_template_directory_uri() . '/dist/css/main.css'); ?>" as="style">
+            <?php
+        }, 1);
+
+        // Enqueue main CSS with media="print" and onload switch
         wp_enqueue_style(
             'obx-theme-main-style',
             get_template_directory_uri() . '/dist/css/main.css',
             array(),
             wp_get_theme()->get('Version')
         );
+        wp_style_add_data('obx-theme-main-style', 'media', 'print');
+        wp_script_add_data('obx-theme-main-style', 'onload', "this.media='all'");
     } else {
         // Fallback to the original stylesheet
         wp_enqueue_style(
@@ -67,26 +77,30 @@ function obx_theme_admin_scripts() {
 add_action('admin_enqueue_scripts', 'obx_theme_admin_scripts');
 
 /**
- * Enqueue Google Fonts
+ * Enqueue Google Fonts with preload and display swap
  */
 function obx_enqueue_google_fonts() {
-    // Add preconnect for Google Fonts
-    wp_enqueue_style(
-        'obx-google-fonts-preconnect',
-        'https://fonts.gstatic.com',
-        array(),
-        null
-    );
-    wp_style_add_data('obx-google-fonts-preconnect', 'rel', 'preconnect');
-    wp_style_add_data('obx-google-fonts-preconnect', 'crossorigin', 'anonymous');
-    
-    // Enqueue Google Fonts with display=swap for better performance
+    // Preload critical fonts
+    add_action('wp_head', function() {
+        ?>
+        <!-- Preload critical fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Outfit:wght@400&display=swap" as="style">
+        <link rel="preload" href="https://fonts.gstatic.com/s/merriweather/v30/u-440qyriQwlOrhSvowK_l5-fCZM.ttf" as="font" type="font/ttf" crossorigin>
+        <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v6/QGYyz_MVcBeNP4NjuGObqx1XmO1I4TC0O4a0Ew.woff2" as="font" type="font/woff2" crossorigin>
+        <?php
+    }, 1);
+
+    // Load all fonts with display swap and media="print" + onload
     wp_enqueue_style(
         'obx-google-fonts',
-        'https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700;900&family=Outfit:wght@300;400;500;600;700&display=swap&display=swap',
+        'https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700;900&family=Outfit:wght@300;400;500;600;700&display=swap',
         array(),
         null
     );
+    wp_style_add_data('obx-google-fonts', 'media', 'print');
+    wp_script_add_data('obx-google-fonts', 'onload', "this.media='all'");
 }
 add_action('wp_enqueue_scripts', 'obx_enqueue_google_fonts');
 
