@@ -86,13 +86,14 @@ function obx_enqueue_google_fonts() {
         <!-- Preload critical fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Outfit:wght@400&display=swap" as="style">
-        <link rel="preload" href="https://fonts.gstatic.com/s/merriweather/v30/u-440qyriQwlOrhSvowK_l5-fCZM.ttf" as="font" type="font/ttf" crossorigin>
-        <link rel="preload" href="https://fonts.gstatic.com/s/outfit/v6/QGYyz_MVcBeNP4NjuGObqx1XmO1I4TC0O4a0Ew.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Outfit:wght@400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Outfit:wght@400&display=swap">
+        </noscript>
         <?php
     }, 1);
 
-    // Load all fonts with display swap and media="print" + onload
+    // Load all fonts with display swap
     wp_enqueue_style(
         'obx-google-fonts',
         'https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700;900&family=Outfit:wght@300;400;500;600;700&display=swap',
@@ -101,6 +102,7 @@ function obx_enqueue_google_fonts() {
     );
     wp_style_add_data('obx-google-fonts', 'media', 'print');
     wp_script_add_data('obx-google-fonts', 'onload', "this.media='all'");
+    wp_style_add_data('obx-google-fonts', 'crossorigin', 'anonymous');
 }
 add_action('wp_enqueue_scripts', 'obx_enqueue_google_fonts');
 
