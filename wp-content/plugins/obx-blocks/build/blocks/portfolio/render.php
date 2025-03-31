@@ -78,9 +78,10 @@ $container_style = "max-width: {$content_width}%;";
                              data-project-index="<?php echo esc_attr($index); ?>">
                             <?php if (!empty($item['imageUrl'])) : ?>
                                 <div class="obx-portfolio__project-image">
-                                    <img src="<?php echo esc_url($item['imageUrl']); ?>" 
+                                    <img src="<?php echo esc_url(wp_get_attachment_image_url($item['imageId'], 'portfolio')); ?>" 
                                          alt="<?php echo esc_attr($item['imageAlt']); ?>"
-                                         loading="lazy" />
+                                         loading="lazy"
+                                         width="400" />
                                 </div>
                             <?php endif; ?>
                             <h3 class="obx-portfolio__project-name"><?php echo wp_kses_post($item['name']); ?></h3>
