@@ -119,34 +119,6 @@
       }
     }
   }
-
-  &__button {
-
-    min-width: 180px;
-    text-align: center;
-    @include button-style;
-
-    &--primary {
-      background-color: $color-primary;
-      color: $color-background-primary;
-
-      &:hover {
-        background-color: color.scale($color-primary, $lightness: -10%);
-      }
-    }
-
-    &--secondary {
-
-      background-color: transparent;
-      color: inherit;
-      border: 2px solid currentColor;
-
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.05);
-      }
-    }
-  }
-
   // When there's a background image, default to white text
   &.has-background-image {
     .obx-hero__container {

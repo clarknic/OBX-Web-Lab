@@ -69,19 +69,15 @@ if (!empty($overlay_color)) {
         
         <div class="obx-hero__buttons">
             <?php if (!empty($primary_button_text)) : ?>
-                <div class="wp-block-button">
-                    <a href="<?php echo esc_url($primary_button_url); ?>" class="wp-block-button__link obx-button">
-                        <?php echo esc_html($primary_button_text); ?>
-                    </a>
-                </div>
+                <a href="<?php echo esc_url($primary_button_url); ?>" class="button button-primary">
+                    <?php echo esc_html($primary_button_text); ?>
+                </a>
             <?php endif; ?>
             
             <?php if (!empty($secondary_button_text)) : ?>
-                <div class="wp-block-button">
-                    <a href="<?php echo esc_url($secondary_button_url); ?>" class="wp-block-button__link obx-button obx-button-ghost">
-                        <?php echo esc_html($secondary_button_text); ?>
-                    </a>
-                </div>
+                <a href="<?php echo esc_url($secondary_button_url); ?>" class="button button-secondary">
+                    <?php echo esc_html($secondary_button_text); ?>
+                </a>
             <?php endif; ?>
         </div>
     </div>
