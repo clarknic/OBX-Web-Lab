@@ -132,6 +132,14 @@ function obx_theme_setup() {
 add_action('after_setup_theme', 'obx_theme_setup');
 
 /**
+ * Add custom image sizes
+ */
+function obx_add_image_sizes() {
+    add_image_size('portfolio', 400, 300, true);
+}
+add_action('after_setup_theme', 'obx_add_image_sizes');
+
+/**
  * Register widget areas
  */
 function obx_theme_widgets_init() {
