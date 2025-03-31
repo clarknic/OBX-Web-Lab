@@ -91,6 +91,7 @@
   max-width: var(--content-width, 1000px);
   width: 100%;
   margin: 0 auto 80px;
+  padding: 0;
 }
 @media (max-width: 992px) {
   .obx-technologies__header.container {

@@ -27,6 +27,7 @@
         max-width: var(--content-width, 1000px);
         width: 100%;
         margin: 0 auto $spacing-xl;
+        padding: 0;
       }
       text-align: left;
       @include respond-to(md) {
