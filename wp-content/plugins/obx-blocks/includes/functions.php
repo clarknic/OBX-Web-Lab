@@ -66,11 +66,20 @@ function obx_process_contact_form() {
         'message' => '',
     );
 
-    $name = sanitize_text_field($_POST['name']);
-    $email = sanitize_email($_POST['email']);
-    $message = sanitize_textarea_field($_POST['message']);
-    $receivers = sanitize_text_field($_POST['receivers']);
-    $messageTitle = sanitize_text_field($_POST['messageTitle']);
+    // Define constant random strings for form field names
+    define('OBX_CONTACT_NAME_FIELD', 'x7k9m2p4');
+    define('OBX_CONTACT_EMAIL_FIELD', 'v3n5b8h1');
+    define('OBX_CONTACT_MESSAGE_FIELD', 't6w9y2z5');
+    define('OBX_CONTACT_RECEIVERS_FIELD', 'q4s7u1x3');
+    define('OBX_CONTACT_TITLE_FIELD', 'a2d5g8j1');
+
+    $name = sanitize_text_field($_POST[OBX_CONTACT_NAME_FIELD]);
+    $email = sanitize_email($_POST[OBX_CONTACT_EMAIL_FIELD]);
+    $message = sanitize_textarea_field($_POST[OBX_CONTACT_MESSAGE_FIELD]);
+    
+    // Decode base64 encoded values
+    $receivers = !empty($_POST[OBX_CONTACT_RECEIVERS_FIELD]) ? base64_decode(sanitize_text_field($_POST[OBX_CONTACT_RECEIVERS_FIELD])) : '';
+    $messageTitle = !empty($_POST[OBX_CONTACT_TITLE_FIELD]) ? base64_decode(sanitize_text_field($_POST[OBX_CONTACT_TITLE_FIELD])) : '';
 
     if (empty($name) || empty($email) || empty($message)) {
         $response['message'] = __('Please fill in all required fields.', 'obx-blocks');

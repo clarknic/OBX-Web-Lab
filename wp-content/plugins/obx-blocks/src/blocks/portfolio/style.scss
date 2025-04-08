@@ -149,9 +149,10 @@
     max-width: 50%;
     border: 1px solid rgba(193, 241, 255, 0.8);
     @include respond-to(md) {
+      margin-left: auto;
+      margin-right: auto;
+      width: 400px;
       max-width: 100%;
-      margin-left: 0;
-      margin-right: 0;
     }
 
     img {

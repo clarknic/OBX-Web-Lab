@@ -29,6 +29,13 @@ $content_width = $attributes['contentWidth'] ?? 100;
 $anchor = $attributes['anchor'] ?? '';
 $align = $attributes['align'] ?? '';
 
+// Define constant random strings for form field names
+define('OBX_CONTACT_NAME_FIELD', 'x7k9m2p4');
+define('OBX_CONTACT_EMAIL_FIELD', 'v3n5b8h1');
+define('OBX_CONTACT_MESSAGE_FIELD', 't6w9y2z5');
+define('OBX_CONTACT_RECEIVERS_FIELD', 'q4s7u1x3');
+define('OBX_CONTACT_TITLE_FIELD', 'a2d5g8j1');
+
 $wrapper_attributes = get_block_wrapper_attributes([
     'class' => 'obx-contact align' . $align,
     'id' => $anchor,
@@ -41,6 +48,39 @@ $wrapper_attributes = get_block_wrapper_attributes([
         esc_attr($accent_color)
     ),
 ]);
+
+// Get block attributes
+$title = $attributes['title'] ?? '';
+$description = $attributes['description'] ?? '';
+$receivers = $attributes['receivers'] ?? '';
+$messageTitle = $attributes['messageTitle'] ?? '';
+
+// Encode sensitive data with base64
+$encodedReceivers = !empty($receivers) ? base64_encode($receivers) : '';
+$encodedMessageTitle = !empty($messageTitle) ? base64_encode($messageTitle) : '';
+
+// Get alignment classes
+$alignment = $attributes['alignment'] ?? 'center';
+$alignmentClass = 'text-' . $alignment;
+
+// Get background color
+$backgroundColorClass = !empty($background_color) ? 'has-' . $background_color . '-background-color' : '';
+
+// Get text color
+$textColorClass = !empty($text_color) ? 'has-' . $text_color . '-color' : '';
+
+// Get custom class
+$className = $attributes['className'] ?? '';
+
+// Combine classes
+$classes = array(
+    'obx-contact',
+    $alignmentClass,
+    $backgroundColorClass,
+    $textColorClass,
+    $className,
+);
+$classString = implode(' ', array_filter($classes));
 ?>
 <div <?php echo $wrapper_attributes; ?>>
     <div class="obx-contact__content">
@@ -82,24 +122,25 @@ $wrapper_attributes = get_block_wrapper_attributes([
         </div>
         
         <div class="obx-contact__form-preview">
-            <form class="obx-contact__form" method="post">
-                <?php wp_nonce_field('obx_contact_nonce', 'nonce'); ?>
-                <input type="hidden" name="messageTitle" value="<?php echo esc_attr($email_config['messageTitle'] ?? ''); ?>">
-                <input type="hidden" name="receivers" value="<?php echo esc_attr($email_config['receivers'] ?? ''); ?>">
+            <form class="obx-contact__form" id="obx-contact-form" method="post">
+                <input type="hidden" name="<?php echo OBX_CONTACT_RECEIVERS_FIELD; ?>" value="<?php echo esc_attr($encodedReceivers); ?>">
+                <input type="hidden" name="<?php echo OBX_CONTACT_TITLE_FIELD; ?>" value="<?php echo esc_attr($encodedMessageTitle); ?>">
+                <input type="hidden" name="action" value="obx_contact_form">
+                <input type="hidden" name="nonce" value="<?php echo wp_create_nonce('obx_contact_nonce'); ?>">
                 
                 <div class="obx-contact__form-field">
                     <label for="obx-contact-name"><?php _e('Name', 'obx-blocks'); ?></label>
-                    <input type="text" id="obx-contact-name" name="name" required>
+                    <input type="text" id="obx-contact-name" name="<?php echo OBX_CONTACT_NAME_FIELD; ?>" required>
                 </div>
                 
                 <div class="obx-contact__form-field">
                     <label for="obx-contact-email"><?php _e('Email', 'obx-blocks'); ?></label>
-                    <input type="email" id="obx-contact-email" name="email" required>
+                    <input type="email" id="obx-contact-email" name="<?php echo OBX_CONTACT_EMAIL_FIELD; ?>" required>
                 </div>
                 
                 <div class="obx-contact__form-field">
                     <label for="obx-contact-message"><?php _e('Message', 'obx-blocks'); ?></label>
-                    <textarea id="obx-contact-message" name="message" rows="5" required></textarea>
+                    <textarea id="obx-contact-message" name="<?php echo OBX_CONTACT_MESSAGE_FIELD; ?>" rows="5" required></textarea>
                 </div>
                 
                 <button type="submit" class="obx-contact__form-submit">
